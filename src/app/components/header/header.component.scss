@@ -1,0 +1,17 @@
+header {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background-color: #ed008c;
+
+  .logo {
+    width: 100%;
+    text-align: right;
+
+    img {
+      max-height: 50px;
+      margin-right: 20px;
+      margin-top: 5px;
+    }
+  }
+}

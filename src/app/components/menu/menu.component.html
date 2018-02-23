@@ -1,0 +1,40 @@
+<nav>
+  <div id="menu-actions">
+    <button (click)="toggleState()">Menu</button>
+  </div>
+  <div id="menu-wrapper" [@menuState]="state">
+    <button class="menu-button" (click)="toggleState()">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </button>
+    <ul>
+      <li>
+        <a routerLink="/">
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/library">
+          <span>Knowledge Library</span>
+        </a>
+      </li>
+      <li>
+        <hr>
+      </li>
+      <li>
+        <a routerLink="/">
+          <span>Register</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/">
+          <span>Connexion</span>
+        </a>
+      </li>
+      <li>
+        <button (click)="disconnect()">
+          <span>Disconnect</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,4 +1,4 @@
-import { HeaderComponent } from './header';
+import { HeaderComponent } from './header.component';
 import { TestBed, async } from '@angular/core/testing';
 
 describe('header component', () => {
@@ -15,6 +15,6 @@ describe('header component', () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     fixture.detectChanges();
     const header = fixture.nativeElement;
-    expect(header.querySelector('header').textContent.trim()).toBe('Hello');
+    expect(header.querySelector('img').getAttribute('src')).toBe('/assets/logo-combe.png');
   });
 });

@@ -4,8 +4,8 @@ import { routing } from './routes';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './components/menu/menu';
-import { HeaderComponent } from './components/header/header';
+import { MenuComponent } from './components/menu/menu.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeModule } from './modules/home/index.module';
 
 @NgModule({

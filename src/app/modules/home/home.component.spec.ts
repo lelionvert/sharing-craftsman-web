@@ -15,6 +15,6 @@ describe('home component', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const homeElement = fixture.nativeElement;
-    expect(homeElement.querySelector('div').textContent.trim()).toContain('Administration du portfolio de Cyril PHAM-LE');
+    expect(homeElement.querySelector('div.home-content').textContent.trim()).toContain('The Sharing Craftsman');
   });
 });

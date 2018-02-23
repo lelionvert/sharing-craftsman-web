@@ -7,12 +7,11 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import './menu.scss';
 
 @Component({
   selector: 'sc-menu',
-  templateUrl: './menu.html',
-  styleUrls: ['./menu.scss'],
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.scss'],
   animations: [
     trigger('menuState', [
       state('inactive', style({ transform: 'translateX(-100%)' })),
@@ -24,6 +23,7 @@ import './menu.scss';
 })
 export class MenuComponent implements OnInit {
   private state: string;
+  public isAuthenticated: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -33,5 +33,9 @@ export class MenuComponent implements OnInit {
 
   toggleState() {
     this.state = this.state === 'active' ? 'inactive' : 'active';
+  }
+
+  disconnect() {
+    
   }
 }
