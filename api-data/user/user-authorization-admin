@@ -1,0 +1,28 @@
+==> POST /admin/users/groups
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "username": "hello@world.fr",
+  "group": "USERS"
+}
+--> RESPONSE
+
+
+==> DELETE /admin/users/groups
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "username": "hello@world.fr",
+  "group": "USERS"
+}
+--> RESPONSE
+
+

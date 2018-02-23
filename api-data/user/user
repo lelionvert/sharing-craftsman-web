@@ -1,0 +1,77 @@
+==> POST /users/register
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+--> BODY
+{
+  "username": "john@doe.fr",
+  "password": "password",
+  "persistentLogging": false
+}
+--> RESPONSE
+
+
+==> GET /users/request-change-password
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+{
+  "token": "aaa"
+}
+
+
+==> POST /users/change-password
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "changePasswordToken": null,
+  "oldPassword": "password",
+  "newPassword": "newpassword"
+}
+--> RESPONSE
+
+
+==> POST /users/update-profile
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john@doe.fr",
+  "website": "www.johndoe.fr",
+  "github": "http://github.com/Johndoe",
+  "linkedin": "linkedin.com/johndoe",
+  "picture": "picture.jpg"
+}
+--> RESPONSE
+
+
+==> GET /users/lost-password
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+--> BODY
+
+--> RESPONSE
+{
+  "changePasswordToken": {
+    "token": "aaa"
+  },
+  "email": {
+    "email": "john@doe.fr"
+  }
+}

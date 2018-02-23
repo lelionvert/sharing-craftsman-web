@@ -1,0 +1,13 @@
+==> POST /clients/register
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "name": "toto",
+  "secret": "pass"
+}
+--> RESPONSE
+

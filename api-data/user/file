@@ -1,0 +1,21 @@
+==> GET /files/{filename:.+}
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+
+
+==> POST /upload
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+FILE
+--> RESPONSE
+

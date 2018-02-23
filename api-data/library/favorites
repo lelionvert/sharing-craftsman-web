@@ -1,0 +1,47 @@
+==> POST /favorites
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": null,
+  "username": "john@doe.fr",
+  "contentType": "KNOWLEDGE",
+  "contentId": "aaa"
+}
+--> RESPONSE
+
+
+==> DELETE /favorites
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "username": "john@doe.fr"
+}
+--> RESPONSE
+
+
+==> POST /favorites/search
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "username": "john@doe.fr"
+}
+--> RESPONSE
+{
+  "id": "saa",
+  "username": "john@doe.fr",
+  "contentType": "KNOWLEDGE",
+  "contentId": "aaa"
+}

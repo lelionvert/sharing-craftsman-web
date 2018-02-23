@@ -1,0 +1,150 @@
+==> GET /admin/users
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+[
+  {
+    "username": "john@doe.fr",
+    "password": "password",
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john@doe.fr",
+    "website": "www.johndoe.fr",
+    "github": "github.com/johndoe",
+    "linkedin": "linkedin.com/johndoe",
+    "authorizations": {
+      "groups": [
+        {
+          "roles": [
+            {
+              "name": "ROLE_USER"
+            }
+          ],
+          "name": "USERS"
+        }
+      ]
+    },
+    "creationDate": 1514631600000,
+    "lastUpdateDate": 1514631600000,
+    "picture": "picture.jpg",
+    "active": true
+  },
+  {
+    "username": "admin@toto.fr",
+    "password": "password",
+    "firstname": "Admin",
+    "lastname": "Toto",
+    "email": "admin@toto.fr",
+    "website": "www.admintoto.fr",
+    "github": "github.com/admintoto",
+    "linkedin": "linkedin.com/admintoto",
+    "authorizations": {
+      "groups": [
+        {
+          "roles": [
+            {
+              "name": "ROLE_USER"
+            },
+            {
+              "name": "ROLE_ADMIN"
+            }
+          ],
+          "name": "ADMINS"
+        }
+      ]
+    },
+    "creationDate": 1514631600000,
+    "lastUpdateDate": 1514631600000,
+    "picture": "picture.jpg",
+    "active": true
+  }
+]
+
+
+==> DELETE /admin/users/{username}
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+
+
+==> PUT /admin/users
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "username": "john@doe.fr",
+  "password": null,
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john@doe.fr",
+  "website": "www.johndoe.fr",
+  "github": "github.com/johndoe",
+  "linkedin": "linkedin.com/johndoe",
+  "authorizations": {
+    "groups": [
+      {
+        "roles": [
+          {
+            "name": "ROLE_USER"
+          }
+        ],
+        "name": "USERS"
+      }
+    ]
+  },
+  "creationDate": null,
+  "lastUpdateDate": null,
+  "picture": "picture.jpg",
+  "active": true
+}
+--> RESPONSE
+
+
+==> POST /admin/users
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "username": "john@doe.fr",
+  "password": null,
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "john@doe.fr",
+  "website": "www.johndoe.fr",
+  "github": "github.com/johndoe",
+  "linkedin": "linkedin.com/johndoe",
+  "authorizations": {
+    "groups": [
+      {
+        "roles": [
+          {
+            "name": "ROLE_USER"
+          }
+        ],
+        "name": "USERS"
+      }
+    ]
+  },
+  "creationDate": null,
+  "lastUpdateDate": null,
+  "picture": "picture.jpg",
+  "active": true
+}
+--> RESPONSE
+

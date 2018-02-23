@@ -1,0 +1,32 @@
+==> GET /roles
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+{
+  "groups": [
+    {
+      "roles": [
+        {
+          "name": "ROLE_USER"
+        }
+      ],
+      "name": "USERS"
+    },
+    {
+      "roles": [
+        {
+          "name": "ROLE_USER"
+        },
+        {
+          "name": "ROLE_ADMIN"
+        }
+      ],
+      "name": "ADMINS"
+    }
+  ]
+}

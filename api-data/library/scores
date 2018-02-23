@@ -1,0 +1,89 @@
+==> POST /scores
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": null,
+  "giver": "john@doe.fr",
+  "contentType": "KNOWLEDGE",
+  "contentId": "aaa",
+  "mark": 4
+}
+--> RESPONSE
+
+
+==> PUT /scores
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "giver": "john@doe.fr",
+  "contentType": "KNOWLEDGE",
+  "contentId": "aaa",
+  "mark": 4
+}
+--> RESPONSE
+
+
+==> DELETE /scores
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "giver": "john@doe.fr",
+  "contentType": "null",
+  "contentId": "null",
+  "mark": null
+}
+--> RESPONSE
+
+
+==> GET /scores/contentId/{id}
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+[
+  {
+    "id": "saa",
+    "giver": "john@doe.fr",
+    "contentType": "CATEGORY",
+    "contentId": "aaa",
+    "mark": 4
+  }
+]
+
+
+==> GET /scores/mar/{mark}
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+[
+  {
+    "id": "saa",
+    "giver": "john@doe.fr",
+    "contentType": "CATEGORY",
+    "contentId": "aaa",
+    "mark": 4
+  }
+]

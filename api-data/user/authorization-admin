@@ -1,0 +1,74 @@
+==> GET /admin/roles/groups
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+[
+  {
+    "roles": [
+      {
+        "name": "ROLE_USER"
+      }
+    ],
+    "name": "USERS"
+  },
+  {
+    "roles": [
+      {
+        "name": "ROLE_USER"
+      },
+      {
+        "name": "ROLE_ADMIN"
+      }
+    ],
+    "name": "ADMINS"
+  }
+]
+
+
+==> POST /admin/roles/groups
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "roles": [
+    {
+      "name": "ROLE_ROOT"
+    },
+    {
+      "name": "ROLE_ADMIN"
+    },
+    {
+      "name": "ROLE_USER"
+    }
+  ],
+  "name": "SUPER_ADMINS"
+}
+--> RESPONSE
+
+
+==> DELETE /admin/roles/groups
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "roles": [
+    {
+      "name": "ROLE_USER"
+    }
+  ],
+  "name": "SUPER_ADMINS"
+}
+--> RESPONSE
+
+

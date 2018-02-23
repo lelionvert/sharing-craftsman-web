@@ -1,0 +1,169 @@
+==> POST /library/categories
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": null,
+  "name": "Architecture"
+}
+--> RESPONSE
+
+
+==> PUT /library/categories
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "name": "Architecture"
+}
+--> RESPONSE
+
+
+==> DELETE /library/categories
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "name": "null"
+}
+--> RESPONSE
+
+
+==> POST /library/knowledges
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": null,
+  "categoryId": "aaa",
+  "creator": "john@doe.fr",
+  "title": "title",
+  "content": "content"
+}
+--> RESPONSE
+
+
+==> PUT /library/knowledges
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "categoryId": "aaa",
+  "creator": "john@doe.fr",
+  "title": "title",
+  "content": "content"
+}
+--> RESPONSE
+
+
+==> DELETE /library/knowledges
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "categoryId": "aaa",
+  "creator": "null",
+  "title": "null",
+  "content": "null"
+}
+--> RESPONSE
+
+
+==> GET /library
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+[
+  {
+    "id": "bbb",
+    "name": "SOLID",
+    "knowledges": [
+      {
+        "id": "kaa",
+        "creator": "john@doe.fr",
+        "title": "My knowledge",
+        "content": "My content"
+      }
+    ]
+  }
+]
+
+
+==> GET /library/{id}
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+{
+  "id": "bbb",
+  "name": "SOLID",
+  "knowledges": [
+    {
+      "id": "kaa",
+      "creator": "john@doe.fr",
+      "title": "My knowledge",
+      "content": "My content"
+    }
+  ]
+}
+
+
+==> POST /library/search
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "searchKeys": {
+    "KnowledgeTitle": "know",
+    "CategoryName": "Arch"
+  }
+}
+--> RESPONSE
+[
+  {
+    "id": "bbb",
+    "name": "SOLID",
+    "knowledges": [
+      {
+        "id": "kaa",
+        "creator": "john@doe.fr",
+        "title": "My knowledge",
+        "content": "My content"
+      }
+    ]
+  }
+]

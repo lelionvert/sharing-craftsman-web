@@ -1,0 +1,94 @@
+==> POST /comments
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": null,
+  "commenter": "commenter",
+  "contentType": "CATEGORY",
+  "contentId": "aaa",
+  "content": "content"
+}
+--> RESPONSE
+
+
+==> PUT /comments
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "commenter": "commenter",
+  "contentType": "CATEGORY",
+  "contentId": "aaa",
+  "content": "content"
+}
+--> RESPONSE
+
+
+==> DELETE /comments
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "commenter": "commenter"
+}
+--> RESPONSE
+
+
+==> GET /comments/contentid/{id}
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+[
+  {
+    "id": "caa",
+    "commenter": "john@doe.fr",
+    "contentType": "KNOWLEDGE",
+    "contentId": "aaa",
+    "content": "My comment"
+  },
+  {
+    "id": "cbb",
+    "commenter": "john@doe.fr",
+    "contentType": "CATEGORY",
+    "contentId": "bbb",
+    "content": "My other comment"
+  }
+]
+
+
+==> GET /comments/{id}
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+{
+  "id": "aaa",
+  "commenter": "commenter"
+}
+--> RESPONSE
+{
+  "id": "caa",
+  "commenter": "john@doe.fr",
+  "contentType": "KNOWLEDGE",
+  "contentId": "aaa",
+  "content": "My comment"
+}
