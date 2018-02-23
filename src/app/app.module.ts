@@ -6,13 +6,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HeaderComponent } from './components/header/header.component';
+
 import { HomeModule } from './modules/home/index.module';
+import { UserModule } from './modules/user/index.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserModule
   ],
   imports: [
     BrowserModule,

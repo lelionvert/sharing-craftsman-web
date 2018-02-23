@@ -7,6 +7,11 @@ export const routes: Routes = [
     data: {
       preload: true
     }
+  },
+  {
+    path: 'login',
+    redirectTo: '/login',
+    pathMatch: 'full'
   }
 ];
 

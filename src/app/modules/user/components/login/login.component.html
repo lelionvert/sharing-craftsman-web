@@ -1,0 +1,29 @@
+<div class="form-wrapper">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <h1>Identification</h1>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="username">Identifiant</label>
+      </div>
+      <div class="form-field">
+        <input type="text" class="form-control" id="username" name="username" placeholder="John" [(ngModel)]="model.username" #username="ngModel" required>
+      </div>
+      <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">Merci de renseigner votre identifiant</div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="password">Mot de passe</label>
+      </div>
+      <div class="form-field">
+        <input type="password" class="form-control" [(ngModel)]="model.password" name="password" id="password" placeholder="Doe" #password="ngModel" required>
+      </div>
+      <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">Merci de renseigner votre mot de passe</div>
+    </div>
+    <div class="form-group">
+      <input type="checkbox" [(ngModel)]="model.rememberMe" id="remember-me" name="remember-me"> <label for="remember-me">Se souvenir de moi</label>
+    </div>
+    <div class="form-actions">
+      <button type="submit" (click)="login()">Submit</button>
+    </div>
+  </form>
+</div>
