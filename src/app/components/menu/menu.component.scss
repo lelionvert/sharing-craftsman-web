@@ -11,6 +11,7 @@ nav {
       margin-top: 20px;
       color: #FFFFFF;
       text-transform: uppercase;
+      font-family : inherit;
 
       &:hover {
         cursor: pointer;
@@ -37,6 +38,7 @@ nav {
       margin-left: 160px;
       margin-top: 20px;
       color: #FFFFFF;
+      font-family : inherit;
 
       &:hover {
         cursor: pointer;
@@ -53,7 +55,7 @@ nav {
       margin: 0;
       padding: 0;
       margin-top: 30px;
-      font-size: 16px;
+      font-size: 14px;
       text-transform: uppercase;
 
       li {
@@ -77,14 +79,21 @@ nav {
           padding: 5% 0 5% 5px;
           width: 100%;
           text-align: left;
-          font-size: 22px;
+          font-size: 18px;
           font-weight: 100;
-          font-family: 'Open Sans';
+          font-family : inherit;
           
           &:hover {
             cursor: pointer;
             color: #000000;
           }
+        }
+
+        hr {
+          width: 80%;
+          padding: 0;
+          margin: 0;
+          margin: 10% 0 10% 5px;
         }
       }
     }
