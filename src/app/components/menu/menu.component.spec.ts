@@ -3,12 +3,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-class MockRouter {
-  navigateByUrl(path: string) {
-    return path;
-  }
-}
+import { MockRouter } from '../../../mocks/MockRouter';
 
 describe('menu component', () => {
   beforeEach(async(() => {
