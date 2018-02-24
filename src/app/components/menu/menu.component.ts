@@ -7,6 +7,7 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import { LogoutService } from '../../services/user/logout.service';
 
 @Component({
   selector: 'sc-menu',
@@ -25,7 +26,7 @@ export class MenuComponent implements OnInit {
   private state: string;
   public isAuthenticated: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public logoutService: LogoutService) { }
 
   ngOnInit() {
     this.state = 'inactive';
@@ -36,6 +37,6 @@ export class MenuComponent implements OnInit {
   }
 
   disconnect() {
-    
+    this.logoutService.logout();
   }
 }

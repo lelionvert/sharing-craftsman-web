@@ -5,7 +5,6 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { CLIENT_NAME, CLIENT_SECRET, COOKIES } from '../../config/keys.config';
 import { HOST, BACK_END_ROUTES } from '../../config/api.config';
 import { HeaderService } from '../browser/header.service';
