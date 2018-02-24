@@ -9,7 +9,7 @@ import { Login } from '../../models/login.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   public model: Login;
   public submitted: boolean;
   public errorMessage: string;
@@ -18,24 +18,6 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.submitted = false;
-  }
-
-  ngOnInit() {
-    // if (this.cookieService.getCookie('portfolio_remember') === 'true') {
-    //   this.httpService.getAllResources(
-    //     OAUTH2_CHECK_ACCESS_TOKEN,
-    //     [AUTHENTICATION_SCHEMAS_TOKEN, AUTHENTICATION_SCHEMAS_BASIC_CLIENT],
-    //     {
-    //       username: CLIENT_CREDENTIALS.username,
-    //       password: CLIENT_CREDENTIALS.password,
-    //       token: HEADER_ACCESS_TOKEN
-    //     }
-    //   )
-    //   .subscribe(
-    //     result => this.redirectIfAuthenticated(result),
-    //     error => this.errorMessage = <any>error
-    //   );
-    // }
   }
 
   onSubmit() { this.submitted = true; }

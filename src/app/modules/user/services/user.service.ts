@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 
 import { Login } from '../models/login.model';
-import { HOST, HEADERS } from '../../../config/api.config';
+import { HOST, HEADERS, BACK_END_ROUTES } from '../../../config/api.config';
 import { CLIENT_NAME, CLIENT_SECRET } from '../../../config/keys.config';
 import { HeaderService } from '../../../services/browser/header.service';
 
@@ -16,12 +16,27 @@ import { HeaderService } from '../../../services/browser/header.service';
 export class UserService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
+  login(username: string, password: string, persistentLogging: boolean) {
+    return this.http.post(
+      `${HOST}/${BACK_END_ROUTES.user.login}`, 
+      {
+        username: username,
+        password: password,
+        persistentLogging: persistentLogging
+      }, 
+      { observe: 'response', headers: this.getHeaders() }
+    );
+  }
+
   getLogins(username: string, password: string): Observable<HttpResponse<Login[]>> {
-    const headers = this.headerService
+    return this.http.get<Login[]>(`${HOST}/logins`, { observe: 'response', headers: this.getHeaders() });
+  }
+
+  private getHeaders() {
+    return this.headerService
       .buildHeaders()
       .withClientName(CLIENT_NAME)
       .withClientSecret(CLIENT_SECRET)
       .get();
-    return this.http.get<Login[]>(`${HOST}/logins`, { observe: 'response', headers: headers });
   }
 }
