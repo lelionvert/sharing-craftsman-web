@@ -15,7 +15,7 @@ import { LogoutService } from '../../services/user/logout.service';
   styleUrls: ['./menu.component.scss'],
   animations: [
     trigger('menuState', [
-      state('inactive', style({ transform: 'translateX(-100%)' })),
+      state('inactive', style({ transform: 'translateX(-110%)' })),
       state('active', style({ transform: 'translateX(0)' })),
       transition('inactive => active', animate('100ms ease-in')),
       transition('active => inactive', animate('100ms ease-out'))
@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
   private state: string;
   public isAuthenticated: boolean = false;
 
-  constructor(private router: Router, public logoutService: LogoutService) { }
+  constructor(private router: Router, private logoutService: LogoutService) { }
 
   ngOnInit() {
     this.state = 'inactive';

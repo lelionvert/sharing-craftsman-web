@@ -11,13 +11,14 @@ import { Login } from '../models/login.model';
 import { HOST, HEADERS, BACK_END_ROUTES } from '../../../config/api.config';
 import { CLIENT_NAME, CLIENT_SECRET } from '../../../config/keys.config';
 import { HeaderService } from '../../../services/browser/header.service';
+import { AccessToken } from '../models/access-token.model';
 
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  login(username: string, password: string, persistentLogging: boolean) {
-    return this.http.post(
+  login(username: string, password: string, persistentLogging: boolean): Observable<HttpResponse<AccessToken>> {
+    return this.http.post<AccessToken>(
       `${HOST}/${BACK_END_ROUTES.user.login}`, 
       {
         username: username,
