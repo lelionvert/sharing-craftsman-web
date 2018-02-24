@@ -3,7 +3,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { HEADERS } from '../../config/api.config';
 
-describe('header service', () => {
+describe('services/browser/header.service', () => {
   let headerService;
 
   beforeEach(() => {

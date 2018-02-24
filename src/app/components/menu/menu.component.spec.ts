@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockRouter } from '../../../mocks/MockRouter';
 
-describe('menu component', () => {
+describe('components/menu/menu.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [

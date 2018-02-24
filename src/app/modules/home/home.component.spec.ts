@@ -1,7 +1,7 @@
 import { HomeComponent } from './home.component';
 import { TestBed, async } from '@angular/core/testing';
 
-describe('home component', () => {
+describe('modules/home/home.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -11,7 +11,7 @@ describe('home component', () => {
     TestBed.compileComponents();
   }));
 
-  it('should render HOME', () => {
+  it('should render homepage', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const homeElement = fixture.nativeElement;

@@ -9,7 +9,7 @@ class MockHeaderComponent {}
 @Component({selector: 'sc-menu', template: ''})
 class MockMenuComponent {}
 
-describe('Main Component', () => {
+describe('app.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [

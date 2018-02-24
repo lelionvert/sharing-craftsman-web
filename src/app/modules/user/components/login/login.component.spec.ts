@@ -48,7 +48,7 @@
 //   }
 // }
 
-// describe('login component', () => {
+// describe('modules/user/components/login/login.component', () => {
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
 //       imports: [

@@ -1,7 +1,7 @@
 import { HeaderComponent } from './header.component';
 import { TestBed, async } from '@angular/core/testing';
 
-describe('header component', () => {
+describe('components/header.header.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
