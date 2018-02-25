@@ -13,6 +13,7 @@ import { CLIENT_NAME, CLIENT_SECRET } from '../../../config/keys.config';
 import { HeaderService } from '../../../services/browser/header.service';
 import { AccessToken } from '../models/access-token.model';
 import { ChangePasswordToken } from '../models/change-password-token.model';
+import { LostPasswordToken } from '../models/lost-password-token.model';
 
 @Injectable()
 export class UserService {
@@ -65,6 +66,24 @@ export class UserService {
       `${HOST}/${BACK_END_ROUTES.user.updateProfile}`,
       profileInfo,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
+    );
+  }
+
+  requestLostPasswordToken(username: string): Observable<HttpResponse<LostPasswordToken>> {
+    return this.http.get<LostPasswordToken>(
+      `${HOST}/${BACK_END_ROUTES.user.requestLostPasswordToken}`,
+      { observe: 'response', headers: this.getUsernameHeaders(username) }
+    )
+  }
+
+  changeLostPassword(username: string, changePasswordToken: string, newPassword: string) {
+    return this.http.post(
+      `${HOST}/${BACK_END_ROUTES.user.changeLostPassword}`,
+      {
+        changePasswordToken: changePasswordToken,
+        newPassword: newPassword
+      },
+      { observe: 'response', headers: this.getUsernameHeaders(username) }
     );
   }
 

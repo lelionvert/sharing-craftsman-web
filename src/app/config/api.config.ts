@@ -13,7 +13,9 @@ export const BACK_END_ROUTES: any = {
     register: 'users/register',
     requestChangePassword: 'users/request-change-password',
     changePassword: 'users/change-password',
-    updateProfile: 'users/update-profile'
+    updateProfile: 'users/update-profile',
+    requestLostPasswordToken: 'users/lost-password',
+    changeLostPassword: 'users/change-lost-password'
   },
   library: {
 

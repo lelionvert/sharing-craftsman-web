@@ -104,4 +104,34 @@ describe('user service', () => {
     expect(req.request.method).toBe('POST');
     req.flush({});
   });
+
+  it('should send request for lost password token', () => {
+    const lostPasswordToken = {
+      changePasswordToken: {
+        token: 'aaa'
+      },
+      email: {
+        email: 'john@doe.fr'
+      }
+    };
+
+    service.requestLostPasswordToken('john@doe.fr').subscribe(response => {
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual(lostPasswordToken)
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.requestLostPasswordToken}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(lostPasswordToken);
+  });
+
+  it('should send change lost password request', () => {
+    service.changeLostPassword('john@doe.fr', 'changepasstoken', 'newPassword').subscribe(response => {
+      expect(response.status).toEqual(200);
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.changeLostPassword}`);
+    expect(req.request.method).toBe('POST');
+    req.flush({});
+  });
 });
