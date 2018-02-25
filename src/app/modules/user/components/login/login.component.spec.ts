@@ -63,7 +63,7 @@ describe('modules/user/components/login/login.component', () => {
     it('should log in user', () => {
       const fixture = TestBed.createComponent(LoginComponent);
       const loginComponent: LoginComponent = fixture.componentInstance;
-      loginComponent.model = new Login('john@doe.fr', 'password', false);
+      loginComponent.model = new Login('john@doe.fr', 'password', '', false);
       loginComponent.login();
       expect(MockUserService.prototype.login).toHaveBeenCalledWith('john@doe.fr', '5f4dcc3b5aa765d61d8327deb882cf99', false);
       expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.username, 'john@doe.fr', '2017-12-30T11:00:00.000Z');

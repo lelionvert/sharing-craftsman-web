@@ -53,10 +53,18 @@ describe('modules/user/components/registration/registration.component', () => {
     it('should register user', () => {
       const fixture = TestBed.createComponent(RegistrationComponent);
       const registrationComponent: RegistrationComponent = fixture.componentInstance;
-      registrationComponent.model = new Login('john@doe.fr', 'password');
+      registrationComponent.model = new Login('john@doe.fr', 'password', 'password');
       registrationComponent.register();
       expect(MockUserService.prototype.register).toHaveBeenCalledWith('john@doe.fr', '5f4dcc3b5aa765d61d8327deb882cf99');
       expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/login');
+    });
+
+    it('should not register user if password and repeat password are not the same', () => {
+      const fixture = TestBed.createComponent(RegistrationComponent);
+      const registrationComponent: RegistrationComponent = fixture.componentInstance;
+      registrationComponent.model = new Login('john@doe.fr', 'password', 'differentpassword');
+      registrationComponent.register();
+      expect(registrationComponent.errorMessage).toEqual('Les mots de passe ne sont pas identiques.');
     });
   });
 });

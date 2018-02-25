@@ -23,12 +23,20 @@ export class RegistrationComponent {
   }
 
   register() {
-    this.userService
+    if (!this.validatePassword())
+      this.errorMessage = 'Les mots de passe ne sont pas identiques.';
+    else {
+      this.userService
       .register(this.model.username, Md5.hashStr(this.model.password).toString())
       .subscribe(
         response => this.handleRegistrationResponse(response),
         error => this.handleErrorResponse(error)
       );
+    }
+  }
+
+  private validatePassword() {
+    return this.model.password === this.model.repeatPassword
   }
 
   private handleRegistrationResponse(response) {

@@ -6,7 +6,8 @@
         <label for="username">Username</label>
       </div>
       <div class="form-field">
-        <input type="text" class="form-control" id="username" name="username" placeholder="John" [(ngModel)]="model.username" #username="ngModel" required>
+        <input type="text" class="form-control" id="username" name="username" placeholder="John" [(ngModel)]="model.username" #username="ngModel"
+          required>
       </div>
       <div *ngIf="username.errors && (username.dirty || username.touched)" class="error">Oublie pas ton username</div>
     </div>
@@ -15,9 +16,20 @@
         <label for="password">Mot de passe</label>
       </div>
       <div class="form-field">
-        <input type="password" class="form-control" [(ngModel)]="model.password" name="password" id="password" placeholder="Doe" #password="ngModel" required>
+        <input type="password" class="form-control" [(ngModel)]="model.password" name="password" id="password" placeholder="Doe"
+          #password="ngModel" required>
       </div>
       <div *ngIf="password.errors && (password.dirty || password.touched)" class="error">Oublie pas ton mot de passe</div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="repeat-password">Répète ton mot de passe</label>
+      </div>
+      <div class="form-field">
+        <input type="password" class="form-control" [(ngModel)]="model.repeatPassword" name="repeat-password" id="repeat-password"
+          placeholder="Doe" #repeatPassword="ngModel" required>
+      </div>
+      <div *ngIf="repeatPassword.errors && (repeatPassword.dirty || repeatPassword.touched) || !validatePassword()" class="error">Les mots de passes ne sont pas identiques</div>
     </div>
     <div class="form-actions">
       <button type="submit" (click)="register()">Go</button>
