@@ -8,6 +8,7 @@ import { CookieService } from '../../../../services/browser/cookie.service';
 import { AccessToken } from '../../models/access-token.model';
 import { COOKIES } from '../../../../config/keys.config';
 import { Instant } from '../../../../utils/instant';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'sc-login',
@@ -32,8 +33,11 @@ export class LoginComponent {
 
   login() {
     this.userService
-    .login(this.model.username, Md5.hashStr(this.model.password).toString(), this.model.persistentLogging)
-    .subscribe(response => this.handleLoginResponse(response.body));
+      .login(this.model.username, Md5.hashStr(this.model.password).toString(), this.model.persistentLogging)
+      .subscribe(
+        response => this.handleLoginResponse(response.body),
+        error => this.handleErrorResponse(error)
+      );
   }
 
   private handleLoginResponse(token: AccessToken) {
@@ -42,5 +46,9 @@ export class LoginComponent {
     this.cookieService.setCookie(COOKIES.token, token.accessToken, instant.getISODateFromTimestamp(token.expirationDate));
     this.cookieService.setCookie(COOKIES.refreshToken, token.refreshToken, instant.getISODateFromTimestampWithDelay(token.expirationDate, 2));
     this.router.navigateByUrl('/');
+  }
+
+  private handleErrorResponse(error: HttpErrorResponse) {
+    this.errorMessage = `Erreur lors de l'identification : ${error.statusText}`;
   }
 }

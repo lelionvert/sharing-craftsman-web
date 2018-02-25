@@ -26,4 +26,7 @@
       <button type="submit" (click)="login()">Go</button>
     </div>
   </form>
+  <div class="error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
 </div>

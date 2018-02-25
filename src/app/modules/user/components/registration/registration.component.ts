@@ -4,6 +4,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 import { Login } from '../../forms/login.form';
 import { UserService } from '../../services/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'sc-registration',
@@ -23,11 +24,18 @@ export class RegistrationComponent {
 
   register() {
     this.userService
-    .register(this.model.username, Md5.hashStr(this.model.password).toString())
-    .subscribe(response => this.handleRegistrationResponse(response));
+      .register(this.model.username, Md5.hashStr(this.model.password).toString())
+      .subscribe(
+        response => this.handleRegistrationResponse(response),
+        error => this.handleErrorResponse(error)
+      );
   }
 
   private handleRegistrationResponse(response) {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl(`/login`);
+  }
+
+  private handleErrorResponse(error: HttpErrorResponse) {
+    this.errorMessage = `Erreur lors de la création de compte : ${error.statusText}`;
   }
 }

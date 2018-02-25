@@ -23,4 +23,7 @@
       <button type="submit" (click)="register()">Go</button>
     </div>
   </form>
+  <div class="error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
 </div>
