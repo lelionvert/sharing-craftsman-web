@@ -33,7 +33,7 @@
 - "access-token": "aaa"
 --> BODY
 {
-  "changePasswordToken": null,
+  "changePasswordToken": "aaa",
   "oldPassword": "password",
   "newPassword": "newpassword"
 }
@@ -74,4 +74,16 @@
   "email": {
     "email": "john@doe.fr"
   }
+}
+
+
+==> POST /users/change-lost-password
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+--> BODY
+{
+  "changePasswordToken": "aaa",
+  "newPassword": "newpassword"
 }

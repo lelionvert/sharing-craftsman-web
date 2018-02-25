@@ -32,22 +32,6 @@ describe('user service', () => {
     httpMock.verify();
   });
 
-  it('should return resources', () => {
-    const dummyLogins = [
-      { username: 'john@doe.fr', password: 'password' },
-      { username: 'foo@bar.fr', password: 'password', persistentLogging: true }
-    ];
-
-    service.getLogins('john@doe.fr', 'password').subscribe(logins => {
-      expect(logins.status).toEqual(200);
-      expect(logins.body).toEqual(dummyLogins);
-    });
-
-    const req = httpMock.expectOne(`${HOST}/logins`);
-    expect(req.request.method).toBe("GET");
-    req.flush(dummyLogins);
-  });
-
   it('should return token when login', () => {
     const fakeToken = {
       username: 'john@doe.fr',
@@ -72,6 +56,51 @@ describe('user service', () => {
     });
 
     const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.register}`);
+    expect(req.request.method).toBe('POST');
+    req.flush({});
+  });
+
+  it('should send request to change password', () => {
+    service.requestChangePasswordToken('john@doe.fr', 'aaa').subscribe(response => {
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual({ token: 'aaa' })
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.requestChangePassword}`);
+    expect(req.request.method).toBe('GET');
+    req.flush({
+      token: 'aaa'
+    });
+  });
+
+  it('should send change password request', () => {
+    service.changePassword('john@doe.fr', 'aaa', 'changepasstoken', 'password', 'newPassword').subscribe(response => {
+      expect(response.status).toEqual(200);
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.changePassword}`);
+    expect(req.request.method).toBe('POST');
+    req.flush({});
+  });
+
+  it('should send update profile request', () => {
+    service.updateProfile(
+      'john@doe.fr',
+      'aaa',
+      {
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": "john@doe.fr",
+        "website": "www.johndoe.fr",
+        "github": "http://github.com/Johndoe",
+        "linkedin": "linkedin.com/johndoe",
+        "picture": "picture.jpg"
+      }
+    ).subscribe(response => {
+      expect(response.status).toEqual(200);
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.updateProfile}`);
     expect(req.request.method).toBe('POST');
     req.flush({});
   });
