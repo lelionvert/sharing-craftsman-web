@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 import { UserRoutingModule } from './routing.module';
 import { UserService } from './services/user.service';
@@ -17,7 +18,8 @@ import { UserService } from './services/user.service';
     UserRoutingModule
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent
   ],
   providers: [
     FormBuilder,

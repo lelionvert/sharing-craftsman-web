@@ -65,4 +65,14 @@ describe('user service', () => {
     expect(req.request.method).toBe('POST');
     req.flush(fakeToken);
   });
+
+  it('should return ok when registering', () => {
+    service.register('john@doe.fr', 'password').subscribe(response => {
+      expect(response.status).toEqual(200);
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.register}`);
+    expect(req.request.method).toBe('POST');
+    req.flush({});
+  });
 });

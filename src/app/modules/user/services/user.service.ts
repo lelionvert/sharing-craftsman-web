@@ -25,15 +25,26 @@ export class UserService {
         password: password,
         persistentLogging: persistentLogging
       }, 
-      { observe: 'response', headers: this.getHeaders() }
+      { observe: 'response', headers: this.getClientHeaders() }
+    );
+  }
+
+  register(username: string, password: string) {
+    return this.http.post(
+      `${HOST}/${BACK_END_ROUTES.user.register}`, 
+      {
+        username: username,
+        password: password,
+      }, 
+      { observe: 'response', headers: this.getClientHeaders() }
     );
   }
 
   getLogins(username: string, password: string): Observable<HttpResponse<Login[]>> {
-    return this.http.get<Login[]>(`${HOST}/logins`, { observe: 'response', headers: this.getHeaders() });
+    return this.http.get<Login[]>(`${HOST}/logins`, { observe: 'response', headers: this.getClientHeaders() });
   }
 
-  private getHeaders() {
+  private getClientHeaders() {
     return this.headerService
       .buildHeaders()
       .withClientName(CLIENT_NAME)

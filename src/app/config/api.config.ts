@@ -9,7 +9,8 @@ export const HEADERS: any = {
 export const BACK_END_ROUTES: any = {
   user: {
     logout: 'logout',
-    login: 'login'
+    login: 'login',
+    register: 'register'
   },
   library: {
 

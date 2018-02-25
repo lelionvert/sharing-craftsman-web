@@ -32,7 +32,7 @@ export class LoginComponent {
 
   login() {
     this.userService
-    .login(this.model.username, this.model.password, this.model.persistentLogging)
+    .login(this.model.username, Md5.hashStr(this.model.password).toString(), this.model.persistentLogging)
     .subscribe(response => this.handleLoginResponse(response.body));
   }
 
@@ -41,5 +41,6 @@ export class LoginComponent {
     this.cookieService.setCookie(COOKIES.username, token.username, instant.getISODateFromTimestamp(token.expirationDate));
     this.cookieService.setCookie(COOKIES.token, token.accessToken, instant.getISODateFromTimestamp(token.expirationDate));
     this.cookieService.setCookie(COOKIES.refreshToken, token.refreshToken, instant.getISODateFromTimestampWithDelay(token.expirationDate, 2));
+    this.router.navigateByUrl('/');
   }
 }

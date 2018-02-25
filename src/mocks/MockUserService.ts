@@ -16,4 +16,8 @@ export class MockUserService {
 
     return Observable.create(observer => observer.next(httpResponse));
   }
+
+  register(username: string, password: string) {
+    
+  }
 }
