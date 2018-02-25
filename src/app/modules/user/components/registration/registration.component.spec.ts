@@ -56,7 +56,7 @@ describe('modules/user/components/registration/registration.component', () => {
       registrationComponent.model = new Login('john@doe.fr', 'password');
       registrationComponent.register();
       expect(MockUserService.prototype.register).toHaveBeenCalledWith('john@doe.fr', '5f4dcc3b5aa765d61d8327deb882cf99');
-      expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/');
+      expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/login');
     });
   });
 });

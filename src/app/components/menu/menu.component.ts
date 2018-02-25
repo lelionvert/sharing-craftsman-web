@@ -36,7 +36,12 @@ export class MenuComponent implements OnInit {
     this.state = this.state === 'active' ? 'inactive' : 'active';
   }
 
+  close() {
+    this.state = 'inactive';
+  }
+
   disconnect() {
     this.logoutService.logout();
+    this.router.navigateByUrl('/');
   }
 }

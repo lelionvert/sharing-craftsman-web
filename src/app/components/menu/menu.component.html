@@ -8,12 +8,12 @@
     </button>
     <ul>
       <li>
-        <a routerLink="/">
+        <a routerLink="/" (click)="close()">
           <span>Home</span>
         </a>
       </li>
       <li>
-        <a routerLink="/library">
+        <a routerLink="/library" (click)="close()">
           <span>Knowledge Library</span>
         </a>
       </li>
@@ -21,17 +21,17 @@
         <hr>
       </li>
       <li>
-        <a routerLink="/register">
+        <a routerLink="/register" (click)="close()">
           <span>Register</span>
         </a>
       </li>
       <li>
-        <a routerLink="/login">
+        <a routerLink="/login" (click)="close()">
           <span>Connexion</span>
         </a>
       </li>
       <li>
-        <button (click)="disconnect()">
+        <button (click)="disconnect()" (click)="close()">
           <span>Disconnect</span>
         </button>
       </li>
