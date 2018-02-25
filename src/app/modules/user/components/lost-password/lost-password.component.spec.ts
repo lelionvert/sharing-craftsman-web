@@ -8,6 +8,9 @@ import { UserService } from '../../services/user.service';
 import { MockUserService } from '../../../../../mocks/MockUserService';
 import { EmptyResponse } from '../../../../utils/empty-response.model';
 import { LostPasswordComponent } from './lost-password.component';
+import { LostPasswordToken } from '../../models/lost-password-token.model';
+import { Login } from '../../forms/login.form';
+import { LostPassword } from '../../forms/lost-password.form';
 
 describe('modules/user/components/lost-password/lost-password.component', () => {
   beforeEach(async(() => {
@@ -37,47 +40,56 @@ describe('modules/user/components/lost-password/lost-password.component', () => 
     });
   });
 
-  // describe('change password', () => {
-  //   beforeEach(() => {
-  //     spyOn(MockUserService.prototype, 'requestChangePasswordToken').and.callFake((username: string, accessToken: string) => {
-  //       const httpResponse: HttpResponse<ChangePasswordToken> = new HttpResponse({
-  //         body: {
-  //           token: 'bbb'
-  //         },
-  //         status: 200
-  //       });
+  describe('request for lost password token', () => {
+    beforeEach(() => {
+      spyOn(MockUserService.prototype, 'requestLostPasswordToken').and.callFake((username: string) => {
+        const httpResponse: HttpResponse<LostPasswordToken> = new HttpResponse({
+          body: {
+            changePasswordToken: {
+              token: 'bbb'
+            },
+            email: {
+              email: 'john@doe.fr'
+            }
+          },
+          status: 200
+        });
 
-  //       return Observable.create(observer => observer.next(httpResponse));
-  //     });
-  //     spyOn(MockUserService.prototype, 'changePassword').and.callFake((username: string, accessToken: string, changePasswordToken: string, oldPassword: string, newPassword: string) => {
-  //       const httpResponse: HttpResponse<EmptyResponse> = new HttpResponse({
-  //         status: 200
-  //       });
+        return Observable.create(observer => observer.next(httpResponse));
+      });
+    });
 
-  //       return Observable.create(observer => observer.next(httpResponse));
-  //     });
-  //     spyOn(MockCookieService.prototype, 'getCookie').and.callFake(name => {
-  //       if (name === COOKIES.username)
-  //         return 'john@doe.fr';
-  //       else
-  //         return 'aaa';
-  //     });
-  //     spyOn(MockCookieService.prototype, 'deleteCookie');
-  //     spyOn(MockRouter.prototype, 'navigateByUrl');
-  //   });
+    it('should request for a lost password token', () => {
+      const fixture = TestBed.createComponent(LostPasswordComponent);
+      const lostPasswordComponent: LostPasswordComponent = fixture.componentInstance;
+      lostPasswordComponent.usernameModel = new Login('john@doe.fr');
+      lostPasswordComponent.requestLostPasswordToken();
 
-  //   it('should change password of user', () => {
-  //     const fixture = TestBed.createComponent(ChangePasswordComponent);
-  //     const changePasswordComponent: ChangePasswordComponent = fixture.componentInstance;
-  //     changePasswordComponent.model = new ChangePassword('password', 'newpassword');
-  //     changePasswordComponent.changePassword();
+      expect(MockUserService.prototype.requestLostPasswordToken).toHaveBeenCalledWith('john@doe.fr');
+    });
+  });
 
-  //     expect(MockUserService.prototype.requestChangePasswordToken).toHaveBeenCalledWith('john@doe.fr', 'aaa');
-  //     expect(MockUserService.prototype.changePassword).toHaveBeenCalledWith('john@doe.fr', 'aaa', 'bbb', 'password', 'newpassword');
-  //     expect(MockCookieService.prototype.deleteCookie).toHaveBeenCalledWith(COOKIES.username);
-  //     expect(MockCookieService.prototype.deleteCookie).toHaveBeenCalledWith(COOKIES.token);
-  //     expect(MockCookieService.prototype.deleteCookie).toHaveBeenCalledWith(COOKIES.refreshToken);
-  //     expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/login');
-  //   });
-  // });
+  describe('request to change lost password', () => {
+    beforeEach(() => {
+      spyOn(MockUserService.prototype, 'changeLostPassword').and.callFake((username: string, changePasswordToken: string, newPassword: string) => {
+        const httpResponse: HttpResponse<EmptyResponse> = new HttpResponse({
+          status: 200
+        });
+
+        return Observable.create(observer => observer.next(httpResponse));
+      });
+      spyOn(MockRouter.prototype, 'navigateByUrl');
+    });
+
+    it('should request for a lost password token', () => {
+      const fixture = TestBed.createComponent(LostPasswordComponent);
+      const lostPasswordComponent: LostPasswordComponent = fixture.componentInstance;
+      lostPasswordComponent.usernameModel = new Login('john@doe.fr');
+      lostPasswordComponent.lostPasswordModel = new LostPassword('aaa', 'password', 'password');
+      lostPasswordComponent.changePassword();
+
+      expect(MockUserService.prototype.changeLostPassword).toHaveBeenCalledWith('john@doe.fr', 'aaa', 'password');
+      expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/login');
+    });
+  });
 });

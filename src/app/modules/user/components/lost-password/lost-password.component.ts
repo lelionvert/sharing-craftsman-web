@@ -28,16 +28,21 @@ export class LostPasswordComponent {
   }
 
   requestLostPasswordToken() {
-    // this.userService
-    //   .requestChangePasswordToken(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.token))
-    //   .subscribe(
-    //     response => this.handleRequestTokenResponse(response),
-    //     error => this.handleErrorResponse(error)
-    //   );
+    this.userService
+      .requestLostPasswordToken(this.usernameModel.username)
+      .subscribe(
+        response => this.handleRequestTokenResponse(response),
+        error => this.handleErrorResponse(error)
+      );
   }
 
   changePassword() {
-
+    this.userService
+      .changeLostPassword(this.usernameModel.username, this.lostPasswordModel.token, this.lostPasswordModel.newPassword)
+      .subscribe(
+        response => this.handleChangePasswordResponse(response),
+        error => this.handleErrorResponse(error)
+      );
   }
 
   private validatePassword() {
@@ -46,11 +51,11 @@ export class LostPasswordComponent {
 
 
   private handleRequestTokenResponse(response) {
-    
+    this.requestLostPasswordToken = response.body.changePasswordToken.token;
   }
 
   private handleChangePasswordResponse(response) {
-    
+    this.router.navigateByUrl('/login');
   }
 
   private handleErrorResponse(error: HttpErrorResponse) {
