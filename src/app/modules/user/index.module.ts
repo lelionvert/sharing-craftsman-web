@@ -8,7 +8,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 
 import { UserRoutingModule } from './routing.module';
 import { UserService } from './services/user.service';
-import { RequestChangePasswordComponent } from './components/request-change-password/request-change-password';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { RequestChangePasswordComponent } from './components/request-change-pass
   declarations: [
     LoginComponent,
     RegistrationComponent,
-    RequestChangePasswordComponent
+    ChangePasswordComponent
   ],
   providers: [
     FormBuilder,
