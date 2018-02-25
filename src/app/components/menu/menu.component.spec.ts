@@ -29,7 +29,7 @@ describe('components/menu/menu.component', () => {
     fixture.detectChanges();
     const menu = fixture.nativeElement;
     const links = menu.querySelectorAll('a');
-    expect(links.length).toEqual(4);
+    expect(links.length).toEqual(5);
   });
 
   describe('disconnexion', () => {

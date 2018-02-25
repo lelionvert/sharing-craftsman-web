@@ -1,0 +1,56 @@
+==> POST /tokens/login
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+--> BODY
+{
+  "username": "john@doe.fr",
+  "password": "password",
+  "persistentLogging": true
+}
+--> RESPONSE
+{
+  "username": "john@doe.fr",
+  "accessToken": "aaa",
+  "refreshToken": "bbb",
+  "expirationDate": 1514631600000
+}
+
+
+==> GET /tokens/verify
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+
+
+==> GET /tokens/logout
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+
+
+==> GET /tokens/refresh-token
+--> HEADERS
+- "client": "client"
+- "secret": "clientsecret"
+- "username": "john@doe.fr"
+- "access-token": "aaa"
+--> BODY
+
+--> RESPONSE
+{
+  "username": "john@doe.fr",
+  "accessToken": "aaa",
+  "refreshToken": "bbb",
+  "expirationDate": 1514631600000
+}

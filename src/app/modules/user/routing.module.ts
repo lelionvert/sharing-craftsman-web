@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { RequestChangePasswordComponent } from './components/request-change-password/request-change-password';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const userRoutes: Routes = [
   {
@@ -15,8 +15,8 @@ const userRoutes: Routes = [
     component: RegistrationComponent
   },
   {
-    path: 'request-change-password',
-    component: RequestChangePasswordComponent
+    path: 'change-password',
+    component: ChangePasswordComponent
   }
 ];
 
