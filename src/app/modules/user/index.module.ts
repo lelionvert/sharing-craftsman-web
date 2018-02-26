@@ -10,6 +10,7 @@ import { UserRoutingModule } from './routing.module';
 import { UserService } from './services/user.service';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { LostPasswordComponent } from './components/lost-password/lost-password.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { LostPasswordComponent } from './components/lost-password/lost-password.
     LoginComponent,
     RegistrationComponent,
     ChangePasswordComponent,
-    LostPasswordComponent
+    LostPasswordComponent,
+    UpdateProfileComponent
   ],
   providers: [
     FormBuilder,

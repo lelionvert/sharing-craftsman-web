@@ -87,6 +87,14 @@ export class UserService {
     );
   }
 
+  uploadPicture(username: string, token: string, picture: FormData) {
+    return this.http.post(
+      `${HOST}/${BACK_END_ROUTES.user.fileUpload}`,
+      picture,
+      { observe: 'response', headers: this.getFileHeaders(username, token) }
+    )
+  }
+
   private getClientHeaders() {
     return this.headerService
       .buildHeaders()
@@ -112,5 +120,10 @@ export class UserService {
       .withClientSecret(CLIENT_SECRET)
       .withUsername(username)
       .get();
+  }
+
+  private getFileHeaders(username: string, token: string) {
+    return this.headerService
+      .getFileHeaders(CLIENT_NAME, CLIENT_SECRET, username, token);
   }
 }

@@ -1,0 +1,72 @@
+<div class="update-profile">
+  <form #updateProfileForm="ngForm">
+    <h1>Modifie les informations de ton compte</h1>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="firstname">Prénom</label>
+      </div>
+      <div class="form-field">
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="John" [(ngModel)]="model.firstname">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="lastname">Nom</label>
+      </div>
+      <div class="form-field">
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Doe" [(ngModel)]="model.lastname">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="email">E-mail</label>
+      </div>
+      <div class="form-field">
+        <input type="text" class="form-control" id="email" name="email" placeholder="john@doe.fr" [(ngModel)]="model.email">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="website">Site web</label>
+      </div>
+      <div class="form-field">
+        <input type="text" class="form-control" id="website" name="website" placeholder="www.johndoe.fr" [(ngModel)]="model.website">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="github">Github</label>
+      </div>
+      <div class="form-field">
+        <input type="text" class="form-control" id="github" name="github" placeholder="github.com/johndoe" [(ngModel)]="model.github">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="linkedin">Linkedin</label>
+      </div>
+      <div class="form-field">
+        <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="linkedin.com/johndoe" [(ngModel)]="model.linkedin">
+      </div>
+    </div>
+    <div class="form-group media-input">
+        <div class="form-label">
+          Photo de profil
+        </div>
+        <div class="form-field">
+          <div class="file-input">
+            <label for="file-picture">FILE</label>
+            <input type="text" name="picture" value="{{ model.picture }}" class="disabled" disabled="disabled">
+            <input type="file" id="file-picture" (change)="onFileChange($event)"> 
+          </div>
+        </div>
+      </div>
+
+    <div class="form-actions">
+      <button type="submit" (click)="register()">Go</button>
+    </div>
+  </form>
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>
