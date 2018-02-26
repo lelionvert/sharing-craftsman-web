@@ -32,7 +32,7 @@ export class UpdateProfileComponent {
       const file: File = fileList[0];
       if (this.isValidFile(file)) {
         const formData: FormData = new FormData();
-        formData.append('uploadFile', file, file.name);
+        formData.append('picture', file, file.name);
         this.model.picture = file.name;
         this.userService
           .uploadPicture(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.token), formData)

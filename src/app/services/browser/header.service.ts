@@ -39,7 +39,6 @@ export class HeaderService {
 
   getFileHeaders(client: string, secret: string, username: string, token: string) {
     this.headers = new HttpHeaders();
-    this.headers = this.headers.append('Content-Type', 'multipart/form-data');
     this.headers = this.headers.append('Accept', 'application/json');
     this.headers = this.headers.set(HEADERS.client, client);
     this.headers = this.headers.set(HEADERS.secret, secret);
