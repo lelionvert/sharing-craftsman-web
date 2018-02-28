@@ -39,7 +39,7 @@
 --> RESPONSE
 
 
-==> GET /tokens/refresh-token
+==> GET /tokens/refresh-token --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"

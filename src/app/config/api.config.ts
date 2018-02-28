@@ -17,7 +17,11 @@ export const BACK_END_ROUTES: any = {
     updateProfile: 'users/update-profile',
     requestLostPasswordToken: 'users/lost-password',
     changeLostPassword: 'users/change-lost-password',
-    fileUpload: 'upload'
+    fileUpload: 'upload',
+    refreshToken: 'tokens/refresh-token'
+  },
+  authorization: {
+    roles: 'roles'
   },
   library: {
 

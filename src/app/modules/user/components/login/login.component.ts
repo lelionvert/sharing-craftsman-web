@@ -41,7 +41,6 @@ export class LoginComponent {
   }
 
   refreshToken() {
-    // refreshToken(username: string, refreshToken: string)
     this.userService
       .refreshToken(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.refreshToken))
       .subscribe(

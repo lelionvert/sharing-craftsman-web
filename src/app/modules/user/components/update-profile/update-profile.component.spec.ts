@@ -12,7 +12,7 @@ import { MockCookieService } from '../../../../../mocks/MockCookieService';
 import { COOKIES } from '../../../../config/keys.config';
 import { Profile } from '../../forms/profile.form';
 
-describe('modules/user/components/registration/registration.component', () => {
+describe('modules/user/components/update-profile/update-profile.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [

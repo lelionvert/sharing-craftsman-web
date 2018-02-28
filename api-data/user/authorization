@@ -1,4 +1,4 @@
-==> GET /roles --> For library back
+==> GET /roles
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
