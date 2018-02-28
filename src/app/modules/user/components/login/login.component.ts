@@ -40,6 +40,16 @@ export class LoginComponent {
       );
   }
 
+  refreshToken() {
+    // refreshToken(username: string, refreshToken: string)
+    this.userService
+      .refreshToken(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.refreshToken))
+      .subscribe(
+        response => this.handleLoginResponse(response.body),
+        error => this.handleErrorResponse(error)
+      );
+  }
+
   private handleLoginResponse(token: AccessToken) {
     const instant = new Instant();
     this.cookieService.setCookie(COOKIES.username, token.username, instant.getISODateFromTimestamp(token.expirationDate));

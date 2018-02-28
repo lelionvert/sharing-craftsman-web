@@ -4,7 +4,8 @@ export const HEADERS: any = {
   client: 'client',
   secret: 'secret',
   username: 'username',
-  token: 'access-token'
+  token: 'access-token',
+  refreshToken: 'refresh-token'
 };
 export const BACK_END_ROUTES: any = {
   user: {

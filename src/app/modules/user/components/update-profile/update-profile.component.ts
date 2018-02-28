@@ -19,11 +19,23 @@ export class UpdateProfileComponent {
   public errorMessage: string;
 
   constructor(
-    private router: Router,
     private userService: UserService,
     private cookieService: CookieService
   ) {
     this.model = new Profile();
+  }
+
+  updateProfile() {
+    this.userService
+    .updateProfile(
+      this.cookieService.getCookie(COOKIES.username), 
+      this.cookieService.getCookie(COOKIES.token),
+      this.model.toJSON()
+    )
+    .subscribe(
+      response => this.handleUpdateProfileResponse(response),
+      error => this.handleErrorResponse(error)
+    );
   }
 
   onFileChange(event) {
@@ -64,11 +76,15 @@ export class UpdateProfileComponent {
     return true;
   }
 
+  private handleUpdateProfileResponse(response) {
+    
+  }
+
   private handleUploadResponse(response) {
-    console.log(response);
+  
   }
 
   private handleErrorResponse(error) {
-    console.log(error);
+    this.errorMessage = `Erreur lors de la mise à jour du compte : ${error.statusText}`;
   }
 }

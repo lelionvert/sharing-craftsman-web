@@ -1,4 +1,4 @@
-==> POST /tokens/login
+==> POST /tokens/login --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -17,7 +17,7 @@
 }
 
 
-==> GET /tokens/verify
+==> GET /tokens/verify --> For library back
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -28,7 +28,7 @@
 --> RESPONSE
 
 
-==> GET /tokens/logout
+==> GET /tokens/logout --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -44,7 +44,7 @@
 - "client": "client"
 - "secret": "clientsecret"
 - "username": "john@doe.fr"
-- "access-token": "aaa"
+- "refresh-token": "aaa"
 --> BODY
 
 --> RESPONSE

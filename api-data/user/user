@@ -1,4 +1,4 @@
-==> POST /users/register
+==> POST /users/register --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -11,7 +11,7 @@
 --> RESPONSE
 
 
-==> GET /users/request-change-password
+==> GET /users/request-change-password --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -25,7 +25,7 @@
 }
 
 
-==> POST /users/change-password
+==> POST /users/change-password --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -40,7 +40,7 @@
 --> RESPONSE
 
 
-==> POST /users/update-profile
+==> POST /users/update-profile --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -59,7 +59,7 @@
 --> RESPONSE
 
 
-==> GET /users/lost-password
+==> GET /users/lost-password --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -77,7 +77,7 @@
 }
 
 
-==> POST /users/change-lost-password
+==> POST /users/change-lost-password --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"

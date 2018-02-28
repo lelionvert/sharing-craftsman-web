@@ -33,6 +33,11 @@ export class HeaderService {
     return this;
   }
 
+  withRefreshToken(token: string): HeaderService {
+    this.headers = this.headers.set(HEADERS.refreshToken, token);
+    return this;
+  }
+
   get(): HttpHeaders {
     return this.headers;
   }

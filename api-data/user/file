@@ -9,7 +9,7 @@
 --> RESPONSE
 
 
-==> POST /upload
+==> POST /upload --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"

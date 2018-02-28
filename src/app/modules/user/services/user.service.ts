@@ -95,6 +95,13 @@ export class UserService {
     )
   }
 
+  refreshToken(username: string, refreshToken: string): Observable<HttpResponse<AccessToken>> {
+    return this.http.get<AccessToken>(
+      `${HOST}/${BACK_END_ROUTES.user.refreshToken}`,
+      { observe: 'response', headers: this.getRefreshTokenHeaders(username, refreshToken) }
+    );
+  }
+
   private getClientHeaders() {
     return this.headerService
       .buildHeaders()
@@ -125,5 +132,15 @@ export class UserService {
   private getFileHeaders(username: string, token: string) {
     return this.headerService
       .getFileHeaders(CLIENT_NAME, CLIENT_SECRET, username, token);
+  }
+
+  private getRefreshTokenHeaders(username: string, token: string) {
+    return this.headerService
+      .buildHeaders()
+      .withClientName(CLIENT_NAME)
+      .withClientSecret(CLIENT_SECRET)
+      .withUsername(username)
+      .withRefreshToken(token)
+      .get();
   }
 }

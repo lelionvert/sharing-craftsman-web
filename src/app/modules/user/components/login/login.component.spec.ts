@@ -54,7 +54,7 @@ describe('modules/user/components/login/login.component', () => {
           },
           status: 200
         });
-    
+
         return Observable.create(observer => observer.next(httpResponse));
       });
       spyOn(MockCookieService.prototype, 'setCookie');
@@ -69,6 +69,41 @@ describe('modules/user/components/login/login.component', () => {
       expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.username, 'john@doe.fr', '2017-12-30T11:00:00.000Z');
       expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.token, 'aaa', '2017-12-30T11:00:00.000Z');
       expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.refreshToken, 'bbb', '2019-12-30T11:00:00.000Z');
+    });
+  });
+
+  describe('refresh token', () => {
+    beforeEach(() => {
+      spyOn(MockUserService.prototype, 'refreshToken').and.callFake((username: string, refreshToken: string) => {
+        const httpResponse: HttpResponse<AccessToken> = new HttpResponse({
+          body: {
+            username: 'john@doe.fr',
+            accessToken: 'aaa',
+            refreshToken: 'ccc',
+            expirationDate: 1514631600000
+          },
+          status: 200
+        });
+
+        return Observable.create(observer => observer.next(httpResponse));
+      });
+      spyOn(MockCookieService.prototype, 'setCookie');
+      spyOn(MockCookieService.prototype, 'getCookie').and.callFake((name: string) => {
+        if (name === COOKIES.username)
+          return 'john@doe.fr';
+        else
+          return 'bbb';
+      });
+    });
+
+    it('should get a new access token from refresh token', () => {
+      const fixture = TestBed.createComponent(LoginComponent);
+      const loginComponent: LoginComponent = fixture.componentInstance;
+      loginComponent.refreshToken();
+      expect(MockUserService.prototype.refreshToken).toHaveBeenCalledWith('john@doe.fr', 'bbb');
+      expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.username, 'john@doe.fr', '2017-12-30T11:00:00.000Z');
+      expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.token, 'aaa', '2017-12-30T11:00:00.000Z');
+      expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.refreshToken, 'ccc', '2019-12-30T11:00:00.000Z');
     });
   });
 });

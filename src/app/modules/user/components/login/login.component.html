@@ -25,6 +25,7 @@
     <div class="form-actions">
       <button type="submit" (click)="login()">Go</button>
       <a class="lost-password-link" routerLink="/lost-password"><span>Mot de passe oublié</span></a>
+      <button type="submit" (click)="refreshToken()">Ou tenter le login auto</button>
     </div>
   </form>
   <div class="error-message" *ngIf="errorMessage">

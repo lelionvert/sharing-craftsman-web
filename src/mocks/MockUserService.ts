@@ -51,4 +51,8 @@ export class MockUserService {
   }
 
   changeLostPassword(username: string, changePasswordToken: string, newPassword: string) { }
+
+  updateProfile(username: string, accessToken: string, profileInfo: any) { }
+
+  refreshToken(username: string, refreshToken: string) { }
 }

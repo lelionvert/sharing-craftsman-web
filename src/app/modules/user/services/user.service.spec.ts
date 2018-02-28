@@ -134,4 +134,22 @@ describe('user service', () => {
     expect(req.request.method).toBe('POST');
     req.flush({});
   });
+
+  it('should send request to get a new access token from refresh token', () => {
+    const newAccessToken = {
+      username: 'john@doe.fr',
+      accessToken: 'aaa',
+      refreshToken: 'bbb',
+      expirationDate: 1514631600000
+    };
+
+    service.refreshToken('john@doe.fr', 'bbb').subscribe(response => {
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual(newAccessToken)
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.user.refreshToken}`);
+    expect(req.request.method).toBe('GET');
+    req.flush(newAccessToken);
+  });
 });

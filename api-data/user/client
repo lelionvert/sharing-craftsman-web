@@ -1,4 +1,4 @@
-==> POST /clients/register
+==> POST /clients/register --> Not needed
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
