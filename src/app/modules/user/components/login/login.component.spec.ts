@@ -100,6 +100,7 @@ describe('modules/user/components/login/login.component', () => {
       const fixture = TestBed.createComponent(LoginComponent);
       const loginComponent: LoginComponent = fixture.componentInstance;
       loginComponent.refreshToken();
+      
       expect(MockUserService.prototype.refreshToken).toHaveBeenCalledWith('john@doe.fr', 'bbb');
       expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.username, 'john@doe.fr', '2017-12-30T11:00:00.000Z');
       expect(MockCookieService.prototype.setCookie).toHaveBeenCalledWith(COOKIES.token, 'aaa', '2017-12-30T11:00:00.000Z');
