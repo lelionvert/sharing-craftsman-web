@@ -58,7 +58,7 @@ export class CommentService {
   }
 
   deleteComment(username: string, accessToken: string, commentId: string) {
-    return this.http.put(
+    return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.deleteComment}`,
       {
         id: commentId,

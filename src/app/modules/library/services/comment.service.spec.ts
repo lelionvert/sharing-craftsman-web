@@ -106,7 +106,7 @@ describe('modules/library/services/comment.service', () => {
     });
 
     const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.library.deleteComment}`);
-    expect(req.request.method).toBe('PUT');
+    expect(req.request.method).toBe('POST');
     req.flush({});
   });
 });

@@ -33,5 +33,8 @@ export const BACK_END_ROUTES: any = {
     comments: 'comments',
     deleteComment: 'comments/delete',
     getCommentByContentId: 'comments/contentid',
+    favorites: 'favorites',
+    deleteFavorite: 'favorites/delete',
+    getFavorites: 'favorites/search'
   }
 };

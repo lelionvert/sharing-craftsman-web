@@ -1,4 +1,4 @@
-==> POST /favorites
+==> POST /favorites --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -14,7 +14,7 @@
 --> RESPONSE
 
 
-==> DELETE /favorites
+==> POST /favorites/delete --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -28,7 +28,7 @@
 --> RESPONSE
 
 
-==> POST /favorites/search
+==> POST /favorites/search --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -39,9 +39,9 @@
   "username": "john@doe.fr"
 }
 --> RESPONSE
-{
+[{
   "id": "saa",
   "username": "john@doe.fr",
   "contentType": "KNOWLEDGE",
   "contentId": "aaa"
-}
+}]

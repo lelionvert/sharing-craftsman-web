@@ -9,7 +9,11 @@ export const ACCEPTED_MIMES: any = [
 ];
 export const ACCEPTED_EXTENSIONS: any = ['jpg', 'jpeg'];
 export const SEARCH_KEYS: any = {
-    CategoryName: 'CategoryName',
-    KnowledgeTitle: 'KnowledgeTitle',
-    KnowledgeContent: 'KnowledgeContent'
+    categoryName: 'CategoryName',
+    knowledgeTitle: 'KnowledgeTitle',
+    knowledgeContent: 'KnowledgeContent'
+};
+export const CONTENT_TYPES: any = {
+  category: 'CATEGORY',
+  knowledge: 'KNOWLEDGE'
 };
