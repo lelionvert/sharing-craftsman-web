@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 import { HeaderService } from '../../../services/browser/header.service';
 import { HOST, HEADERS, BACK_END_ROUTES } from '../../../config/api.config';
 
-describe('user service', () => {
+describe('modules/user/services/user.service', () => {
   let service: UserService;
   let httpMock: HttpTestingController;
 

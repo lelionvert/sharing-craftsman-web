@@ -6,3 +6,8 @@ export const ACCEPTED_MIMES: any = [
   }
 ];
 export const ACCEPTED_EXTENSIONS: any = ['jpg', 'jpeg'];
+export const SEARCH_KEYS: any = {
+    CategoryName: 'CategoryName',
+    KnowledgeTitle: 'KnowledgeTitle',
+    KnowledgeContent: 'KnowledgeContent'
+};

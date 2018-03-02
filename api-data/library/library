@@ -1,4 +1,4 @@
-==> POST /library/categories
+==> POST /library/categories --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -12,7 +12,7 @@
 --> RESPONSE
 
 
-==> PUT /library/categories
+==> PUT /library/categories --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -26,21 +26,18 @@
 --> RESPONSE
 
 
-==> DELETE /library/categories
+==> DELETE /library/categories/{categoryId} --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
 - "username": "john@doe.fr"
 - "access-token": "aaa"
 --> BODY
-{
-  "id": "aaa",
-  "name": "null"
-}
+
 --> RESPONSE
 
 
-==> POST /library/knowledges
+==> POST /library/knowledges --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -57,7 +54,7 @@
 --> RESPONSE
 
 
-==> PUT /library/knowledges
+==> PUT /library/knowledges --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -74,7 +71,7 @@
 --> RESPONSE
 
 
-==> DELETE /library/knowledges
+==> POST /library/knowledges/delete --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -91,7 +88,7 @@
 --> RESPONSE
 
 
-==> GET /library
+==> GET /library --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -116,7 +113,7 @@
 ]
 
 
-==> GET /library/{id}
+==> GET /library/{id} --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -139,7 +136,7 @@
 }
 
 
-==> POST /library/search
+==> POST /library/search --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"

@@ -24,6 +24,10 @@ export const BACK_END_ROUTES: any = {
     roles: 'roles'
   },
   library: {
-
+    categories: 'library/categories',
+    knowledges: 'library/knowledges',
+    deleteKnowledge: 'library/knowledges/delete',
+    getCategories: 'library',
+    searchCategories: 'library/search'
   }
 };
