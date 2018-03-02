@@ -1,4 +1,4 @@
-==> POST /comments
+==> POST /comments --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -15,7 +15,7 @@
 --> RESPONSE
 
 
-==> PUT /comments
+==> PUT /comments --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -32,7 +32,7 @@
 --> RESPONSE
 
 
-==> DELETE /comments
+==> POST /comments/delete --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -46,7 +46,7 @@
 --> RESPONSE
 
 
-==> GET /comments/contentid/{id}
+==> GET /comments/contentid/{id} --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -73,7 +73,7 @@
 ]
 
 
-==> GET /comments/{id}
+==> GET /comments/{id} --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"

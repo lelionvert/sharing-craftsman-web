@@ -1,3 +1,4 @@
+'use strict';
 
 export const HOST: string = 'http://localhost:3000';
 export const HEADERS: any = {
@@ -28,6 +29,9 @@ export const BACK_END_ROUTES: any = {
     knowledges: 'library/knowledges',
     deleteKnowledge: 'library/knowledges/delete',
     getCategories: 'library',
-    searchCategories: 'library/search'
+    searchCategories: 'library/search',
+    comments: 'comments',
+    deleteComment: 'comments/delete',
+    getCommentByContentId: 'comments/contentid',
   }
 };
