@@ -1,6 +1,6 @@
 <div class="search">
   <form #searchForm="ngForm">
-    <input type="text" name="search" placeholder="Search..." (change)="onSearch()" [(ngModel)]="model.search" />
+    <input type="text" name="search" placeholder="Search..." (input)="onSearch()" [(ngModel)]="model.search" />
   </form>
   <div class="search-results">
 

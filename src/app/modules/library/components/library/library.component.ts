@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as _ from "lodash";
 
 import { CookieService } from '../../../../services/browser/cookie.service';
 import { COOKIES } from '../../../../config/keys.config';
@@ -12,15 +13,16 @@ import { Category } from '../../models/category.model';
 })
 export class LibraryComponent implements OnInit {
   public categories: Category[];
+  private originalCategories: Category[];
 
   constructor() {
   }
 
   ngOnInit() {
-    this.categories = [
+    this.originalCategories = [
       {
         id: 'aaa',
-        name: 'Achitecture',
+        name: 'Architecture',
         knowledges: [
           {
             id: 'kaa',
@@ -55,10 +57,15 @@ export class LibraryComponent implements OnInit {
         ]
       }
     ];
+
+    this.categories = this.originalCategories;
   }
 
   handleSearch(search: string) {
-    console.log('in library');
-    console.log(search);
+    this.categories = _.cloneDeep(this.originalCategories);
+    this.categories = this.categories.filter(category => category.name.toLowerCase().indexOf(search.toLowerCase()) > -1);
+    this.categories.forEach(category => {
+      category.knowledges = category.knowledges.filter(knowledge => knowledge.title.toLowerCase().indexOf(search.toLocaleLowerCase()) > -1);
+    });
   }
 }
