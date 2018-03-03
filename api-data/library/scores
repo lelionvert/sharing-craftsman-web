@@ -1,4 +1,4 @@
-==> POST /scores
+==> POST /scores --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -15,7 +15,7 @@
 --> RESPONSE
 
 
-==> PUT /scores
+==> PUT /scores --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -32,7 +32,7 @@
 --> RESPONSE
 
 
-==> DELETE /scores
+==> POST /scores/delete --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -42,14 +42,11 @@
 {
   "id": "aaa",
   "giver": "john@doe.fr",
-  "contentType": "null",
-  "contentId": "null",
-  "mark": null
 }
 --> RESPONSE
 
 
-==> GET /scores/contentId/{id}
+==> GET /scores/contentId/{id} --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"
@@ -69,7 +66,7 @@
 ]
 
 
-==> GET /scores/mar/{mark}
+==> GET /scores/mark/{mark} --> OK
 --> HEADERS
 - "client": "client"
 - "secret": "clientsecret"

@@ -1,9 +1,7 @@
 import { MockBackend } from '@angular/http/testing';
 import {
   HttpClient,
-  HttpHeaders,
-  HttpResponse,
-  HttpErrorResponse
+  HttpResponse
 } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed, inject, async } from '@angular/core/testing';
@@ -56,7 +54,7 @@ describe('modules/library/services/comment.service', () => {
       expect(response.body).toEqual(comments);
     });
 
-    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.library.getCommentByContentId}/aaa`);
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.library.getCommentsByContentId}/aaa`);
     expect(req.request.method).toBe('GET');
     req.flush(comments);
   });

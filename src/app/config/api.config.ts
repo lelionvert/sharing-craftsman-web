@@ -32,9 +32,13 @@ export const BACK_END_ROUTES: any = {
     searchCategories: 'library/search',
     comments: 'comments',
     deleteComment: 'comments/delete',
-    getCommentByContentId: 'comments/contentid',
+    getCommentsByContentId: 'comments/contentid',
     favorites: 'favorites',
     deleteFavorite: 'favorites/delete',
-    getFavorites: 'favorites/search'
+    getFavorites: 'favorites/search',
+    scores: 'scores',
+    deleteScore: 'scores/delete',
+    getScoresByContentId: 'scores/contentId',
+    getScoresByMark: 'scores/mark'
   }
 };
