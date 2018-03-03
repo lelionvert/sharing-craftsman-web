@@ -56,4 +56,9 @@ export class LibraryComponent implements OnInit {
       }
     ];
   }
+
+  handleSearch(search: string) {
+    console.log('in library');
+    console.log(search);
+  }
 }

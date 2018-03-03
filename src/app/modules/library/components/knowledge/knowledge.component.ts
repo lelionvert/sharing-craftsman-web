@@ -1,5 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 import { CookieService } from '../../../../services/browser/cookie.service';
 import { COOKIES } from '../../../../config/keys.config';
@@ -10,13 +17,37 @@ import { Score } from '../../models/score.model';
 @Component({
   selector: 'sc-knowledge',
   templateUrl: './knowledge.component.html',
-  styleUrls: ['./knowledge.component.scss']
+  styleUrls: ['./knowledge.component.scss'],
+  animations: [
+    trigger(
+      'enterAnimation',
+      [
+        transition(
+          ':enter', [
+            style({  opacity: 0 }),
+            animate('300ms', style({ opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', [
+            style({ 'opacity': 1 }),
+            animate('300ms', style({ opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class KnowledgeComponent implements OnInit {
   @Input() public knowledge: Knowledge;
   public comments: Comment[];
   public scores: Score[];
   public averageScore: number;
+  private showComments: boolean;
+
+  constructor() {
+    this.showComments = false;
+  }
 
   ngOnInit() {
     switch (this.knowledge.id) {
@@ -126,6 +157,10 @@ export class KnowledgeComponent implements OnInit {
     this.averageScore = 0.0;
     this.scores.forEach(score => this.averageScore += score.mark);
     this.averageScore /= this.scores.length;
+  }
+
+  toggleShowComments() {
+    this.showComments = !this.showComments;
   }
   /*
     Will fetch its own comments and marks
