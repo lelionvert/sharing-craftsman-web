@@ -1,0 +1,6 @@
+<div class="category" id="{{ category.id }}">
+  <h3>{{ category.name }}</h3>
+  <div class="knowledge-list">
+    <sc-knowledge class="knowledge" *ngFor="let knowledge of category.knowledges" [knowledge]="knowledge"></sc-knowledge>
+  </div>
+</div>

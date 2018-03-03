@@ -1,0 +1,29 @@
+.knowledge-library {
+  padding-top: 60px;
+  text-align: center;
+  width: 100%;
+
+  h1 {
+    margin-bottom: 20px;
+    line-height: 1;
+    display: inline-block;
+    padding: 10px;
+    background: #FFD600;
+    color: #ffffff;
+    border: 4px solid #ffffff;
+    background-color: #ec008c;
+    box-shadow: 0px 0px 0px 3px #ec008c;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  .category-list {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+}
