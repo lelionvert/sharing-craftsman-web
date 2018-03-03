@@ -10,6 +10,7 @@ import { KnowledgeComponent } from './components/knowledge/knowledge.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { ScoreComponent } from './components/score/score.component';
 import { LibrarySearchComponent } from './components/library-search/library-search.component';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   imports: [
@@ -25,6 +26,9 @@ import { LibrarySearchComponent } from './components/library-search/library-sear
     CommentComponent,
     ScoreComponent,
     LibrarySearchComponent
+  ],
+  providers: [
+    CategoryService
   ]
 })
 export class LibraryModule {}

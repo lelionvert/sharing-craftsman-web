@@ -1,5 +1,20 @@
 <div class="category" id="{{ category.id }}">
   <h3>{{ category.name }}</h3>
+  <div class="wrapper">
+    <div class="category-score">
+      <span class="category-average-score">Note moyenne : {{ averageScore }}</span>
+      <ul class="category-score-list">
+        <sc-score *ngFor="let score of scores" [score]="score"></sc-score>
+      </ul>
+    </div>
+    <div class="comments-action">
+        <span class="category-comment-number">{{ comments.length }} commentaires</span>
+        <button (click)="toggleShowComments()">Afficher les commentaires</button>
+      </div>
+  </div>
+  <ul class="comment-list" *ngIf="showComments" [@showComments]>
+    <sc-comment class="comment" *ngFor="let comment of comments" [comment]="comment"></sc-comment>
+  </ul>
   <div class="knowledge-list">
     <sc-knowledge class="knowledge" *ngFor="let knowledge of category.knowledges" [knowledge]="knowledge"></sc-knowledge>
   </div>

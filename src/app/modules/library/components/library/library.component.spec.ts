@@ -9,6 +9,14 @@ import { MockCookieService } from '../../../../../mocks/MockCookieService';
 import { COOKIES } from '../../../../config/keys.config';
 import { CookieService } from '../../../../services/browser/cookie.service';
 import { LibraryComponent } from './library.component';
+import { LibrarySearchComponent } from '../library-search/library-search.component';
+import { CategoryComponent } from '../category/category.component';
+import { KnowledgeComponent } from '../knowledge/knowledge.component';
+import { CommentComponent } from '../comment/comment.component';
+import { ScoreComponent } from '../score/score.component';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../models/category.model';
+import { MockCategoryService } from '../../../../../mocks/MockCategoryService';
 
 describe('modules/library/components/library/library.component', () => {
   beforeEach(async(() => {
@@ -17,10 +25,16 @@ describe('modules/library/components/library/library.component', () => {
         FormsModule
       ],
       declarations: [
-        LibraryComponent
+        LibraryComponent,
+        LibrarySearchComponent,
+        CategoryComponent,
+        KnowledgeComponent,
+        CommentComponent,
+        ScoreComponent
       ],
       providers: [
-        
+        { provide: CookieService, useClass: MockCookieService },
+        { provide: CategoryService, useClass: MockCategoryService }
       ]
     });
     TestBed.compileComponents();
@@ -31,52 +45,109 @@ describe('modules/library/components/library/library.component', () => {
       const fixture = TestBed.createComponent(LibraryComponent);
       fixture.detectChanges();
       const loginComponent = fixture.nativeElement;
-      expect(loginComponent.querySelector('h1').innerText).toBe('MODIFIE TON MOT DE PASSE');
-      expect(loginComponent.querySelector('h2').innerText).toBe('Passpass');
+      expect(loginComponent.querySelector('h1').innerText).toBe('THE KNOWLEDGE LIBRARY');
+      expect(loginComponent.querySelector('h2').innerText).toBe('THE PLACE WHERE YOU GET YOUR CRAFTSMAN THINGS');
     });
   });
 
-  // describe('change password', () => {
-  //   beforeEach(() => {
-  //     spyOn(MockUserService.prototype, 'requestChangePasswordToken').and.callFake((username: string, accessToken: string) => {
-  //       const httpResponse: HttpResponse<ChangePasswordToken> = new HttpResponse({
-  //         body: {
-  //           token: 'bbb'
-  //         },
-  //         status: 200
-  //       });
+  describe('get categories', () => {
+    beforeEach(() => {
+      spyOn(CategoryService.prototype, 'getAllCategories').and.callFake((username: string, accessToken: string) => {
+        const httpResponse: HttpResponse<Category[]> = new HttpResponse({
+          body: [
+            {
+              id: 'aaa',
+              name: 'Architecture',
+              knowledges: [
+                {
+                  id: 'kaa',
+                  creator: 'John Doe',
+                  title: 'Hexagonale',
+                  content: 'Known as port and adapter',
+                },
+                {
+                  id: 'kbb',
+                  creator: 'John Doe',
+                  title: 'CQRS',
+                  content: 'Segregation of command and query'
+                }
+              ]
+            },
+            {
+              id: 'bbb',
+              name: 'SOLID',
+              knowledges: [
+                {
+                  id: 'kcc',
+                  creator: 'Foo Bar',
+                  title: 'Single responsibility principle',
+                  content: 'A thing must have one reason to change'
+                },
+                {
+                  id: 'kcd',
+                  creator: 'Foo Bar',
+                  title: 'Open close principle',
+                  content: 'Open to extension, closed to modification'
+                }
+              ]
+            }
+          ],
+          status: 200
+        });
 
-  //       return Observable.create(observer => observer.next(httpResponse));
-  //     });
-  //     spyOn(MockUserService.prototype, 'changePassword').and.callFake((username: string, accessToken: string, changePasswordToken: string, oldPassword: string, newPassword: string) => {
-  //       const httpResponse: HttpResponse<EmptyResponse> = new HttpResponse({
-  //         status: 200
-  //       });
+        return Observable.create(observer => observer.next(httpResponse));
+      });
+      spyOn(CookieService.prototype, 'getCookie').and.callFake((name: string) => {
+        if (name === COOKIES.username)
+          return 'john@doe.fr';
+        else
+          return 'bbb';
+      });
+    });
 
-  //       return Observable.create(observer => observer.next(httpResponse));
-  //     });
-  //     spyOn(MockCookieService.prototype, 'getCookie').and.callFake(name => {
-  //       if (name === COOKIES.username)
-  //         return 'john@doe.fr';
-  //       else
-  //         return 'aaa';
-  //     });
-  //     spyOn(MockCookieService.prototype, 'deleteCookie');
-  //     spyOn(MockRouter.prototype, 'navigateByUrl');
-  //   });
+    it('should get all categories when initializing', () => {
+      const fixture = TestBed.createComponent(LibraryComponent);
+      const libraryComponent: LibraryComponent = fixture.componentInstance;
+      libraryComponent.ngOnInit();
 
-  //   it('should change password of user', () => {
-  //     const fixture = TestBed.createComponent(ChangePasswordComponent);
-  //     const changePasswordComponent: ChangePasswordComponent = fixture.componentInstance;
-  //     changePasswordComponent.model = new ChangePassword('password', 'newpassword');
-  //     changePasswordComponent.changePassword();
-
-  //     expect(MockUserService.prototype.requestChangePasswordToken).toHaveBeenCalledWith('john@doe.fr', 'aaa');
-  //     expect(MockUserService.prototype.changePassword).toHaveBeenCalledWith('john@doe.fr', 'aaa', 'bbb', 'password', 'newpassword');
-  //     expect(MockCookieService.prototype.deleteCookie).toHaveBeenCalledWith(COOKIES.username);
-  //     expect(MockCookieService.prototype.deleteCookie).toHaveBeenCalledWith(COOKIES.token);
-  //     expect(MockCookieService.prototype.deleteCookie).toHaveBeenCalledWith(COOKIES.refreshToken);
-  //     expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/login');
-  //   });
-  // });
+      expect(libraryComponent.categories).toEqual([
+        {
+          id: 'aaa',
+          name: 'Architecture',
+          knowledges: [
+            {
+              id: 'kaa',
+              creator: 'John Doe',
+              title: 'Hexagonale',
+              content: 'Known as port and adapter',
+            },
+            {
+              id: 'kbb',
+              creator: 'John Doe',
+              title: 'CQRS',
+              content: 'Segregation of command and query'
+            }
+          ]
+        },
+        {
+          id: 'bbb',
+          name: 'SOLID',
+          knowledges: [
+            {
+              id: 'kcc',
+              creator: 'Foo Bar',
+              title: 'Single responsibility principle',
+              content: 'A thing must have one reason to change'
+            },
+            {
+              id: 'kcd',
+              creator: 'Foo Bar',
+              title: 'Open close principle',
+              content: 'Open to extension, closed to modification'
+            }
+          ]
+        }
+      ]);
+    });
+  });
 });

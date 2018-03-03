@@ -1,10 +1,14 @@
 <div class="knowledge-library">
   <h1>The knowledge library</h1>
-  <h2>The place where you get your craftsman shit</h2>
+  <h2>The place where you get your craftsman things</h2>
 
   <sc-library-search (search)="handleSearch($event)"></sc-library-search>
 
   <div class="category-list">
     <sc-category class="category" *ngFor="let category of categories" [category]="category"></sc-category>
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
   </div>
 </div>

@@ -20,7 +20,7 @@ import { Score } from '../../models/score.model';
   styleUrls: ['./knowledge.component.scss'],
   animations: [
     trigger(
-      'enterAnimation',
+      'showComments',
       [
         transition(
           ':enter', [

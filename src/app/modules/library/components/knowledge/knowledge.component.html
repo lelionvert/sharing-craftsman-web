@@ -14,7 +14,7 @@
   <div class="comments">
     <span class="knowledge-comment-number">{{ comments.length }} commentaires</span>
     <button (click)="toggleShowComments()">Afficher les commentaires</button>
-    <ul class="comment-list" *ngIf="showComments" [@enterAnimation]>
+    <ul class="comment-list" *ngIf="showComments" [@showComments]>
       <sc-comment class="comment" *ngFor="let comment of comments" [comment]="comment"></sc-comment>
     </ul>
   </div>

@@ -5,6 +5,7 @@ import * as _ from "lodash";
 import { CookieService } from '../../../../services/browser/cookie.service';
 import { COOKIES } from '../../../../config/keys.config';
 import { Category } from '../../models/category.model';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'sc-library',
@@ -14,51 +15,20 @@ import { Category } from '../../models/category.model';
 export class LibraryComponent implements OnInit {
   public categories: Category[];
   private originalCategories: Category[];
+  private errorMessage: string;
 
-  constructor() {
-  }
+  constructor(
+    private categoryService: CategoryService,
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit() {
-    this.originalCategories = [
-      {
-        id: 'aaa',
-        name: 'Architecture',
-        knowledges: [
-          {
-            id: 'kaa',
-            creator: 'John Doe',
-            title: 'Hexagonale',
-            content: 'Known as port and adapter',
-          },
-          {
-            id: 'kbb',
-            creator: 'John Doe',
-            title: 'CQRS',
-            content: 'Segregation of command and query'
-          }
-        ]
-      },
-      {
-        id: 'bbb',
-        name: 'SOLID',
-        knowledges: [
-          {
-            id: 'kcc',
-            creator: 'Foo Bar',
-            title: 'Single responsibility principle',
-            content: 'A thing must have one reason to change'
-          },
-          {
-            id: 'kcd',
-            creator: 'Foo Bar',
-            title: 'Open close principle',
-            content: 'Open to extension, closed to modification'
-          }
-        ]
-      }
-    ];
-
-    this.categories = this.originalCategories;
+    this.categoryService
+      .getAllCategories(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken))
+      .subscribe(
+        response => this.handleGetAllCategories(response),
+        error => this.handleError(error)
+      );
   }
 
   handleSearch(search: string) {
@@ -67,5 +37,14 @@ export class LibraryComponent implements OnInit {
     this.categories.forEach(category => {
       category.knowledges = category.knowledges.filter(knowledge => knowledge.title.toLowerCase().indexOf(search.toLocaleLowerCase()) > -1);
     });
+  }
+
+  private handleGetAllCategories(response) {
+    this.categories = response.body;
+    this.originalCategories = response.body;
+  }
+
+  private handleError(error) {
+    this.errorMessage = `Erreur lors de la récupération des données : ${error.statusText}`;
   }
 }
