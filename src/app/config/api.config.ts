@@ -32,7 +32,7 @@ export const BACK_END_ROUTES: any = {
     searchCategories: 'library/search',
     comments: 'comments',
     deleteComment: 'comments/delete',
-    getCommentsByContentId: 'comments/contentid',
+    getCommentsByContentId: 'comments/contentId',
     favorites: 'favorites',
     deleteFavorite: 'favorites/delete',
     getFavorites: 'favorites/search',

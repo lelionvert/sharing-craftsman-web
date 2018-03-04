@@ -11,6 +11,10 @@ import { CommentComponent } from './components/comment/comment.component';
 import { ScoreComponent } from './components/score/score.component';
 import { LibrarySearchComponent } from './components/library-search/library-search.component';
 import { CategoryService } from './services/category.service';
+import { CommentService } from './services/comment.service';
+import { ScoreService } from './services/score.service';
+import { FavoriteService } from './services/favorite.service';
+import { KnowledgeService } from './services/knowledge.service';
 
 @NgModule({
   imports: [
@@ -28,7 +32,11 @@ import { CategoryService } from './services/category.service';
     LibrarySearchComponent
   ],
   providers: [
-    CategoryService
+    CategoryService,
+    KnowledgeService,
+    CommentService,
+    ScoreService,
+    FavoriteService
   ]
 })
 export class LibraryModule {}

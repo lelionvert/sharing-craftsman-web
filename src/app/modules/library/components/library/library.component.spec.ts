@@ -17,6 +17,10 @@ import { ScoreComponent } from '../score/score.component';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.model';
 import { MockCategoryService } from '../../../../../mocks/MockCategoryService';
+import { CommentService } from '../../services/comment.service';
+import { MockCommentService } from '../../../../../mocks/MockCommentService';
+import { MockScoreService } from '../../../../../mocks/MockScoreService';
+import { ScoreService } from '../../services/score.service';
 
 describe('modules/library/components/library/library.component', () => {
   beforeEach(async(() => {
@@ -34,7 +38,9 @@ describe('modules/library/components/library/library.component', () => {
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
-        { provide: CategoryService, useClass: MockCategoryService }
+        { provide: CategoryService, useClass: MockCategoryService },
+        { provide: CommentService, useClass: MockCommentService },
+        { provide: ScoreService, useClass: MockScoreService }
       ]
     });
     TestBed.compileComponents();
