@@ -1,10 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { MockRouter } from '../../../../../mocks/MockRouter';
-import { EmptyResponse } from '../../../../utils/empty-response.model';
 import { MockCookieService } from '../../../../../mocks/MockCookieService';
 import { COOKIES } from '../../../../config/keys.config';
 import { CookieService } from '../../../../services/browser/cookie.service';
