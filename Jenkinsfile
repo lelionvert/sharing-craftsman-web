@@ -13,6 +13,8 @@ pipeline {
       stage('Test') {
         steps {
           sh 'node --version'
+          sh 'npm install'
+          sh 'ls'
         }
       }
         // stage('Modify application properties') {
