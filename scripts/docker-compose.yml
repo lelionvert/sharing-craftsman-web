@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  library:
+    build: .
+    container_name: sc_library
+    ports:
+      - <APP_PORT>
+    volumes:
+     - <LOGS_PATH>:/app/logs
+
+networks:
+  default:
+    external:
+      name: <DOCKER_NETWORK>
