@@ -14,7 +14,7 @@ pipeline {
         steps {
           sh 'node --version'
           sh 'npm install'
-          sh 'ls'
+          sh 'npm test'
         }
       }
         // stage('Modify application properties') {
