@@ -66,8 +66,8 @@ describe('modules/library/components/category/category.component', () => {
       const fixture = TestBed.createComponent(CategoryComponent);
       fixture.componentInstance.category = category;
       fixture.detectChanges();
-      const loginComponent = fixture.nativeElement;
-      expect(loginComponent.querySelector('h3').innerText).toBe('ARCHITECTURE');
+      const categoryComponent = fixture.nativeElement;
+      expect(categoryComponent.querySelector('h3').innerText).toBe('ARCHITECTURE');
     });
   });
 

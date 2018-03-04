@@ -51,8 +51,8 @@ describe('modules/library/components/knowledge/knowledge.component', () => {
       const fixture = TestBed.createComponent(KnowledgeComponent);
       fixture.componentInstance.knowledge = knowledge;
       fixture.detectChanges();
-      const loginComponent = fixture.nativeElement;
-      expect(loginComponent.querySelector('.knowledge-content').innerText).toBe('Known as port and adapter');
+      const knowledgeComponent = fixture.nativeElement;
+      expect(knowledgeComponent.querySelector('.knowledge-content').innerText).toBe('Known as port and adapter');
     });
   });
 
