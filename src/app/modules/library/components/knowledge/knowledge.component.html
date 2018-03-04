@@ -8,6 +8,9 @@
       </ul>
     </div>
   </div>
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
   <div class="knowledge-content">
     {{ knowledge.content }}
   </div>

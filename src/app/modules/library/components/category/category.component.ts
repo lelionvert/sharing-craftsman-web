@@ -45,6 +45,7 @@ export class CategoryComponent implements OnInit {
   public comments: Comment[];
   public scores: Score[];
   private showComments: boolean;
+  public averageScore: number;
   private errorMessage: string;
 
   constructor(
@@ -83,6 +84,9 @@ export class CategoryComponent implements OnInit {
 
   private handleGetScores(response) {
     this.scores = response.body;
+    this.averageScore = 0.0;
+    this.scores.forEach(score => this.averageScore += score.mark);
+    this.averageScore /= this.scores.length;
   }
 
   private handleError(error) {

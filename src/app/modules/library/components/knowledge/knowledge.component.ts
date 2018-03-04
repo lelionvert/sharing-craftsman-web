@@ -13,6 +13,8 @@ import { COOKIES } from '../../../../config/keys.config';
 import { Knowledge } from '../../models/knowledge.model';
 import { Comment } from '../../models/comment.model';
 import { Score } from '../../models/score.model';
+import { CommentService } from '../../services/comment.service';
+import { ScoreService } from '../../services/score.service';
 
 @Component({
   selector: 'sc-knowledge',
@@ -24,7 +26,7 @@ import { Score } from '../../models/score.model';
       [
         transition(
           ':enter', [
-            style({  opacity: 0 }),
+            style({ opacity: 0 }),
             animate('300ms', style({ opacity: 1 }))
           ]
         ),
@@ -44,125 +46,50 @@ export class KnowledgeComponent implements OnInit {
   public scores: Score[];
   public averageScore: number;
   private showComments: boolean;
+  private errorMessage: string;
 
-  constructor() {
+  constructor(
+    private commentService: CommentService,
+    private scoreService: ScoreService,
+    private cookieService: CookieService
+  ) {
     this.showComments = false;
+    this.comments = [];
+    this.scores = [];
   }
 
   ngOnInit() {
-    switch (this.knowledge.id) {
-      case 'kaa':
-        this.comments = [
-          {
-            id: 'caa',
-            commenter: 'John Doe',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kaa',
-            content: 'This is a very good architecture'
-          },
-          {
-            id: 'cbb',
-            commenter: 'Foo Bar',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kaa',
-            content: 'Advanced technique'
-          },
-          {
-            id: 'ccc',
-            commenter: 'Mr Smith',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kaa',
-            content: 'I have it'
-          }
-        ];
-        this.scores = [
-          {
-            id: 'saa',
-            giver: 'John Doe',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kaa',
-            mark: 5
-          }
-        ];
-        break;
-      case 'kbb':
-        this.comments = [
-        ];
-        this.scores = [
-          {
-            id: 'sbb',
-            giver: 'John Doe',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kbb',
-            mark: 5
-          }
-        ];
-        break;
-      case 'kcc':
-        this.comments = [
-          {
-            id: 'cab',
-            commenter: 'John Doe',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kcc',
-            content: 'Often poorly understood'
-          }
-        ];
-        this.scores = [
-          {
-            id: 'sab',
-            giver: 'John Doe',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kcc',
-            mark: 5
-          },
-          {
-            id: 'sac',
-            giver: 'Foo Bar',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kcc',
-            mark: 3
-          }
-        ];
-        break;
-      case 'kcd':
-        this.comments = [
-          {
-            id: 'cab',
-            commenter: 'John Doe',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kcd',
-            content: 'Often poorly understood'
-          },
-          {
-            id: 'cac',
-            commenter: 'Foo Bar',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kcd',
-            content: 'Very hard to understand'
-          }
-        ];
-        this.scores = [
-          {
-            id: 'sbd',
-            giver: 'John Doe',
-            contentType: 'KNOWLEDGE',
-            contentId: 'kcd',
-            mark: 5
-          }
-        ];
-        break;
-    }
+    this.commentService
+    .getCommentsByContentId(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken), this.knowledge.id)
+    .subscribe(
+      response => this.handleGetComments(response),
+      error => this.handleError(error)
+    )
 
-    this.averageScore = 0.0;
-    this.scores.forEach(score => this.averageScore += score.mark);
-    this.averageScore /= this.scores.length;
+    this.scoreService
+    .getScoresByContentId(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken), this.knowledge.id)
+    .subscribe(
+      response => this.handleGetScores(response),
+      error => this.handleError(error)
+    )
   }
 
   toggleShowComments() {
     this.showComments = !this.showComments;
   }
-  /*
-    Will fetch its own comments and marks
-  */
+
+  private handleGetComments(response) {
+    this.comments = response.body;
+  }
+  
+  private handleGetScores(response) {
+    this.scores = response.body;
+    this.averageScore = 0.0;
+    this.scores.forEach(score => this.averageScore += score.mark);
+    this.averageScore /= this.scores.length;
+  }
+
+  private handleError(error) {
+    this.errorMessage = `Erreur lors de la récupération des données : ${error.statusText}`;
+  }
 }
