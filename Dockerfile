@@ -1,3 +1,3 @@
-FROM node:7-alpine
+FROM selenium/standalone-chrome
 
-RUN apk add -U subversion
+RUN apt-get install --no-cache nodejs
