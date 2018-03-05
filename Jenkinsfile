@@ -1,7 +1,7 @@
 pipeline {
     // agent { dockerfile true }
     agent {
-        docker { image 'trion/ng-cli' }
+        docker { image 'trion/ng-cli-karma' }
     }
     stages {
         stage('Test') {
