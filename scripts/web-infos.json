@@ -1,0 +1,13 @@
+{
+  "keys.config": {
+    "file": "src/app/config/keys.config.ts",
+    "client": {
+      "key": "export const CLIENT_NAME: string = 'client';",
+      "value": "export const CLIENT_NAME: string = 'scweb';"
+    },
+    "secret": {
+      "key": "export const CLIENT_SECRET: string = 'secret';",
+      "value": "export const CLIENT_SECRET: string = 'scwebpass';"
+    }
+  }
+}

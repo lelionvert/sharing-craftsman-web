@@ -1,8 +1,6 @@
 import json
 import sys
 
-default_file = 'Dockerfile'
-
 def update_file(args):
   if len(args) == 2:
     parse_file(args[1])
@@ -12,27 +10,21 @@ def parse_file(file):
   data = json.load(open(file))
   root_key = ''
   for key in data.keys():
-    if key != 'eureka':
       root_key = key
   read_infos(data[root_key])
 
 
 def read_infos(infos):
+  path = ''
   for file in infos:
-    file_name = default_file
-    for key, node in file.items():
-      if key == 'name':
-        file_name = node
-      else:
-        read_node({key: node}, file_name)
-
-
-def read_node(node, file_name='Dockerfile'):
-  for propertyName, property in node.items():
-    if 'key' in property:
-      write_in_file(file_name, property['key'], property['value'])
+    if file == 'file':
+      path = infos[file]
     else:
-      read_node(property, file_name)
+      read_node(infos[file]['key'], infos[file]['value'], path)
+
+
+def read_node(key, value, path):
+  write_in_file(path, key, value)
 
 
 def write_in_file(file, key, value):
