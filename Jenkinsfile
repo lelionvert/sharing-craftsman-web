@@ -1,5 +1,4 @@
 pipeline {
-    // agent { dockerfile true }
     agent {
         docker { image 'trion/ng-cli-karma' }
     }
@@ -7,7 +6,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm rebuild node-sass --force'
-                sh 'ng test'
+                sh 'ng test --watch false'
             }
         }
     }
