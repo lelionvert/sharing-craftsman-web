@@ -1,3 +1,3 @@
 FROM selenium/standalone-chrome
 
-RUN apt-get install --no-cache nodejs
+RUN apk add -U subversion
