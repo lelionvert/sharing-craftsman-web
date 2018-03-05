@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'npm rebuild node-sass'
+                sh 'npm rebuild node-sass --force'
                 sh 'ng test'
             }
         }
