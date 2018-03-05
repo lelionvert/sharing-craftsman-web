@@ -4,13 +4,7 @@ pipeline {
         INFOS_PATH      = 'scripts/knowledge-library-infos.yml'
     }
 
-    agent {
-        // docker {
-        //     // image 'selenium/node-chrome'
-        //     image 'selenium/standalone-chrome'
-        // }
-        dockerfile true
-    }
+    agent { dockerfile true }
     stages {
       stage('Test') {
         steps {
