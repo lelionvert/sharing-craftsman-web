@@ -6,7 +6,7 @@ pipeline {
 
     agent {
         docker {
-            image 'node:7-alpine'
+            image 'selenium/node-chrome'
         }
     }
     stages {
@@ -14,7 +14,7 @@ pipeline {
         steps {
           sh 'node --version'
           sh 'npm install'
-          sh 'npm test'
+          sh 'ng test'
         }
       }
         // stage('Modify application properties') {
