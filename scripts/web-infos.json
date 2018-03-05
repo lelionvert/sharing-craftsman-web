@@ -1,13 +1,37 @@
 {
-  "keys.config": {
-    "file": "src/app/config/keys.config.ts",
-    "client": {
-      "key": "export const CLIENT_NAME: string = 'client';",
-      "value": "export const CLIENT_NAME: string = 'scweb';"
+  "web": [
+    {
+      "name": "config",
+      "key.config": {
+        "file": "dist/main.bundle.js",
+        "client": {
+          "key": "var CLIENT_NAME = 'client';",
+          "value": "var CLIENT_NAME = 'scweb';"
+        },
+        "secret": {
+          "key": "var CLIENT_SECRET = 'secret';",
+          "value": "var CLIENT_SECRET = 'scwebpass';"
+        }
+      }
     },
-    "secret": {
-      "key": "export const CLIENT_SECRET: string = 'secret';",
-      "value": "export const CLIENT_SECRET: string = 'scwebpass';"
+    {
+      "name": "docker-compose.yml",
+      "docker": {
+        "port": {
+          "key": "<APP_PORT>",
+          "value": "172.17.0.1:8086:80"
+        },
+        "logs": {
+          "path": {
+            "key": "<LOGS_PATH>",
+            "value": "/home/scweb/logs"
+          }
+        },
+        "network": {
+          "key": "<DOCKER_NETWORK>",
+          "value": "scnetwork"
+        }
+      }
     }
-  }
+  ]
 }

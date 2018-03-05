@@ -7,7 +7,7 @@ services:
     ports:
       - <APP_PORT>
     volumes:
-     - <LOGS_PATH>:/app/logs
+     - <LOGS_PATH>:/var/logs
 
 networks:
   default:

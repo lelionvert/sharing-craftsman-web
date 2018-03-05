@@ -11,7 +11,7 @@ Update docker-compose.yml file to setup:
 - ip
 
 ## Launch script
-Launch: python<3> update_docker_files.py knowledge-library-infos.json
+Launch: python<3> update_config.py web-infos.json
 
 ## Informations
 To install jenkins:
