@@ -1,5 +1,7 @@
-.login {
+.library-creation {
   padding-top: 60px;
+  width: 100%;
+  text-align: center;
 
   h1 {
     margin-bottom: 20px;
@@ -17,10 +19,12 @@
   form {
     width: 60%;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 20px;
     text-transform: uppercase;
+    text-align: left;
+    margin-bottom: 30px;
 
-    input:not([type="checkbox"]) {
+    input, select, textarea {
       border: 1px solid #eeeeee;
       width: 98%;
       font-size: 13px;
@@ -39,7 +43,23 @@
       }
     }
 
-    button {
+    .disabled {
+      label {
+        color: #CCCCCC;
+      }
+    }
+
+    select {
+      font-size: 1.1em;
+      height: 50px;
+    }
+
+    textarea {
+      min-height: 400px;
+      resize: vertical;
+    }
+
+    button.validate {
       display: inline-block;
       background-color: #ec008c;
       color: #FFFFFF;
@@ -58,12 +78,17 @@
       }
     }
 
-    .lost-password-link {
+    button.cancel {
       display: inline-block;
-      margin-left: 30px;
-      font-size: 0.8em;
-      text-decoration: none;
       color: #000000;
+      border: 0 none;
+      cursor: pointer;
+      border-radius: 3px;
+      outline: none;
+      padding: 10px 30px;
+      margin-top: 20px;
+      font-size: 1.3em;
+      text-transform: uppercase;
 
       &:hover {
         color: #ec008c;

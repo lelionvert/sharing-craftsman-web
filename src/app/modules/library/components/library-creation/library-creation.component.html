@@ -1,0 +1,62 @@
+<div class="library-creation">
+  <h1>Ajout d'un principe craft</h1>
+  <form>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="category-choice">Catégorie</label>
+      </div>
+      <div class="form-field">
+        <select name="category-choice" (change)="onSelectCategory($event.target.value)">
+          <option value="none" disabled selected>Sélectionne une catégorie...</option>
+          <option value="aaa">Architectuyre</option>
+          <option value="aab">SOLID</option>
+          <option value="aac">Design Patterns</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="category-create">Ou créé une nouvelle catégorie :</label>
+      </div>
+      <div class="form-field">
+        <input type="text" name="category-create" (input)="onTypeNewCategory($event.target.value)" />
+      </div>
+    </div>
+    <div class="form-group disabled">
+      <div class="form-label">
+        <label for="chosen-category">Catégorie choisie :</label>
+      </div>
+      <div class="form-field">
+        <input type="text" name="chosen-category" disabled [(ngModel)]="model.category" #category="ngModel" required />
+      </div>
+      <div *ngIf="category.errors && (category.dirty || category.touched)" class="error">La catégorie est obligatoire</div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-label">
+        <label for="knowledge-title">Nom de la connaissance</label>
+      </div>
+      <div class="form-field">
+        <input type="text" name="knowledge-title" [(ngModel)]="model.title" #title="ngModel" required />
+      </div>
+      <div *ngIf="title.errors && (title.dirty || title.touched)" class="error">Le nom est obligatoire</div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="knowledge-content">Contenu de la connaissance</label>
+      </div>
+      <div class="form-field">
+        <textarea name="knowledge-content" [(ngModel)]="model.content" #content="ngModel" required></textarea>
+      </div>
+      <div *ngIf="content.errors && (content.dirty || content.touched)" class="error">Le contenu est obligatoire</div>
+    </div>
+
+    <div class="form-actions">
+      <button class="validate" type="submit" (click)="create()">Go</button>
+      <button class="cancel" type="submit" (click)="cancel()">Annuler</button>
+    </div>
+  </form>
+  <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+</div>
