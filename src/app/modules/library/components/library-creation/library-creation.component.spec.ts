@@ -45,7 +45,7 @@ describe('modules/library/components/library-creation/library-creation.component
     });
   });
 
-  describe('get categories', () => {
+  describe('library creation', () => {
     beforeEach(() => {
       spyOn(MockCategoryService.prototype, 'createCategory').and.callFake((username: string, accessToken: string, categoryName: string) => {
         const httpResponse: HttpResponse<EmptyResponse[]> = new HttpResponse({
@@ -84,6 +84,8 @@ describe('modules/library/components/library-creation/library-creation.component
         else
           return 'aaa';
       });
+      
+      spyOn(MockRouter.prototype, 'navigateByUrl');
     });
 
     it('should create a new knowledge with a new category', () => {
@@ -111,6 +113,21 @@ describe('modules/library/components/library-creation/library-creation.component
       const searchCriteria = {};
       searchCriteria[SEARCH_KEYS.categoryName] = 'CQRS';
       expect(MockKnowledgeService.prototype.addKnowledgeToCategory).toHaveBeenCalledWith('john@doe.fr', 'aaa', 'aab', 'Command', 'This is a command part');
+      expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/library');
+    });
+  });
+
+  describe('cancel creation', () => {
+    beforeEach(() => {
+      spyOn(MockRouter.prototype, 'navigateByUrl');
+    });
+
+    it('should return to library when cancelling creation', () => {
+      const fixture = TestBed.createComponent(LibraryCreationComponent);
+      const libraryCreationComponent: LibraryCreationComponent = fixture.componentInstance;
+
+      libraryCreationComponent.cancel();
+
       expect(MockRouter.prototype.navigateByUrl).toHaveBeenCalledWith('/library');
     });
   });

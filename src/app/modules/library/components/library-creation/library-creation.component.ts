@@ -55,7 +55,7 @@ export class LibraryCreationComponent {
   }
 
   cancel() {
-
+    this.router.navigateByUrl('/library');
   }
 
   onSelectCategory(categoryId: String) {
