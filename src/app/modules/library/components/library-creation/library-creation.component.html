@@ -8,9 +8,7 @@
       <div class="form-field">
         <select name="category-choice" (change)="onSelectCategory($event.target.value)">
           <option value="none" disabled selected>Sélectionne une catégorie...</option>
-          <option value="aaa">Architectuyre</option>
-          <option value="aab">SOLID</option>
-          <option value="aac">Design Patterns</option>
+          <option *ngFor="let category of categories" value="{{ category.id }}">{{ category.name }}</option>
         </select>
       </div>
     </div>
@@ -27,9 +25,9 @@
         <label for="chosen-category">Catégorie choisie :</label>
       </div>
       <div class="form-field">
-        <input type="text" name="chosen-category" disabled [(ngModel)]="model.category" #category="ngModel" required />
+        <input type="text" name="chosen-category" disabled [(ngModel)]="model.categoryName" #categoryName="ngModel" required />
       </div>
-      <div *ngIf="category.errors && (category.dirty || category.touched)" class="error">La catégorie est obligatoire</div>
+      <div *ngIf="categoryName.errors && (categoryName.dirty || categoryName.touched)" class="error">La catégorie est obligatoire</div>
     </div>
 
     <div class="form-group">

@@ -92,7 +92,8 @@ export class KnowledgeComponent implements OnInit {
     this.scores = response.body;
     this.averageScore = 0.0;
     this.scores.forEach(score => this.averageScore += score.mark);
-    this.averageScore /= this.scores.length;
+    if (this.scores.length > 0)
+      this.averageScore /= this.scores.length;
   }
 
   private handleError(error) {

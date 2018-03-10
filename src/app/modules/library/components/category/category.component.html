@@ -5,7 +5,7 @@
   </div>
   <div class="wrapper">
     <div class="category-score">
-      <span class="category-average-score">Note moyenne : {{ averageScore }}</span>
+      <span class="category-average-score">Note moyenne : {{ averageScore | number : '1.2-2' }}</span>
       <ul class="category-score-list">
         <sc-score *ngFor="let score of scores" [score]="score"></sc-score>
       </ul>
@@ -30,7 +30,7 @@
             Commenter
           </div>
         </button>
-        <button>
+        <button (click)="onClickShowAddScore()">
           <div class="svg">
             <svg fill="#000000" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z" />
@@ -79,12 +79,18 @@
   </div>
 </div>
 
-
 <comment-modal 
-  [(visible)]="showAddCommentsDialog"
+  [(visible)]="showAddCommentDialog"
   (commented)="handleAddedComment($event)"
   [contentName]="category.name"
   [contentType]="contentType"
-  [contentId]="category.id"
-  >
+  [contentId]="category.id">
 </comment-modal>
+
+<score-modal 
+  [(visible)]="showAddScoreDialog"
+  (scored)="handleAddedScore($event)"
+  [contentName]="category.name"
+  [contentType]="contentType"
+  [contentId]="category.id">
+</score-modal>

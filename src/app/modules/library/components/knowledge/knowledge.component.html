@@ -2,7 +2,7 @@
   <div class="knowledge-header">
     <div class="knowledge-title">{{ knowledge.title }} by {{ knowledge.creator }}</div>
     <div class="knowledge-score">
-      <span class="knowledge-average-score">Note moyenne : {{ averageScore }}</span>
+      <span class="knowledge-average-score">Note moyenne : {{ averageScore | number : '1.2-2' }}</span>
       <ul class="knowledge-score-list">
         <sc-score *ngFor="let score of scores" [score]="score"></sc-score>
       </ul>

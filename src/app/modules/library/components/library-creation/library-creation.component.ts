@@ -15,7 +15,7 @@ import { SEARCH_KEYS } from '../../../../config/app.config';
   templateUrl: './library-creation.component.html',
   styleUrls: ['./library-creation.component.scss']
 })
-export class LibraryCreationComponent {
+export class LibraryCreationComponent implements OnInit {
   public model: Knowledge;
   private categories: Category[];
   private errorMessage: string;
@@ -27,23 +27,19 @@ export class LibraryCreationComponent {
     private knowledgeService: KnowledgeService
   ) {
     this.model = new Knowledge('', '', '', '');
-    this.categories = [
-      {
-        id: 'aaa',
-        name: 'Architecture',
-        knowledges: []
-      },
-      {
-        id: 'aab',
-        name: 'SOLID',
-        knowledges: []
-      },
-      {
-        id: 'aac',
-        name: 'Design Patterns',
-        knowledges: []
-      }
-    ];
+    this.categories = [];
+  }
+
+  ngOnInit() {
+    this.categoryService
+    .getAllCategories(
+      this.cookieService.getCookie(COOKIES.username), 
+      this.cookieService.getCookie(COOKIES.accessToken)
+    )
+    .subscribe(
+      response => this.handleGetAllCategories(response),
+      error => this.handleErrorResponse(error)
+    );
   }
 
   create() {
@@ -64,12 +60,21 @@ export class LibraryCreationComponent {
   }
 
   onTypeNewCategory(category: String) {
+    this.model.categoryId = '';
     this.model.categoryName = category;
+  }
+
+  private handleGetAllCategories(response) {
+    this.categories = response.body;
   }
 
   private createCategory() {
     this.categoryService
-      .createCategory(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken), this.model.categoryName)
+      .createCategory(
+        this.cookieService.getCookie(COOKIES.username), 
+        this.cookieService.getCookie(COOKIES.accessToken), 
+        this.model.categoryName
+      )
       .subscribe(
         response => this.searchCategories(),
         error => this.handleErrorResponse(error)
@@ -115,6 +120,6 @@ export class LibraryCreationComponent {
   }
 
   private handleErrorResponse(error: HttpErrorResponse) {
-    this.errorMessage = `Erreur lors de l'identification : ${error.statusText}`;
+    this.errorMessage = `Erreur : ${error.statusText}`;
   }
 }

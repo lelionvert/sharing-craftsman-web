@@ -34,6 +34,13 @@ describe('modules/library/components/library-creation/library-creation.component
       ]
     });
     TestBed.compileComponents();
+
+    spyOn(MockCookieService.prototype, 'getCookie').and.callFake((name: string) => {
+      if (name === COOKIES.username)
+        return 'john@doe.fr';
+      else
+        return 'aaa';
+    });
   }));
 
   describe('rendering', () => {
@@ -42,6 +49,44 @@ describe('modules/library/components/library-creation/library-creation.component
       fixture.detectChanges();
       const loginComponent = fixture.nativeElement;
       expect(loginComponent.querySelector('h1').innerText).toBe('AJOUT D\'UN PRINCIPE CRAFT');
+    });
+  });
+
+  describe('component initialization', () => {
+    beforeEach(() => {
+      spyOn(MockCategoryService.prototype, 'getAllCategories').and.callFake((username: string, accessToken: string) => {
+        const httpResponse: HttpResponse<Category[]> = new HttpResponse({
+          body: [
+            {
+              id: 'aaa',
+              name: 'Architecture',
+              knowledges: []
+            },
+            {
+              id: 'aab',
+              name: 'SOLID',
+              knowledges: []
+            },
+            {
+              id: 'aac',
+              name: 'Design Patterns',
+              knowledges: []
+            }
+          ],
+          status: 200
+        });
+
+        return Observable.create(observer => observer.next(httpResponse));
+      });
+    });
+
+    it('should get categories when initialization', () => {
+      const fixture = TestBed.createComponent(LibraryCreationComponent);
+      const libraryCreationComponent: LibraryCreationComponent = fixture.componentInstance;
+
+      libraryCreationComponent.ngOnInit();
+
+      expect(MockCategoryService.prototype.getAllCategories).toHaveBeenCalledWith('john@doe.fr', 'aaa');
     });
   });
 
@@ -78,13 +123,6 @@ describe('modules/library/components/library-creation/library-creation.component
         return Observable.create(observer => observer.next(httpResponse));
       });
 
-      spyOn(MockCookieService.prototype, 'getCookie').and.callFake((name: string) => {
-        if (name === COOKIES.username)
-          return 'john@doe.fr';
-        else
-          return 'aaa';
-      });
-      
       spyOn(MockRouter.prototype, 'navigateByUrl');
     });
 

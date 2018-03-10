@@ -48,7 +48,8 @@ export class CategoryComponent implements OnInit {
   public averageScore: number;
   private showComments: boolean;
   private showActions: boolean;
-  private showAddCommentsDialog: boolean;
+  private showAddCommentDialog: boolean;
+  private showAddScoreDialog: boolean;
   private errorMessage: String;
   private contentType: String;
 
@@ -59,7 +60,8 @@ export class CategoryComponent implements OnInit {
   ) {
     this.showComments = false;
     this.showActions = false;
-    this.showAddCommentsDialog = false;
+    this.showAddCommentDialog = false;
+    this.showAddScoreDialog = false;
     this.comments = [];
     this.scores = [];
     this.contentType = CONTENT_TYPES.category;
@@ -79,12 +81,21 @@ export class CategoryComponent implements OnInit {
   }
 
   onClickShowAddComments() {
-    this.showAddCommentsDialog = !this.showAddCommentsDialog;
+    this.showAddCommentDialog = !this.showAddCommentDialog;
+    this.showActions = false;
+  }
+
+  onClickShowAddScore() {
+    this.showAddScoreDialog = !this.showAddScoreDialog;
     this.showActions = false;
   }
 
   handleAddedComment(event) {
     this.getCategoryComments();
+  }
+
+  handleAddedScore(event) {
+    this.getCategoryScores();
   }
 
   private getCategoryComments() {
@@ -113,7 +124,8 @@ export class CategoryComponent implements OnInit {
     this.scores = response.body;
     this.averageScore = 0.0;
     this.scores.forEach(score => this.averageScore += score.mark);
-    this.averageScore /= this.scores.length;
+    if (this.scores.length > 0)
+      this.averageScore /= this.scores.length;
   }
 
   private handleError(error) {

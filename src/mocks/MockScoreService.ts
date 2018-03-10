@@ -19,4 +19,6 @@ export class MockScoreService {
 
     return Observable.create(observer => observer.next(httpResponse));
   }
+
+  addScore(username: string, accessToken: string, contentType: string, contentId: string, mark: number) { }
 }

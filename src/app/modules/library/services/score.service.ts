@@ -14,21 +14,21 @@ import { Score } from '../models/score.model';
 export class ScoreService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  getScoresByContentId(username: string, accessToken: string, contentId: string): Observable<HttpResponse<Score[]>> {
+  getScoresByContentId(username: String, accessToken: String, contentId: String): Observable<HttpResponse<Score[]>> {
     return this.http.get<Score[]>(
       `${HOST}/${BACK_END_ROUTES.library.getScoresByContentId}/${contentId}`,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
     );
   }
 
-  getScoresByMark(username: string, accessToken: string, mark: number): Observable<HttpResponse<Score[]>> {
+  getScoresByMark(username: String, accessToken: String, mark: number): Observable<HttpResponse<Score[]>> {
     return this.http.get<Score[]>(
       `${HOST}/${BACK_END_ROUTES.library.getScoresByMark}/${mark}`,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
     );
   }
 
-  addScore(username: string, accessToken: string, contentType: string, contentId: string, mark: number) {
+  addScore(username: String, accessToken: String, contentType: String, contentId: String, mark: number) {
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.scores}`,
       {
@@ -41,7 +41,7 @@ export class ScoreService {
     );
   }
 
-  updateScore(username: string, accessToken: string, scoreId: string, contentType: string, contentId: string, mark: number) {
+  updateScore(username: String, accessToken: String, scoreId: String, contentType: String, contentId: String, mark: number) {
     return this.http.put(
       `${HOST}/${BACK_END_ROUTES.library.scores}`,
       {
@@ -55,7 +55,7 @@ export class ScoreService {
     );
   }
 
-  deleteScore(username: string, accessToken: string, scoreId: string) {
+  deleteScore(username: String, accessToken: String, scoreId: String) {
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.deleteScore}`,
       {
@@ -66,7 +66,7 @@ export class ScoreService {
     );
   }
 
-  private getUserHeaders(username: string, token: string) {
+  private getUserHeaders(username: String, token: String) {
     return this.headerService
       .buildHeaders()
       .withClientName(CLIENT_NAME)

@@ -1,15 +1,15 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Comment } from '../../forms/comment.form';
+import { Score } from '../../forms/score.form';
 import { CookieService } from '../../../../services/browser/cookie.service';
-import { CommentService } from '../../services/comment.service';
 import { COOKIES } from '../../../../config/keys.config';
 import { HttpResponse } from 'selenium-webdriver/http';
+import { ScoreService } from '../../services/score.service';
 
 @Component({
-  selector: 'comment-modal',
-  templateUrl: './comment-modal.component.html',
-  styleUrls: ['./comment-modal.component.scss'],
+  selector: 'score-modal',
+  templateUrl: './score-modal.component.html',
+  styleUrls: ['./score-modal.component.scss'],
   animations: [
     trigger('dialog', [
       transition('void => *', [
@@ -22,34 +22,34 @@ import { HttpResponse } from 'selenium-webdriver/http';
     ])
   ]
 })
-export class CommentModalComponent {
+export class ScoreModalComponent {
   @Input() visible: boolean;
   @Input() contentName: String;
   @Input() contentType: String;
   @Input() contentId: String;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() commented = new EventEmitter();
-  public model: Comment;
+  @Output() scored = new EventEmitter();
+  public model: Score;
   private errorMessage: String;
 
   constructor(
     private cookieService: CookieService,
-    private commentService: CommentService
+    private scoreService: ScoreService
   ) {
-    this.model = new Comment('');
+    this.model = new Score(0);
   }
 
-  addComment() {
-    this.commentService
-    .addComment(
+  addScore() {
+    this.scoreService
+    .addScore(
       this.cookieService.getCookie(COOKIES.username), 
       this.cookieService.getCookie(COOKIES.accessToken),
       this.contentType,
       this.contentId,
-      this.model.comment
+      this.model.score  
     )
     .subscribe(
-      response => this.handleAddedCommentResponse(response),
+      response => this.handleAddedScoreResponse(response),
       error => this.handleError(error)
     );
   }
@@ -59,13 +59,13 @@ export class CommentModalComponent {
     this.visibleChange.emit(this.visible);
   }
 
-  private handleAddedCommentResponse(response: HttpResponse) {
-    this.commented.emit(true);
+  private handleAddedScoreResponse(response: HttpResponse) {
+    this.scored.emit(true);
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
 
   private handleError(error) {
-    this.errorMessage = `Erreur lors d'ajout d'un commentaire : ${error.statusText}`;
+    this.errorMessage = `Erreur lors d'ajout de note : ${error.statusText}`;
   }
 }
