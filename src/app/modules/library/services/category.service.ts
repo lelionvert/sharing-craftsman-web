@@ -14,21 +14,21 @@ import { Category } from '../models/category.model';
 export class CategoryService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  getAllCategories(username: String, accessToken: String): Observable<HttpResponse<Category[]>> {
+  getAllCategories(username: string, accessToken: string): Observable<HttpResponse<Category[]>> {
     return this.http.get<Category[]>(
       `${HOST}/${BACK_END_ROUTES.library.getCategories}`,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
     );
   }
 
-  getCategoryById(username: String, accessToken: String, categoryId: String): Observable<HttpResponse<Category>> {
+  getCategoryById(username: string, accessToken: string, categoryId: string): Observable<HttpResponse<Category>> {
     return this.http.get<Category>(
       `${HOST}/${BACK_END_ROUTES.library.getCategories}/${categoryId}`,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
     )
   }
 
-  searchCategories(username: String, accessToken: String, searchCriteria: any): Observable<HttpResponse<Category[]>> {
+  searchCategories(username: string, accessToken: string, searchCriteria: any): Observable<HttpResponse<Category[]>> {
     return this.http.post<Category[]>(
       `${HOST}/${BACK_END_ROUTES.library.searchCategories}`,
       {
@@ -38,7 +38,7 @@ export class CategoryService {
     );
   }
 
-  createCategory(username: String, accessToken: String, categoryName: String) {
+  createCategory(username: string, accessToken: string, categoryName: string) {
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.categories}`,
       {
@@ -48,7 +48,7 @@ export class CategoryService {
     );
   }
 
-  updateCategory(username: String, accessToken: String, categoryId: String, categoryName: String) {
+  updateCategory(username: string, accessToken: string, categoryId: string, categoryName: string) {
     return this.http.put(
       `${HOST}/${BACK_END_ROUTES.library.categories}`,
       {
@@ -59,14 +59,14 @@ export class CategoryService {
     );
   }
 
-  deleteCategory(username: String, accessToken: String, categoryId: String) {
+  deleteCategory(username: string, accessToken: string, categoryId: string) {
     return this.http.delete(
       `${HOST}/${BACK_END_ROUTES.library.categories}/${categoryId}`,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
     )
   }
 
-  private getUserHeaders(username: String, token: String) {
+  private getUserHeaders(username: string, token: string) {
     return this.headerService
       .buildHeaders()
       .withClientName(CLIENT_NAME)

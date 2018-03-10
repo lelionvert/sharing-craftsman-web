@@ -54,12 +54,12 @@ export class LibraryCreationComponent implements OnInit {
     this.router.navigateByUrl('/library');
   }
 
-  onSelectCategory(categoryId: String) {
+  onSelectCategory(categoryId: string) {
     this.model.categoryId = categoryId;
     this.model.categoryName = this.categories.find(category => category.id === categoryId).name;
   }
 
-  onTypeNewCategory(category: String) {
+  onTypeNewCategory(category: string) {
     this.model.categoryId = '';
     this.model.categoryName = category;
   }

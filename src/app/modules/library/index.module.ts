@@ -18,6 +18,7 @@ import { KnowledgeService } from './services/knowledge.service';
 import { LibraryCreationComponent } from './components/library-creation/library-creation.component';
 import { CommentModalComponent } from './components/comment-modal/comment-modal.component';
 import { ScoreModalComponent } from './components/score-modal/score-modal.component';
+import { CategoryModalComponent } from './components/category-modal/category-modal.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { ScoreModalComponent } from './components/score-modal/score-modal.compon
     LibrarySearchComponent,
     LibraryCreationComponent,
     CommentModalComponent,
-    ScoreModalComponent
+    ScoreModalComponent,
+    CategoryModalComponent
   ],
   providers: [
     CategoryService,

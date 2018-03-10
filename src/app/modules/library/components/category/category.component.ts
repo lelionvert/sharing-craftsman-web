@@ -50,8 +50,9 @@ export class CategoryComponent implements OnInit {
   private showActions: boolean;
   private showAddCommentDialog: boolean;
   private showAddScoreDialog: boolean;
-  private errorMessage: String;
-  private contentType: String;
+  private showEditCategoryDialog: boolean;
+  private errorMessage: string;
+  private contentType: string;
 
   constructor(
     private commentService: CommentService,
@@ -62,6 +63,7 @@ export class CategoryComponent implements OnInit {
     this.showActions = false;
     this.showAddCommentDialog = false;
     this.showAddScoreDialog = false;
+    this.showEditCategoryDialog = false;
     this.comments = [];
     this.scores = [];
     this.contentType = CONTENT_TYPES.category;
@@ -90,12 +92,21 @@ export class CategoryComponent implements OnInit {
     this.showActions = false;
   }
 
+  onClickShowEdit() {
+    this.showEditCategoryDialog = !this.showEditCategoryDialog;
+    this.showActions = false;
+  }
+
   handleAddedComment(event) {
     this.getCategoryComments();
   }
 
   handleAddedScore(event) {
     this.getCategoryScores();
+  }
+
+  handleEditedCategory(event: string) {
+    this.category.name = event;
   }
 
   private getCategoryComments() {

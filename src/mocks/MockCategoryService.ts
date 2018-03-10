@@ -72,4 +72,6 @@ export class MockCategoryService {
 
     return Observable.create(observer => observer.next(httpResponse));
   }
+
+  updateCategory(username: string, accessToken: string, categoryId: string, categoryName: string) { }
 }

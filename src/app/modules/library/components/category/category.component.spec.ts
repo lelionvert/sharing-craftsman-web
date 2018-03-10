@@ -19,6 +19,8 @@ import { MockScoreService } from '../../../../../mocks/MockScoreService';
 import { CommentModalComponent } from '../comment-modal/comment-modal.component';
 import { FormsModule } from '@angular/forms';
 import { ScoreModalComponent } from '../score-modal/score-modal.component';
+import { CategoryModalComponent } from '../category-modal/category-modal.component';
+import { MockCategoryService } from '../../../../../mocks/MockCategoryService';
 
 describe('modules/library/components/category/category.component', () => {
   const category: Category = {
@@ -51,12 +53,14 @@ describe('modules/library/components/category/category.component', () => {
         CommentComponent,
         ScoreComponent,
         CommentModalComponent,
-        ScoreModalComponent
+        ScoreModalComponent,
+        CategoryModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
         { provide: CommentService, useClass: MockCommentService },
-        { provide: ScoreService, useClass: MockScoreService }
+        { provide: ScoreService, useClass: MockScoreService },
+        { provide: CategoryService, useClass: MockCategoryService }
       ]
     });
     TestBed.compileComponents();

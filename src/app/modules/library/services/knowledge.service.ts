@@ -13,7 +13,7 @@ import { HOST, BACK_END_ROUTES } from '../../../config/api.config';
 export class KnowledgeService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  addKnowledgeToCategory(username: String, accessToken: String, categoryId: String, knowledgeTitle: String, knowledgeContent: String) {
+  addKnowledgeToCategory(username: string, accessToken: string, categoryId: string, knowledgeTitle: string, knowledgeContent: string) {
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.knowledges}`,
       {
@@ -26,7 +26,7 @@ export class KnowledgeService {
     );
   }
 
-  updateKnowledge(username: String, accessToken: String, categoryId: String, knowledgeId: String, knowledgeTitle: String, knowledgeContent: String) {
+  updateKnowledge(username: string, accessToken: string, categoryId: string, knowledgeId: string, knowledgeTitle: string, knowledgeContent: string) {
     return this.http.put(
       `${HOST}/${BACK_END_ROUTES.library.knowledges}`,
       {
@@ -40,7 +40,7 @@ export class KnowledgeService {
     );
   }
 
-  deleteKnowledge(username: String, accessToken: String, categoryId: String, knowledgeId: String) {
+  deleteKnowledge(username: string, accessToken: string, categoryId: string, knowledgeId: string) {
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.deleteKnowledge}`,
       {
@@ -51,7 +51,7 @@ export class KnowledgeService {
     );
   }
 
-  private getUserHeaders(username: String, token: String) {
+  private getUserHeaders(username: string, token: string) {
     return this.headerService
       .buildHeaders()
       .withClientName(CLIENT_NAME)

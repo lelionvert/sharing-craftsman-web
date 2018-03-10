@@ -24,13 +24,13 @@ import { ScoreService } from '../../services/score.service';
 })
 export class ScoreModalComponent {
   @Input() visible: boolean;
-  @Input() contentName: String;
-  @Input() contentType: String;
-  @Input() contentId: String;
+  @Input() contentName: string;
+  @Input() contentType: string;
+  @Input() contentId: string;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() scored = new EventEmitter();
   public model: Score;
-  private errorMessage: String;
+  private errorMessage: string;
 
   constructor(
     private cookieService: CookieService,

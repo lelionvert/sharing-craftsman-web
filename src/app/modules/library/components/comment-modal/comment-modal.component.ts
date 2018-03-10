@@ -24,13 +24,13 @@ import { HttpResponse } from 'selenium-webdriver/http';
 })
 export class CommentModalComponent {
   @Input() visible: boolean;
-  @Input() contentName: String;
-  @Input() contentType: String;
-  @Input() contentId: String;
+  @Input() contentName: string;
+  @Input() contentType: string;
+  @Input() contentId: string;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() commented = new EventEmitter();
   public model: Comment;
-  private errorMessage: String;
+  private errorMessage: string;
 
   constructor(
     private cookieService: CookieService,

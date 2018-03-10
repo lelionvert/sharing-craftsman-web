@@ -1,8 +1,8 @@
 export class Knowledge {
   constructor(
-    public categoryId: String,
-    public categoryName: String,
-    public title: String,
-    public content: String
+    public categoryId: string,
+    public categoryName: string,
+    public title: string,
+    public content: string
    ) { }
 }

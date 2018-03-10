@@ -44,7 +44,7 @@ describe('modules/library/components/comment-modal/comment-modal.component', () 
     });
   });
 
-  describe('initialization', () => {
+  describe('add comment', () => {
     beforeEach(() => {
       spyOn(MockCommentService.prototype, 'addComment').and.callFake((username: string, accessToken: string, contentType: string, contentId: string, comment: string) => {
         const httpResponse: HttpResponse<EmptyResponse[]> = new HttpResponse({
