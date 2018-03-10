@@ -22,7 +22,7 @@ import { ScoreService } from '../../services/score.service';
   styleUrls: ['./knowledge.component.scss'],
   animations: [
     trigger(
-      'showComments',
+      'showAnimation',
       [
         transition(
           ':enter', [
@@ -46,6 +46,7 @@ export class KnowledgeComponent implements OnInit {
   public scores: Score[];
   public averageScore: number;
   private showComments: boolean;
+  private showActions: boolean;
   private errorMessage: string;
 
   constructor(
@@ -54,6 +55,7 @@ export class KnowledgeComponent implements OnInit {
     private cookieService: CookieService
   ) {
     this.showComments = false;
+    this.showActions = false;
     this.comments = [];
     this.scores = [];
   }
@@ -76,6 +78,10 @@ export class KnowledgeComponent implements OnInit {
 
   toggleShowComments() {
     this.showComments = !this.showComments;
+  }
+
+  toggleShowActions() {
+    this.showActions = !this.showActions;
   }
 
   private handleGetComments(response) {

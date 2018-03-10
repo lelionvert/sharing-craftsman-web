@@ -16,7 +16,7 @@
       text-align: left;
       display: inline-block;
       vertical-align: top;
-      width: 70%;
+      width: 67%;
     }
 
     .knowledge-score {
@@ -42,6 +42,75 @@
       &:hover {
         .knowledge-score-list {
           display: block;
+        }
+      }
+    }
+
+    .actions {
+      display: inline-block;
+      vertical-align: top;
+      width: 1%;
+      position: relative;
+
+      .actions-menu-button {
+        border: none;
+        background-color: transparent;
+        margin-top: -2px;
+        
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+        
+        &:hover {
+          cursor: pointer;
+
+          svg {
+            fill: #ec008c;
+          }
+        }
+
+        &:focus {
+          outline: 0;
+        }
+      }
+
+      .actions-menu {
+        float: none;
+        z-index: 8888;
+        list-style: none;
+        position: absolute;
+        right: 0;
+        background-color: #ebe8eb;
+        padding: 5px;
+        -webkit-box-shadow: 6px 6px 8px -1px rgba(194,194,194,1);
+        -moz-box-shadow: 6px 6px 8px -1px rgba(194,194,194,1);
+        box-shadow: 6px 6px 8px -1px rgba(194,194,194,1);
+        width: 150px;
+
+        button {
+          display: block;
+          border: none;
+          background-color: transparent;
+          
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+          
+          &:hover {
+            cursor: pointer;
+            color: #ec008c;
+
+            svg {
+              fill: #ec008c;
+            }
+          }
+
+          .svg, .label {
+            display: inline-block;
+            vertical-align: middle;
+          }
         }
       }
     }

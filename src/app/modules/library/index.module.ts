@@ -16,6 +16,7 @@ import { ScoreService } from './services/score.service';
 import { FavoriteService } from './services/favorite.service';
 import { KnowledgeService } from './services/knowledge.service';
 import { LibraryCreationComponent } from './components/library-creation/library-creation.component';
+import { CommentModalComponent } from './components/comment-modal/comment-modal.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { LibraryCreationComponent } from './components/library-creation/library-
     CommentComponent,
     ScoreComponent,
     LibrarySearchComponent,
-    LibraryCreationComponent
+    LibraryCreationComponent,
+    CommentModalComponent
   ],
   providers: [
     CategoryService,

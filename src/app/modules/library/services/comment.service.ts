@@ -16,21 +16,21 @@ import { Comment } from '../models/comment.model';
 export class CommentService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  getCommentsByContentId(username: string, accessToken: string, contentId: string): Observable<HttpResponse<Comment[]>> {
+  getCommentsByContentId(username: String, accessToken: String, contentId: String): Observable<HttpResponse<Comment[]>> {
     return this.http.get<Comment[]>(
       `${HOST}/${BACK_END_ROUTES.library.getCommentsByContentId}/${contentId}`,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
     );
   }
 
-  getCommentsById(username: string, accessToken: string, commentId: string): Observable<HttpResponse<Comment>> { 
+  getCommentsById(username: String, accessToken: String, commentId: String): Observable<HttpResponse<Comment>> { 
     return this.http.get<Comment>(
       `${HOST}/${BACK_END_ROUTES.library.comments}/${commentId}`,
       { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
     );
   }
 
-  addComment(username: string, accessToken: string, contentType: string, contentId: string, comment: string) {
+  addComment(username: String, accessToken: String, contentType: String, contentId: String, comment: String) {
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.comments}`,
       {
@@ -43,7 +43,7 @@ export class CommentService {
     );
   }
 
-  updateComment(username: string, accessToken: string, commentId: string, contentType: string, contentId: string, comment: string) {
+  updateComment(username: String, accessToken: String, commentId: String, contentType: String, contentId: String, comment: String) {
     return this.http.put(
       `${HOST}/${BACK_END_ROUTES.library.comments}`,
       {
@@ -57,7 +57,7 @@ export class CommentService {
     );
   }
 
-  deleteComment(username: string, accessToken: string, commentId: string) {
+  deleteComment(username: String, accessToken: String, commentId: String) {
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.library.deleteComment}`,
       {
@@ -68,7 +68,7 @@ export class CommentService {
     );
   }
 
-  private getUserHeaders(username: string, token: string) {
+  private getUserHeaders(username: String, token: String) {
     return this.headerService
       .buildHeaders()
       .withClientName(CLIENT_NAME)

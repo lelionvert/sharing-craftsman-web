@@ -10,15 +10,81 @@
         <sc-score *ngFor="let score of scores" [score]="score"></sc-score>
       </ul>
     </div>
+    <div class="actions">
+      <button class="actions-menu-button" (click)="toggleShowActions()">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+        </svg>
+      </button>
+      <div class="actions-menu" *ngIf="showActions" [@showAnimation]>
+        <button (click)="onClickShowAddComments()">
+          <div class="svg">
+            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"
+              />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+          </div>
+          <div class="label">
+            Commenter
+          </div>
+        </button>
+        <button>
+          <div class="svg">
+            <svg fill="#000000" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 11.3l3.71 2.7-1.42-4.36L15 7h-4.55L9 2.5 7.55 7H3l3.71 2.64L5.29 14z" />
+              <path d="M0 0h18v18H0z" fill="none" />
+            </svg>
+          </div>
+          <div class="label">
+            Noter
+          </div>
+        </button>
+        <button class="edit">
+          <div class="svg">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+              />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+          </div>
+          <div class="label">
+            Editer
+          </div>
+        </button>
+        <button class="delete">
+          <div class="svg">
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+          </div>
+          <div class="label">
+            Supprimer
+          </div>
+        </button>
+      </div>
+    </div>
     <div class="comments-action">
       <span class="category-comment-number">{{ comments.length }} commentaires</span>
       <button (click)="toggleShowComments()">Afficher les commentaires</button>
     </div>
   </div>
-  <ul class="comment-list" *ngIf="showComments" [@showComments]>
+  <ul class="comment-list" *ngIf="showComments" [@showAnimation]>
     <sc-comment class="comment" *ngFor="let comment of comments" [comment]="comment"></sc-comment>
   </ul>
   <div class="knowledge-list">
     <sc-knowledge class="knowledge" *ngFor="let knowledge of category.knowledges" [knowledge]="knowledge"></sc-knowledge>
   </div>
 </div>
+
+
+<comment-modal 
+  [(visible)]="showAddCommentsDialog"
+  (commented)="handleAddedComment($event)"
+  [contentName]="category.name"
+  [contentType]="contentType"
+  [contentId]="category.id"
+  >
+</comment-modal>

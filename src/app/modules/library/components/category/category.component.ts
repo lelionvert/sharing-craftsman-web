@@ -15,6 +15,7 @@ import { Comment } from '../../models/comment.model';
 import { Score } from '../../models/score.model';
 import { CommentService } from '../../services/comment.service';
 import { ScoreService } from '../../services/score.service';
+import { CONTENT_TYPES } from '../../../../config/app.config';
 
 @Component({
   selector: 'sc-category',
@@ -22,7 +23,7 @@ import { ScoreService } from '../../services/score.service';
   styleUrls: ['./category.component.scss'],
   animations: [
     trigger(
-      'showComments',
+      'showAnimation',
       [
         transition(
           ':enter', [
@@ -44,9 +45,12 @@ export class CategoryComponent implements OnInit {
   @Input() public category: Category;
   public comments: Comment[];
   public scores: Score[];
-  private showComments: boolean;
   public averageScore: number;
-  private errorMessage: string;
+  private showComments: boolean;
+  private showActions: boolean;
+  private showAddCommentsDialog: boolean;
+  private errorMessage: String;
+  private contentType: String;
 
   constructor(
     private commentService: CommentService,
@@ -54,28 +58,51 @@ export class CategoryComponent implements OnInit {
     private cookieSerivce: CookieService
   ) {
     this.showComments = false;
+    this.showActions = false;
+    this.showAddCommentsDialog = false;
     this.comments = [];
     this.scores = [];
+    this.contentType = CONTENT_TYPES.category;
   }
 
   ngOnInit() {
+    this.getCategoryComments();
+    this.getCategoryScores();
+  }
+
+  toggleShowComments() {
+    this.showComments = !this.showComments;
+  }
+
+  toggleShowActions() {
+    this.showActions = !this.showActions;
+  }
+
+  onClickShowAddComments() {
+    this.showAddCommentsDialog = !this.showAddCommentsDialog;
+    this.showActions = false;
+  }
+
+  handleAddedComment(event) {
+    this.getCategoryComments();
+  }
+
+  private getCategoryComments() {
     this.commentService
       .getCommentsByContentId(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken), this.category.id)
       .subscribe(
         response => this.handleGetComments(response),
         error => this.handleError(error)
       )
-
-    this.scoreService
-    .getScoresByContentId(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken), this.category.id)
-    .subscribe(
-      response => this.handleGetScores(response),
-      error => this.handleError(error)
-    )
   }
 
-  toggleShowComments() {
-    this.showComments = !this.showComments;
+  private getCategoryScores() {
+    this.scoreService
+      .getScoresByContentId(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken), this.category.id)
+      .subscribe(
+        response => this.handleGetScores(response),
+        error => this.handleError(error)
+      )
   }
 
   private handleGetComments(response) {

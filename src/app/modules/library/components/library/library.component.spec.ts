@@ -18,6 +18,7 @@ import { CommentService } from '../../services/comment.service';
 import { MockCommentService } from '../../../../../mocks/MockCommentService';
 import { MockScoreService } from '../../../../../mocks/MockScoreService';
 import { ScoreService } from '../../services/score.service';
+import { CommentModalComponent } from '../comment-modal/comment-modal.component';
 
 describe('modules/library/components/library/library.component', () => {
   beforeEach(async(() => {
@@ -31,7 +32,8 @@ describe('modules/library/components/library/library.component', () => {
         CategoryComponent,
         KnowledgeComponent,
         CommentComponent,
-        ScoreComponent
+        ScoreComponent,
+        CommentModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },

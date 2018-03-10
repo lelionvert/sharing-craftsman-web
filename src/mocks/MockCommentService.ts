@@ -19,4 +19,7 @@ export class MockCommentService {
 
     return Observable.create(observer => observer.next(httpResponse));
   }
+
+  addComment(username: string, accessToken: string, contentType: string, contentId: string, comment: string) {
+  }
 }
