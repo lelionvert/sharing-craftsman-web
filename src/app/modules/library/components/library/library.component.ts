@@ -23,12 +23,7 @@ export class LibraryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.categoryService
-      .getAllCategories(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken))
-      .subscribe(
-        response => this.handleGetAllCategories(response),
-        error => this.handleError(error)
-      );
+    this.getAllCategories();
   }
 
   handleSearch(search: string) {
@@ -37,6 +32,19 @@ export class LibraryComponent implements OnInit {
     this.categories.forEach(category => {
       category.knowledges = category.knowledges.filter(knowledge => knowledge.title.toLowerCase().indexOf(search.toLocaleLowerCase()) > -1);
     });
+  }
+
+  handleDeleteCategory(event) {
+    this.getAllCategories();
+  }
+
+  private getAllCategories() {
+    this.categoryService
+      .getAllCategories(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken))
+      .subscribe(
+        response => this.handleGetAllCategories(response),
+        error => this.handleError(error)
+      );
   }
 
   private handleGetAllCategories(response) {

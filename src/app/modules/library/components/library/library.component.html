@@ -5,7 +5,7 @@
   <sc-library-search (search)="handleSearch($event)"></sc-library-search>
 
   <div class="category-list">
-    <sc-category class="category" *ngFor="let category of categories" [category]="category"></sc-category>
+    <sc-category class="category" *ngFor="let category of categories" [category]="category" (deleted)="handleDeleteCategory($event)"></sc-category>
   </div>
 
   <div class="error-message" *ngIf="errorMessage">

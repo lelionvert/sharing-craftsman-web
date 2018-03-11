@@ -74,4 +74,6 @@ export class MockCategoryService {
   }
 
   updateCategory(username: string, accessToken: string, categoryId: string, categoryName: string) { }
+
+  deleteCategory(username: string, accessToken: string, categoryId: string) { }
 }

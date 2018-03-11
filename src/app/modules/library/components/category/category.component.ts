@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   trigger,
@@ -43,6 +43,7 @@ import { CONTENT_TYPES } from '../../../../config/app.config';
 })
 export class CategoryComponent implements OnInit {
   @Input() public category: Category;
+  @Output() deleted = new EventEmitter();
   public comments: Comment[];
   public scores: Score[];
   public averageScore: number;
@@ -51,6 +52,7 @@ export class CategoryComponent implements OnInit {
   private showAddCommentDialog: boolean;
   private showAddScoreDialog: boolean;
   private showEditCategoryDialog: boolean;
+  private showDeleteCategoryDialog: boolean;
   private errorMessage: string;
   private contentType: string;
 
@@ -64,6 +66,7 @@ export class CategoryComponent implements OnInit {
     this.showAddCommentDialog = false;
     this.showAddScoreDialog = false;
     this.showEditCategoryDialog = false;
+    this.showDeleteCategoryDialog = false;
     this.comments = [];
     this.scores = [];
     this.contentType = CONTENT_TYPES.category;
@@ -97,6 +100,11 @@ export class CategoryComponent implements OnInit {
     this.showActions = false;
   }
 
+  onClickShowDelete() {
+    this.showDeleteCategoryDialog = !this.showDeleteCategoryDialog;
+    this.showActions = false;
+  }
+
   handleAddedComment(event) {
     this.getCategoryComments();
   }
@@ -107,6 +115,10 @@ export class CategoryComponent implements OnInit {
 
   handleEditedCategory(event: string) {
     this.category.name = event;
+  }
+
+  handleDeletedCategory(event) {
+    this.deleted.emit(true);
   }
 
   private getCategoryComments() {

@@ -19,6 +19,7 @@ import { LibraryCreationComponent } from './components/library-creation/library-
 import { CommentModalComponent } from './components/comment-modal/comment-modal.component';
 import { ScoreModalComponent } from './components/score-modal/score-modal.component';
 import { CategoryModalComponent } from './components/category-modal/category-modal.component';
+import { CategoryDeleteModalComponent } from './components/category-delete-modal/category-delete-modal.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { CategoryModalComponent } from './components/category-modal/category-mod
     LibraryCreationComponent,
     CommentModalComponent,
     ScoreModalComponent,
-    CategoryModalComponent
+    CategoryModalComponent,
+    CategoryDeleteModalComponent
   ],
   providers: [
     CategoryService,
