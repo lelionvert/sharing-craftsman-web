@@ -3,10 +3,9 @@
     <h2>{{ categoryName }}</h2>
   
     <form>
-      <input type="text" name="category" [(ngModel)]="model.category" required placeholder="{{ categoryName }}" />
+      <input type="text" name="category" [(ngModel)]="model.category" />
       <div class="form-actions">
         <button (click)="updateCategory()" class="validate">Valider</button>
-        <button (click)="cancel()" class="cancel">Annuler</button>
       </div>
     </form>
   

@@ -14,6 +14,14 @@ import { MockCommentService } from '../../../../../mocks/MockCommentService';
 import { MockScoreService } from '../../../../../mocks/MockScoreService';
 import { Comment } from '../../models/comment.model';
 import { Score } from '../../models/score.model';
+import { KnowledgeUpdateModalComponent } from '../knowledge-update-modal/knowledge-update-modal.component';
+import { CommentModalComponent } from '../comment-modal/comment-modal.component';
+import { ScoreModalComponent } from '../score-modal/score-modal.component';
+import { KnowledgeDeleteModalComponent } from '../knowledge-delete-modal/knowledge-delete-modal.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { KnowledgeService } from '../../services/knowledge.service';
+import { MockKnowledgeService } from '../../../../../mocks/MockKnowledgeService';
 
 describe('modules/library/components/knowledge/knowledge.component', () => {
   const knowledge: Knowledge = {
@@ -26,16 +34,23 @@ describe('modules/library/components/knowledge/knowledge.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        FormsModule,
+        BrowserAnimationsModule
       ],
       declarations: [
         KnowledgeComponent,
         CommentComponent,
-        ScoreComponent
+        ScoreComponent,
+        CommentModalComponent,
+        ScoreModalComponent,
+        KnowledgeUpdateModalComponent,
+        KnowledgeDeleteModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
         { provide: CommentService, useClass: MockCommentService },
-        { provide: ScoreService, useClass: MockScoreService }
+        { provide: ScoreService, useClass: MockScoreService },
+        { provide: KnowledgeService, useClass: MockKnowledgeService }
       ]
     });
     TestBed.compileComponents();

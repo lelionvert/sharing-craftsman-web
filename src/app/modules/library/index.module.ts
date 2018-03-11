@@ -20,6 +20,8 @@ import { CommentModalComponent } from './components/comment-modal/comment-modal.
 import { ScoreModalComponent } from './components/score-modal/score-modal.component';
 import { CategoryDeleteModalComponent } from './components/category-delete-modal/category-delete-modal.component';
 import { CategoryUpdateModalComponent } from './components/category-update-modal/category-update-modal.component';
+import { KnowledgeUpdateModalComponent } from './components/knowledge-update-modal/knowledge-update-modal.component';
+import { KnowledgeDeleteModalComponent } from './components/knowledge-delete-modal/knowledge-delete-modal.component';
 
 @NgModule({
   imports: [
@@ -39,7 +41,9 @@ import { CategoryUpdateModalComponent } from './components/category-update-modal
     CommentModalComponent,
     ScoreModalComponent,
     CategoryUpdateModalComponent,
-    CategoryDeleteModalComponent
+    CategoryDeleteModalComponent,
+    KnowledgeUpdateModalComponent,
+    KnowledgeDeleteModalComponent
   ],
   providers: [
     CategoryService,

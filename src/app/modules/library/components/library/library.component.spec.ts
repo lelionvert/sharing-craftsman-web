@@ -22,6 +22,10 @@ import { CommentModalComponent } from '../comment-modal/comment-modal.component'
 import { ScoreModalComponent } from '../score-modal/score-modal.component';
 import { CategoryUpdateModalComponent } from '../category-update-modal/category-update-modal.component';
 import { CategoryDeleteModalComponent } from '../category-delete-modal/category-delete-modal.component';
+import { KnowledgeUpdateModalComponent } from '../knowledge-update-modal/knowledge-update-modal.component';
+import { KnowledgeDeleteModalComponent } from '../knowledge-delete-modal/knowledge-delete-modal.component';
+import { KnowledgeService } from '../../services/knowledge.service';
+import { MockKnowledgeService } from '../../../../../mocks/MockKnowledgeService';
 
 describe('modules/library/components/library/library.component', () => {
   beforeEach(async(() => {
@@ -39,13 +43,16 @@ describe('modules/library/components/library/library.component', () => {
         CommentModalComponent,
         ScoreModalComponent,
         CategoryUpdateModalComponent,
-        CategoryDeleteModalComponent
+        CategoryDeleteModalComponent,
+        KnowledgeUpdateModalComponent,
+        KnowledgeDeleteModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
         { provide: CategoryService, useClass: MockCategoryService },
         { provide: CommentService, useClass: MockCommentService },
-        { provide: ScoreService, useClass: MockScoreService }
+        { provide: ScoreService, useClass: MockScoreService },
+        { provide: KnowledgeService, useClass: MockKnowledgeService }
       ]
     });
     TestBed.compileComponents();

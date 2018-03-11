@@ -22,10 +22,9 @@ import { KnowledgeService } from '../../services/knowledge.service';
     ])
   ]
 })
-export class KnowledgeUpdateModalComponent {
+export class KnowledgeUpdateModalComponent implements OnInit {
   @Input() visible: boolean;
   @Input() categoryId: string;
-  @Input() categoryName: string;
   @Input() knowledgeId: string;
   @Input() knowledgeTitle: string;
   @Input() knowledgeContent: string;
@@ -37,11 +36,16 @@ export class KnowledgeUpdateModalComponent {
   constructor(
     private cookieService: CookieService,
     private knowledgeService: KnowledgeService
-  ) {
-    this.model = new Knowledge('', '', '', '');
+  ) { }
+
+  ngOnInit() {
+    this.model = new Knowledge(this.categoryId, this.knowledgeId, this.knowledgeTitle, this.knowledgeContent);
   }
 
   updateKnowledge() {
+    console.log(this.categoryId);
+    console.log(this.knowledgeId);
+    console.log(this.model);
     this.knowledgeService
       .updateKnowledge(
         this.cookieService.getCookie(COOKIES.username),

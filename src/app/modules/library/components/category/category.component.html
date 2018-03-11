@@ -75,7 +75,7 @@
     <sc-comment class="comment" *ngFor="let comment of comments" [comment]="comment"></sc-comment>
   </ul>
   <div class="knowledge-list">
-    <sc-knowledge class="knowledge" *ngFor="let knowledge of category.knowledges" [knowledge]="knowledge"></sc-knowledge>
+    <sc-knowledge class="knowledge" *ngFor="let knowledge of category.knowledges" [knowledge]="knowledge" [categoryId]="category.id" (deleted)="handleDeleteKnowledge($event)"></sc-knowledge>
   </div>
 </div>
 

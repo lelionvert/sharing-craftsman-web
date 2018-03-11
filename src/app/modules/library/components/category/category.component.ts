@@ -121,6 +121,10 @@ export class CategoryComponent implements OnInit {
     this.deleted.emit(true);
   }
 
+  handleDeleteKnowledge(event) {
+    this.category.knowledges = this.category.knowledges.filter(knowledge => knowledge.id !== event);
+  }
+
   private getCategoryComments() {
     this.commentService
       .getCommentsByContentId(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken), this.category.id)

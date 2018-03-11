@@ -22,7 +22,7 @@ import { Category } from '../../forms/category.form';
     ])
   ]
 })
-export class CategoryUpdateModalComponent {
+export class CategoryUpdateModalComponent implements OnInit {
   @Input() visible: boolean;
   @Input() categoryId: string;
   @Input() categoryName: string;
@@ -34,8 +34,10 @@ export class CategoryUpdateModalComponent {
   constructor(
     private cookieService: CookieService,
     private categoryService: CategoryService
-  ) {
-    this.model = new Category('');
+  ) { }
+
+  ngOnInit() {
+    this.model = new Category(this.categoryName);
   }
 
   updateCategory() {

@@ -35,14 +35,12 @@ describe('modules/library/components/knowledge-update-modal/knowledge-update-mod
       const fixture = TestBed.createComponent(KnowledgeUpdateModalComponent);
       fixture.componentInstance.visible = true;
       fixture.componentInstance.categoryId = 'aaa';
-      fixture.componentInstance.categoryName = 'Architecture';
       fixture.componentInstance.knowledgeId = 'kaa';
       fixture.componentInstance.knowledgeTitle = 'CQRS';
       fixture.componentInstance.knowledgeContent = 'Command query responsibility segregation';
       fixture.detectChanges();
       const commentModalComponent = fixture.nativeElement;
       expect(commentModalComponent.querySelector('h1').innerText).toBe('EDITION DE PRINCIPE CRAFT');
-      expect(commentModalComponent.querySelector('h2').innerText).toBe('Architecture');
     });
   });
 
