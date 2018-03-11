@@ -95,12 +95,12 @@
   [contentId]="category.id">
 </score-modal>
 
-<category-modal 
+<category-update-modal 
   [(visible)]="showEditCategoryDialog"
   (edited)="handleEditedCategory($event)"
   [categoryId]="category.id"
   [categoryName]="category.name">
-</category-modal>
+</category-update-modal>
 
 <category-delete-modal 
   [(visible)]="showDeleteCategoryDialog"

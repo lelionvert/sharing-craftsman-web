@@ -10,4 +10,8 @@ export class MockKnowledgeService {
 
     return Observable.create(observer => observer.next(httpResponse));
   }
+
+  updateKnowledge(username: string, accessToken: string, categoryId: string, knowledgeId: string, knowledgeTitle: string, knowledgeContent: string) { }
+
+  deleteKnowledge(username: string, accessToken: string, categoryId: string, knowledgeId: string) { }
 }

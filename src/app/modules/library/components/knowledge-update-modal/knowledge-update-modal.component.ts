@@ -3,13 +3,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { CookieService } from '../../../../services/browser/cookie.service';
 import { COOKIES } from '../../../../config/keys.config';
 import { HttpResponse } from 'selenium-webdriver/http';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../forms/category.form';
+import { Knowledge } from '../../forms/knowledge.form';
+import { KnowledgeService } from '../../services/knowledge.service';
 
 @Component({
-  selector: 'category-modal',
-  templateUrl: './category-modal.component.html',
-  styleUrls: ['./category-modal.component.scss'],
+  selector: 'knowledge-update-modal',
+  templateUrl: './knowledge-update-modal.component.html',
+  styleUrls: ['./knowledge-update-modal.component.scss'],
   animations: [
     trigger('dialog', [
       transition('void => *', [
@@ -22,32 +22,37 @@ import { Category } from '../../forms/category.form';
     ])
   ]
 })
-export class CategoryModalComponent {
+export class KnowledgeUpdateModalComponent {
   @Input() visible: boolean;
   @Input() categoryId: string;
   @Input() categoryName: string;
+  @Input() knowledgeId: string;
+  @Input() knowledgeTitle: string;
+  @Input() knowledgeContent: string;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() edited = new EventEmitter();
-  public model: Category;
+  public model: Knowledge;
   private errorMessage: string;
 
   constructor(
     private cookieService: CookieService,
-    private categoryService: CategoryService
+    private knowledgeService: KnowledgeService
   ) {
-    this.model = new Category('');
+    this.model = new Knowledge('', '', '', '');
   }
 
-  updateCategory() {
-    this.categoryService
-      .updateCategory(
+  updateKnowledge() {
+    this.knowledgeService
+      .updateKnowledge(
         this.cookieService.getCookie(COOKIES.username),
         this.cookieService.getCookie(COOKIES.accessToken),
         this.categoryId,
-        this.model.category
+        this.knowledgeId,
+        this.model.title,
+        this.model.content
       )
       .subscribe(
-        response => this.handleUpdatedCategoryResponse(response),
+        response => this.handleUpdatedKnowledgeResponse(response),
         error => this.handleError(error)
       );
   }
@@ -57,13 +62,13 @@ export class CategoryModalComponent {
     this.visibleChange.emit(this.visible);
   }
 
-  private handleUpdatedCategoryResponse(response: HttpResponse) {
-    this.edited.emit(this.model.category);
+  private handleUpdatedKnowledgeResponse(response: HttpResponse) {
+    this.edited.emit(this.model);
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
 
   private handleError(error) {
-    this.errorMessage = `Erreur de l'édition de la catégorie : ${error.statusText}`;
+    this.errorMessage = `Erreur de l'édition du principe : ${error.statusText}`;
   }
 }

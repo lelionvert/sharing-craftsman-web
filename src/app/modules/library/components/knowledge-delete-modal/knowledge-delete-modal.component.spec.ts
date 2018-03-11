@@ -7,11 +7,11 @@ import { CookieService } from '../../../../services/browser/cookie.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmptyResponse } from '../../../../utils/empty-response.model';
-import { CategoryService } from '../../services/category.service';
-import { MockCategoryService } from '../../../../../mocks/MockCategoryService';
-import { CategoryDeleteModalComponent } from './category-delete-modal.component';
+import { KnowledgeDeleteModalComponent } from './knowledge-delete-modal.component';
+import { KnowledgeService } from '../../services/knowledge.service';
+import { MockKnowledgeService } from '../../../../../mocks/MockKnowledgeService';
 
-describe('modules/library/components/category-delete-modal/category-delete-modal.component', () => {
+describe('modules/library/components/knowledge-delete-modal/knowledge-delete-modal.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -19,32 +19,33 @@ describe('modules/library/components/category-delete-modal/category-delete-modal
         BrowserAnimationsModule
       ],
       declarations: [
-        CategoryDeleteModalComponent
+        KnowledgeDeleteModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
-        { provide: CategoryService, useClass: MockCategoryService }
+        { provide: KnowledgeService, useClass: MockKnowledgeService }
       ]
     });
     TestBed.compileComponents();
   }));
 
   describe('rendering', () => {
-    it('should render modal to delete a category', () => {
-      const fixture = TestBed.createComponent(CategoryDeleteModalComponent);
+    it('should render modal to delete a knowledge', () => {
+      const fixture = TestBed.createComponent(KnowledgeDeleteModalComponent);
       fixture.componentInstance.visible = true;
       fixture.componentInstance.categoryId = 'aaa';
-      fixture.componentInstance.categoryName = 'Architecture';
+      fixture.componentInstance.knowledgeId = 'kaa';
+      fixture.componentInstance.knowledgeTitle = 'CQRS';
       fixture.detectChanges();
       const commentModalComponent = fixture.nativeElement;
-      expect(commentModalComponent.querySelector('h1').innerText).toBe('SUPPRESSION DE CATÉGORIE');
-      expect(commentModalComponent.querySelector('form span').innerText).toBe('Es-tu bien sûr de vouloir supprimer la catégorie Architecture et tous ses contenus ?');
+      expect(commentModalComponent.querySelector('h1').innerText).toBe('SUPPRESSION DE PRINCIPE');
+      expect(commentModalComponent.querySelector('form span').innerText).toBe('Es-tu bien sûr de vouloir supprimer le principe CQRS ?');
     });
   });
 
-  describe('delete category', () => {
+  describe('delete knowledge', () => {
     beforeEach(() => {
-      spyOn(MockCategoryService.prototype, 'deleteCategory').and.callFake((username: string, accessToken: string, categoryId: string) => {
+      spyOn(MockKnowledgeService.prototype, 'deleteKnowledge').and.callFake((username: string, accessToken: string, categoryId: string, knowledgeId: string) => {
         const httpResponse: HttpResponse<EmptyResponse[]> = new HttpResponse({
           status: 200
         });
@@ -60,14 +61,15 @@ describe('modules/library/components/category-delete-modal/category-delete-modal
       });
     });
 
-    it('should delete a category', () => {
-      const fixture = TestBed.createComponent(CategoryDeleteModalComponent);
-      const categoryModalComponent: CategoryDeleteModalComponent = fixture.componentInstance;
+    it('should delete a knowledge', () => {
+      const fixture = TestBed.createComponent(KnowledgeDeleteModalComponent);
+      const knowledgeModalComponent: KnowledgeDeleteModalComponent = fixture.componentInstance;
       fixture.componentInstance.categoryId = 'aaa'; 
+      fixture.componentInstance.knowledgeId = 'kaa'; 
       
-      categoryModalComponent.deleteCategory();
+      knowledgeModalComponent.deleteKnowledge();
 
-      expect(MockCategoryService.prototype.deleteCategory).toHaveBeenCalledWith('john@doe.fr', 'bbb', 'aaa');
+      expect(MockKnowledgeService.prototype.deleteKnowledge).toHaveBeenCalledWith('john@doe.fr', 'bbb', 'aaa', 'kaa');
     });
   });
 });

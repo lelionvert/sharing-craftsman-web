@@ -19,8 +19,9 @@ import { MockScoreService } from '../../../../../mocks/MockScoreService';
 import { CommentModalComponent } from '../comment-modal/comment-modal.component';
 import { FormsModule } from '@angular/forms';
 import { ScoreModalComponent } from '../score-modal/score-modal.component';
-import { CategoryModalComponent } from '../category-modal/category-modal.component';
 import { MockCategoryService } from '../../../../../mocks/MockCategoryService';
+import { CategoryUpdateModalComponent } from '../category-update-modal/category-update-modal.component';
+import { CategoryDeleteModalComponent } from '../category-delete-modal/category-delete-modal.component';
 
 describe('modules/library/components/category/category.component', () => {
   const category: Category = {
@@ -54,7 +55,8 @@ describe('modules/library/components/category/category.component', () => {
         ScoreComponent,
         CommentModalComponent,
         ScoreModalComponent,
-        CategoryModalComponent
+        CategoryUpdateModalComponent,
+        CategoryDeleteModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },

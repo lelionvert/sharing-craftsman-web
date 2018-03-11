@@ -7,12 +7,12 @@ import { CookieService } from '../../../../services/browser/cookie.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmptyResponse } from '../../../../utils/empty-response.model';
-import { CategoryModalComponent } from './category-modal.component';
+import { CategoryUpdateModalComponent } from './category-update-modal.component';
 import { CategoryService } from '../../services/category.service';
 import { MockCategoryService } from '../../../../../mocks/MockCategoryService';
 import { Category } from '../../forms/category.form';
 
-describe('modules/library/components/category-modal/category-modal.component', () => {
+describe('modules/library/components/category-update-modal/category-update-modal.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -20,7 +20,7 @@ describe('modules/library/components/category-modal/category-modal.component', (
         BrowserAnimationsModule
       ],
       declarations: [
-        CategoryModalComponent
+        CategoryUpdateModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
@@ -32,7 +32,7 @@ describe('modules/library/components/category-modal/category-modal.component', (
 
   describe('rendering', () => {
     it('should render modal to edit a category', () => {
-      const fixture = TestBed.createComponent(CategoryModalComponent);
+      const fixture = TestBed.createComponent(CategoryUpdateModalComponent);
       fixture.componentInstance.visible = true;
       fixture.componentInstance.categoryId = 'aaa';
       fixture.componentInstance.categoryName = 'Architecture';
@@ -62,8 +62,8 @@ describe('modules/library/components/category-modal/category-modal.component', (
     });
 
     it('should update a category', () => {
-      const fixture = TestBed.createComponent(CategoryModalComponent);
-      const categoryModalComponent: CategoryModalComponent = fixture.componentInstance;
+      const fixture = TestBed.createComponent(CategoryUpdateModalComponent);
+      const categoryModalComponent: CategoryUpdateModalComponent = fixture.componentInstance;
       fixture.componentInstance.categoryId = 'aaa';
       fixture.componentInstance.model = new Category('Updated category');
       

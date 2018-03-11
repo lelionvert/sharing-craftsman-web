@@ -3,13 +3,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { CookieService } from '../../../../services/browser/cookie.service';
 import { COOKIES } from '../../../../config/keys.config';
 import { HttpResponse } from 'selenium-webdriver/http';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../forms/category.form';
+import { KnowledgeService } from '../../services/knowledge.service';
 
 @Component({
-  selector: 'category-delete-modal',
-  templateUrl: './category-delete-modal.component.html',
-  styleUrls: ['./category-delete-modal.component.scss'],
+  selector: 'knowledge-delete-modal',
+  templateUrl: './knowledge-delete-modal.component.html',
+  styleUrls: ['./knowledge-delete-modal.component.scss'],
   animations: [
     trigger('dialog', [
       transition('void => *', [
@@ -22,28 +21,30 @@ import { Category } from '../../forms/category.form';
     ])
   ]
 })
-export class CategoryDeleteModalComponent {
+export class KnowledgeDeleteModalComponent {
   @Input() visible: boolean;
   @Input() categoryId: string;
-  @Input() categoryName: string;
+  @Input() knowledgeId: string;
+  @Input() knowledgeTitle: string;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() deleted = new EventEmitter();
   private errorMessage: string;
 
   constructor(
     private cookieService: CookieService,
-    private categoryService: CategoryService
+    private knowledgeService: KnowledgeService
   ) { }
 
-  deleteCategory() {
-    this.categoryService
-      .deleteCategory(
+  deleteKnowledge() {
+    this.knowledgeService
+      .deleteKnowledge(
         this.cookieService.getCookie(COOKIES.username),
         this.cookieService.getCookie(COOKIES.accessToken),
-        this.categoryId
+        this.categoryId,
+        this.knowledgeId
       )
       .subscribe(
-        response => this.handleDeletedCategoryResponse(response),
+        response => this.handleDeletedKnowledgeResponse(response),
         error => this.handleError(error)
       );
   }
@@ -53,13 +54,13 @@ export class CategoryDeleteModalComponent {
     this.visibleChange.emit(this.visible);
   }
 
-  private handleDeletedCategoryResponse(response: HttpResponse) {
-    this.deleted.emit(this.categoryId);
+  private handleDeletedKnowledgeResponse(response: HttpResponse) {
+    this.deleted.emit(this.knowledgeId);
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
 
   private handleError(error) {
-    this.errorMessage = `Erreur lors de la suppression de la catégorie : ${error.statusText}`;
+    this.errorMessage = `Erreur lors de la suppression du principe : ${error.statusText}`;
   }
 }

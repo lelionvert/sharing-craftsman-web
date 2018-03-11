@@ -7,9 +7,9 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../forms/category.form';
 
 @Component({
-  selector: 'category-delete-modal',
-  templateUrl: './category-delete-modal.component.html',
-  styleUrls: ['./category-delete-modal.component.scss'],
+  selector: 'category-update-modal',
+  templateUrl: './category-update-modal.component.html',
+  styleUrls: ['./category-update-modal.component.scss'],
   animations: [
     trigger('dialog', [
       transition('void => *', [
@@ -22,28 +22,32 @@ import { Category } from '../../forms/category.form';
     ])
   ]
 })
-export class CategoryDeleteModalComponent {
+export class CategoryUpdateModalComponent {
   @Input() visible: boolean;
   @Input() categoryId: string;
   @Input() categoryName: string;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() deleted = new EventEmitter();
+  @Output() edited = new EventEmitter();
+  public model: Category;
   private errorMessage: string;
 
   constructor(
     private cookieService: CookieService,
     private categoryService: CategoryService
-  ) { }
+  ) {
+    this.model = new Category('');
+  }
 
-  deleteCategory() {
+  updateCategory() {
     this.categoryService
-      .deleteCategory(
+      .updateCategory(
         this.cookieService.getCookie(COOKIES.username),
         this.cookieService.getCookie(COOKIES.accessToken),
-        this.categoryId
+        this.categoryId,
+        this.model.category
       )
       .subscribe(
-        response => this.handleDeletedCategoryResponse(response),
+        response => this.handleUpdatedCategoryResponse(response),
         error => this.handleError(error)
       );
   }
@@ -53,13 +57,13 @@ export class CategoryDeleteModalComponent {
     this.visibleChange.emit(this.visible);
   }
 
-  private handleDeletedCategoryResponse(response: HttpResponse) {
-    this.deleted.emit(this.categoryId);
+  private handleUpdatedCategoryResponse(response: HttpResponse) {
+    this.edited.emit(this.model.category);
     this.visible = false;
     this.visibleChange.emit(this.visible);
   }
 
   private handleError(error) {
-    this.errorMessage = `Erreur lors de la suppression de la catégorie : ${error.statusText}`;
+    this.errorMessage = `Erreur de l'édition de la catégorie : ${error.statusText}`;
   }
 }

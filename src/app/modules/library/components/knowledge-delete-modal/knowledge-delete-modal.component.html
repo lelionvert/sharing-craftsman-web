@@ -1,11 +1,10 @@
 <div [@dialog] *ngIf="visible" class="dialog">
-    <h1>Edition de catégorie</h1>
-    <h2>{{ categoryName }}</h2>
+    <h1>Suppression de principe</h1>
   
     <form>
-      <input type="text" name="category" [(ngModel)]="model.category" required />
+      <span>Es-tu bien sûr de vouloir supprimer le principe {{ knowledgeTitle }} ?</span>
       <div class="form-actions">
-        <button (click)="updateCategory()" class="validate">Valider</button>
+        <button (click)="deleteCategory()" class="validate">Valider</button>
         <button (click)="cancel()" class="cancel">Annuler</button>
       </div>
     </form>
