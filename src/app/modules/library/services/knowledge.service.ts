@@ -8,10 +8,18 @@ import { Observable } from 'rxjs/Observable';
 import { HeaderService } from '../../../services/browser/header.service';
 import { CLIENT_NAME, CLIENT_SECRET } from '../../../config/keys.config';
 import { HOST, BACK_END_ROUTES } from '../../../config/api.config';
+import { Category } from '../models/category.model';
 
 @Injectable()
 export class KnowledgeService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
+
+  getKnowledgeById(username: string, accessToken: string, knowledgeId: string): Observable<HttpResponse<Category>> {
+    return this.http.get<Category>(
+      `${HOST}/${BACK_END_ROUTES.library.knowledges}/${knowledgeId}`,
+      { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
+    )
+  }
 
   addKnowledgeToCategory(username: string, accessToken: string, categoryId: string, knowledgeTitle: string, knowledgeContent: string) {
     return this.http.post(

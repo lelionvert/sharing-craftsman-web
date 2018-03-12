@@ -1,0 +1,11 @@
+<div class="favorites">
+  <h1>Favoris</h1>
+
+  <div class="category-list">
+    <sc-category class="category" *ngFor="let category of categories" [category]="category" (deleted)="handleDeleteCategory($event)"></sc-category>
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>

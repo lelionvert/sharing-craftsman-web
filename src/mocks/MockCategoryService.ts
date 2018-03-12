@@ -50,6 +50,32 @@ export class MockCategoryService {
     return Observable.create(observer => observer.next(httpResponse));
   }
 
+  getCategoryById(username: string, accessToken: string, categoryId: string): Observable<HttpResponse<Category>> {
+    const httpResponse: HttpResponse<Category> = new HttpResponse({
+      body: {
+          id: 'bbb',
+          name: 'SOLID',
+          knowledges: [
+            {
+              id: 'kcc',
+              creator: 'Foo Bar',
+              title: 'Single responsibility principle',
+              content: 'A thing must have one reason to change'
+            },
+            {
+              id: 'kcd',
+              creator: 'Foo Bar',
+              title: 'Open close principle',
+              content: 'Open to extension, closed to modification'
+            }
+          ]
+        },
+      status: 200
+    });
+
+    return Observable.create(observer => observer.next(httpResponse));
+  }
+
   createCategory(username: string, accessToken: string, categoryName: string) {
     const httpResponse: HttpResponse<EmptyResponse[]> = new HttpResponse({
       status: 200

@@ -22,6 +22,7 @@ import { CategoryDeleteModalComponent } from './components/category-delete-modal
 import { CategoryUpdateModalComponent } from './components/category-update-modal/category-update-modal.component';
 import { KnowledgeUpdateModalComponent } from './components/knowledge-update-modal/knowledge-update-modal.component';
 import { KnowledgeDeleteModalComponent } from './components/knowledge-delete-modal/knowledge-delete-modal.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { KnowledgeDeleteModalComponent } from './components/knowledge-delete-mod
     CategoryUpdateModalComponent,
     CategoryDeleteModalComponent,
     KnowledgeUpdateModalComponent,
-    KnowledgeDeleteModalComponent
+    KnowledgeDeleteModalComponent,
+    FavoritesComponent
   ],
   providers: [
     CategoryService,
