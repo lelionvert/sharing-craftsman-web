@@ -16,6 +16,7 @@ import { Score } from '../../models/score.model';
 import { CommentService } from '../../services/comment.service';
 import { ScoreService } from '../../services/score.service';
 import { CONTENT_TYPES } from '../../../../config/app.config';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   selector: 'sc-category',
@@ -47,6 +48,8 @@ export class CategoryComponent implements OnInit {
   public comments: Comment[];
   public scores: Score[];
   public averageScore: number;
+  public isFavorite: boolean;
+  private favoriteId: string;
   private showComments: boolean;
   private showActions: boolean;
   private showAddCommentDialog: boolean;
@@ -59,8 +62,10 @@ export class CategoryComponent implements OnInit {
   constructor(
     private commentService: CommentService,
     private scoreService: ScoreService,
-    private cookieSerivce: CookieService
+    private cookieSerivce: CookieService,
+    private favoriteService: FavoriteService
   ) {
+    this.isFavorite = false;
     this.showComments = false;
     this.showActions = false;
     this.showAddCommentDialog = false;
@@ -70,11 +75,13 @@ export class CategoryComponent implements OnInit {
     this.comments = [];
     this.scores = [];
     this.contentType = CONTENT_TYPES.category;
+    this.favoriteId = '';
   }
 
   ngOnInit() {
     this.getCategoryComments();
     this.getCategoryScores();
+    this.getFavorites();
   }
 
   toggleShowComments() {
@@ -105,6 +112,33 @@ export class CategoryComponent implements OnInit {
     this.showActions = false;
   }
 
+  onAddToFavorites() {
+    this.favoriteService
+      .addToMyFavorites(
+        this.cookieSerivce.getCookie(COOKIES.username),
+        this.cookieSerivce.getCookie(COOKIES.accessToken),
+        CONTENT_TYPES.category,
+        this.category.id
+      )
+      .subscribe(
+        response => this.handleAddToMyFavoritesResponse(response),
+        error => this.handleError(error)
+      )
+  }
+
+  onRemoveFromFavorites() {
+    this.favoriteService
+      .deleteFavorite(
+        this.cookieSerivce.getCookie(COOKIES.username),
+        this.cookieSerivce.getCookie(COOKIES.accessToken),
+        this.favoriteId
+      )
+      .subscribe(
+        response => this.handleRemoveFromMyFavoritesResponse(response),
+        error => this.handleError(error)
+      )
+  }
+
   handleAddedComment(event) {
     this.getCategoryComments();
   }
@@ -125,13 +159,30 @@ export class CategoryComponent implements OnInit {
     this.category.knowledges = this.category.knowledges.filter(knowledge => knowledge.id !== event);
   }
 
+  private handleAddToMyFavoritesResponse(response) {
+    this.getFavorites();
+  }
+
+  private handleRemoveFromMyFavoritesResponse(response) {
+    this.getFavorites();
+  }
+
+  private getFavorites() {
+    this.favoriteService
+      .getFavorites(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken))
+      .subscribe(
+        response => this.checkIfIsFavorite(response.body),
+        error => this.handleError(error)
+      )
+  }
+
   private getCategoryComments() {
     this.commentService
       .getCommentsByContentId(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken), this.category.id)
       .subscribe(
         response => this.handleGetComments(response),
         error => this.handleError(error)
-      )
+      );
   }
 
   private getCategoryScores() {
@@ -140,7 +191,13 @@ export class CategoryComponent implements OnInit {
       .subscribe(
         response => this.handleGetScores(response),
         error => this.handleError(error)
-      )
+      );
+  }
+
+  private checkIfIsFavorite(favorites) {
+    const favorite = favorites.find(favorite => favorite.contentId === this.category.id);
+    this.isFavorite = favorite !== undefined;
+    if (this.isFavorite) this.favoriteId = favorite.id;
   }
 
   private handleGetComments(response) {

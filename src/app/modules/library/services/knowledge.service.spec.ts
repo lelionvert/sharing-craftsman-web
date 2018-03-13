@@ -12,7 +12,7 @@ import { HOST, HEADERS, BACK_END_ROUTES } from '../../../config/api.config';
 import { KnowledgeService } from './knowledge.service';
 import { Category } from '../models/category.model';
 
-describe('modules/library/services/category.service', () => {
+describe('modules/library/services/knowledge.service', () => {
   let service: KnowledgeService;
   let httpMock: HttpTestingController;
 
@@ -52,7 +52,7 @@ describe('modules/library/services/category.service', () => {
       expect(response.body).toEqual(category);
     });
 
-    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.library.getCategories}/bbb`);
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.library.knowledges}/bbb`);
     expect(req.request.method).toBe('GET');
     req.flush(category);
   });

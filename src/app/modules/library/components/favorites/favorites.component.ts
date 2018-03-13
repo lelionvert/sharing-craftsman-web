@@ -45,7 +45,6 @@ export class FavoritesComponent implements OnInit {
   }
 
   private handleGetFavoritesResponse(favorites) {
-    console.log(favorites);
     favorites.forEach(favorite => {
       if (favorite.contentType === CONTENT_TYPES.category) {
         this.getCategory(favorite.contentId);
@@ -82,7 +81,6 @@ export class FavoritesComponent implements OnInit {
   }
 
   private handleGetContentResponse(category: Category) {
-    console.log(category);
     this.categories.push(category);
   }
 

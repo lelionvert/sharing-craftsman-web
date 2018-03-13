@@ -13,6 +13,21 @@ import { Category } from '../../models/category.model';
 import { FavoriteService } from '../../services/favorite.service';
 import { CategoryService } from '../../services/category.service';
 import { KnowledgeService } from '../../services/knowledge.service';
+import { CategoryComponent } from '../category/category.component';
+import { KnowledgeComponent } from '../knowledge/knowledge.component';
+import { ScoreComponent } from '../score/score.component';
+import { CommentComponent } from '../comment/comment.component';
+import { CommentModalComponent } from '../comment-modal/comment-modal.component';
+import { ScoreModalComponent } from '../score-modal/score-modal.component';
+import { CategoryUpdateModalComponent } from '../category-update-modal/category-update-modal.component';
+import { CategoryDeleteModalComponent } from '../category-delete-modal/category-delete-modal.component';
+import { KnowledgeUpdateModalComponent } from '../knowledge-update-modal/knowledge-update-modal.component';
+import { KnowledgeDeleteModalComponent } from '../knowledge-delete-modal/knowledge-delete-modal.component';
+import { FormsModule } from '@angular/forms';
+import { CommentService } from '../../services/comment.service';
+import { MockCommentService } from '../../../../../mocks/MockCommentService';
+import { ScoreService } from '../../services/score.service';
+import { MockScoreService } from '../../../../../mocks/MockScoreService';
 
 describe('modules/library/components/favorites/favorites.component', () => {
   const favorites = [
@@ -33,29 +48,41 @@ describe('modules/library/components/favorites/favorites.component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        FormsModule
       ],
       declarations: [
-        FavoritesComponent
+        FavoritesComponent,
+        CategoryComponent,
+        KnowledgeComponent,
+        ScoreComponent,
+        CommentComponent,
+        CommentModalComponent,
+        ScoreModalComponent,
+        CategoryUpdateModalComponent,
+        CategoryDeleteModalComponent,
+        KnowledgeUpdateModalComponent,
+        KnowledgeDeleteModalComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
         { provide: FavoriteService, useClass: MockFavoriteService },
         { provide: CategoryService, useClass: MockCategoryService },
         { provide: KnowledgeService, useClass: MockKnowledgeService },
+        { provide: CommentService, useClass: MockCommentService },
+        { provide: ScoreService, useClass: MockScoreService }
       ]
     });
     TestBed.compileComponents();
   }));
 
-  // describe('rendering', () => {
-  //   it('should render a knowledge', () => {
-  //     const fixture = TestBed.createComponent(KnowledgeComponent);
-  //     fixture.componentInstance.knowledge = knowledge;
-  //     fixture.detectChanges();
-  //     const knowledgeComponent = fixture.nativeElement;
-  //     expect(knowledgeComponent.querySelector('.knowledge-content').innerText).toBe('Known as port and adapter');
-  //   });
-  // });
+  describe('rendering', () => {
+    it('should render favorites page', () => {
+      const fixture = TestBed.createComponent(FavoritesComponent);
+      fixture.detectChanges();
+      const favoriteComponent = fixture.nativeElement;
+      expect(favoriteComponent.querySelector('h1').innerText).toBe('FAVORIS');
+    });
+  });
 
   describe('initialization', () => {
     beforeEach(() => {

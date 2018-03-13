@@ -26,6 +26,9 @@ import { KnowledgeUpdateModalComponent } from '../knowledge-update-modal/knowled
 import { KnowledgeDeleteModalComponent } from '../knowledge-delete-modal/knowledge-delete-modal.component';
 import { KnowledgeService } from '../../services/knowledge.service';
 import { MockKnowledgeService } from '../../../../../mocks/MockKnowledgeService';
+import { FavoritesComponent } from '../favorites/favorites.component';
+import { FavoriteService } from '../../services/favorite.service';
+import { MockFavoriteService } from '../../../../../mocks/MockFavoriteService';
 
 describe('modules/library/components/library/library.component', () => {
   beforeEach(async(() => {
@@ -45,14 +48,16 @@ describe('modules/library/components/library/library.component', () => {
         CategoryUpdateModalComponent,
         CategoryDeleteModalComponent,
         KnowledgeUpdateModalComponent,
-        KnowledgeDeleteModalComponent
+        KnowledgeDeleteModalComponent,
+        FavoritesComponent
       ],
       providers: [
         { provide: CookieService, useClass: MockCookieService },
         { provide: CategoryService, useClass: MockCategoryService },
         { provide: CommentService, useClass: MockCommentService },
         { provide: ScoreService, useClass: MockScoreService },
-        { provide: KnowledgeService, useClass: MockKnowledgeService }
+        { provide: KnowledgeService, useClass: MockKnowledgeService },
+        { provide: FavoriteService, useClass: MockFavoriteService }
       ]
     });
     TestBed.compileComponents();
