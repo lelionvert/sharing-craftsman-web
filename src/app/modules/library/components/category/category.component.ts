@@ -139,23 +139,23 @@ export class CategoryComponent implements OnInit {
       )
   }
 
-  handleAddedComment(event) {
+  private handleAddedComment(event) {
     this.getCategoryComments();
   }
 
-  handleAddedScore(event) {
+  private handleAddedScore(event) {
     this.getCategoryScores();
   }
 
-  handleEditedCategory(event: string) {
+  private handleEditedCategory(event: string) {
     this.category.name = event;
   }
 
-  handleDeletedCategory(event) {
+  private handleDeletedCategory(event) {
     this.deleted.emit(true);
   }
 
-  handleDeleteKnowledge(event) {
+  private handleDeleteKnowledge(event) {
     this.category.knowledges = this.category.knowledges.filter(knowledge => knowledge.id !== event);
   }
 

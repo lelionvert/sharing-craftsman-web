@@ -16,6 +16,7 @@ import { Score } from '../../models/score.model';
 import { CommentService } from '../../services/comment.service';
 import { ScoreService } from '../../services/score.service';
 import { CONTENT_TYPES } from '../../../../config/app.config';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   selector: 'sc-knowledge',
@@ -47,7 +48,9 @@ export class KnowledgeComponent implements OnInit {
   @Output() deleted = new EventEmitter();
   public comments: Comment[];
   public scores: Score[];
+  public isFavorite: boolean;
   public averageScore: number;
+  private favoriteId: string;
   private showComments: boolean;
   private showActions: boolean;
   private showAddCommentDialog: boolean;
@@ -60,7 +63,8 @@ export class KnowledgeComponent implements OnInit {
   constructor(
     private commentService: CommentService,
     private scoreService: ScoreService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private favoriteService: FavoriteService
   ) {
     this.showComments = false;
     this.showActions = false;
@@ -72,6 +76,7 @@ export class KnowledgeComponent implements OnInit {
   ngOnInit() {
     this.getKnowledgeComments();
     this.getKnowledgeScores();
+    this.getFavorites();
   }
 
   toggleShowComments() {
@@ -102,6 +107,33 @@ export class KnowledgeComponent implements OnInit {
     this.showActions = false;
   }
 
+  onAddToFavorites() {
+    this.favoriteService
+      .addToMyFavorites(
+        this.cookieService.getCookie(COOKIES.username),
+        this.cookieService.getCookie(COOKIES.accessToken),
+        CONTENT_TYPES.knowledge,
+        this.knowledge.id
+      )
+      .subscribe(
+        response => this.handleAddToMyFavoritesResponse(response),
+        error => this.handleError(error)
+      )
+  }
+
+  onRemoveFromFavorites() {
+    this.favoriteService
+      .deleteFavorite(
+        this.cookieService.getCookie(COOKIES.username),
+        this.cookieService.getCookie(COOKIES.accessToken),
+        this.favoriteId
+      )
+      .subscribe(
+        response => this.handleRemoveFromMyFavoritesResponse(response),
+        error => this.handleError(error)
+      )
+  }
+
   handleAddedComment(event) {
     this.getKnowledgeComments();
   }
@@ -117,6 +149,23 @@ export class KnowledgeComponent implements OnInit {
 
   handleDeletedKnowledge(event) {
     this.deleted.emit(this.knowledge.id);
+  }
+
+  private handleAddToMyFavoritesResponse(response) {
+    this.getFavorites();
+  }
+
+  private handleRemoveFromMyFavoritesResponse(response) {
+    this.getFavorites();
+  }
+
+  private getFavorites() {
+    this.favoriteService
+      .getFavorites(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken))
+      .subscribe(
+        response => this.checkIfIsFavorite(response.body),
+        error => this.handleError(error)
+      )
   }
 
   private getKnowledgeComments() {
@@ -135,6 +184,12 @@ export class KnowledgeComponent implements OnInit {
         response => this.handleGetScores(response),
         error => this.handleError(error)
       )
+  }
+
+  private checkIfIsFavorite(favorites) {
+    const favorite = favorites.find(favorite => favorite.contentId === this.knowledge.id);
+    this.isFavorite = favorite !== undefined;
+    if (this.isFavorite) this.favoriteId = favorite.id;
   }
 
   private handleGetComments(response) {

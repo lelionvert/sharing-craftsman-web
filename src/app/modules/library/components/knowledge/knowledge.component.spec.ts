@@ -22,6 +22,10 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KnowledgeService } from '../../services/knowledge.service';
 import { MockKnowledgeService } from '../../../../../mocks/MockKnowledgeService';
+import { MockFavoriteService } from '../../../../../mocks/MockFavoriteService';
+import { EmptyResponse } from '../../../../utils/empty-response.model';
+import { FavoriteService } from '../../services/favorite.service';
+import { Favorite } from '../../models/favorite.model';
 
 describe('modules/library/components/knowledge/knowledge.component', () => {
   const knowledge: Knowledge = {
@@ -30,6 +34,21 @@ describe('modules/library/components/knowledge/knowledge.component', () => {
     title: 'Hexagonale',
     content: 'Known as port and adapter'
   };
+
+  const favorites = [
+    {
+      "id": "sab",
+      "username": "john@doe.fr",
+      "contentType": "CATEGORY",
+      "contentId": "aaa"
+    },
+    {
+      "id": "saa",
+      "username": "john@doe.fr",
+      "contentType": "KNOWLEDGE",
+      "contentId": "kaa"
+    }
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -50,10 +69,27 @@ describe('modules/library/components/knowledge/knowledge.component', () => {
         { provide: CookieService, useClass: MockCookieService },
         { provide: CommentService, useClass: MockCommentService },
         { provide: ScoreService, useClass: MockScoreService },
-        { provide: KnowledgeService, useClass: MockKnowledgeService }
+        { provide: KnowledgeService, useClass: MockKnowledgeService },
+        { provide: FavoriteService, useClass: MockFavoriteService }
       ]
     });
     TestBed.compileComponents();
+
+    spyOn(MockCookieService.prototype, 'getCookie').and.callFake((name: string) => {
+      if (name === COOKIES.username)
+        return 'john@doe.fr';
+      else
+        return 'bbb';
+    });
+
+    spyOn(MockFavoriteService.prototype, 'getFavorites').and.callFake((username: string, accessToken: string) => {
+      const httpResponse: HttpResponse<Favorite[]> = new HttpResponse({
+        body: favorites,
+        status: 200
+      });
+
+      return Observable.create(observer => observer.next(httpResponse));
+    });
   }));
 
   describe('rendering', () => {
@@ -100,12 +136,6 @@ describe('modules/library/components/knowledge/knowledge.component', () => {
 
         return Observable.create(observer => observer.next(httpResponse));
       });
-      spyOn(CookieService.prototype, 'getCookie').and.callFake((name: string) => {
-        if (name === COOKIES.username)
-          return 'john@doe.fr';
-        else
-          return 'bbb';
-      });
     });
 
     it('should get all comments of knowledge', () => {
@@ -140,6 +170,58 @@ describe('modules/library/components/knowledge/knowledge.component', () => {
           mark: 5
         }
       ]);
+    });
+
+    it('should detect if knowledge is in favorites', () => {
+      const fixture = TestBed.createComponent(KnowledgeComponent);
+      const knowledgeComponent: KnowledgeComponent = fixture.componentInstance;
+      fixture.componentInstance.knowledge = knowledge;
+
+      knowledgeComponent.ngOnInit();
+
+      expect(MockFavoriteService.prototype.getFavorites).toHaveBeenCalledWith('john@doe.fr', 'bbb');
+      expect(knowledgeComponent.isFavorite).toBe(true);
+    });
+  });
+
+  describe('favorites', () => {
+    beforeEach(() => {
+      spyOn(MockFavoriteService.prototype, 'addToMyFavorites').and.callFake((username: string, accessToken: string, contentType: string, contentId: string) => {
+        const httpResponse: HttpResponse<EmptyResponse> = new HttpResponse({
+          status: 200
+        });
+
+        return Observable.create(observer => observer.next(httpResponse));
+      });
+
+      spyOn(MockFavoriteService.prototype, 'deleteFavorite').and.callFake((username: string, accessToken: string, favoriteId: string) => {
+        const httpResponse: HttpResponse<EmptyResponse> = new HttpResponse({
+          status: 200
+        });
+
+        return Observable.create(observer => observer.next(httpResponse));
+      });
+    });
+
+    it('should add knowledge to my favorites', () => {
+      const fixture = TestBed.createComponent(KnowledgeComponent);
+      const knowledgeComponent: KnowledgeComponent = fixture.componentInstance;
+      fixture.componentInstance.knowledge = knowledge;
+
+      knowledgeComponent.onAddToFavorites();
+
+      expect(MockFavoriteService.prototype.addToMyFavorites).toHaveBeenCalledWith('john@doe.fr', 'bbb', 'KNOWLEDGE', 'kaa');
+    });
+
+    it('should remove knowledge from my favorites', () => {
+      const fixture = TestBed.createComponent(KnowledgeComponent);
+      const knowledgeComponent: KnowledgeComponent = fixture.componentInstance;
+      fixture.componentInstance.knowledge = knowledge;
+      knowledgeComponent.ngOnInit();
+
+      knowledgeComponent.onRemoveFromFavorites();
+
+      expect(MockFavoriteService.prototype.deleteFavorite).toHaveBeenCalledWith('john@doe.fr', 'bbb', 'saa');
     });
   });
 });

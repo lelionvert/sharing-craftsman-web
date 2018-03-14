@@ -192,17 +192,17 @@ describe('modules/library/components/category/category.component', () => {
           mark: 5
         }
       ]);
+    });
 
-      it('should detect if category is in favoirtes', () => {
-        const fixture = TestBed.createComponent(CategoryComponent);
-        const categoryComponent: CategoryComponent = fixture.componentInstance;
-        fixture.componentInstance.category = category;
-  
-        categoryComponent.ngOnInit();
-  
-        expect(MockFavoriteService.prototype.getFavorites).toHaveBeenCalledWith('john@doe.fr', 'bbb');
-        expect(categoryComponent.isFavorite).toBe(true);
-      });
+    it('should detect if category is in favorites', () => {
+      const fixture = TestBed.createComponent(CategoryComponent);
+      const categoryComponent: CategoryComponent = fixture.componentInstance;
+      fixture.componentInstance.category = category;
+
+      categoryComponent.ngOnInit();
+
+      expect(MockFavoriteService.prototype.getFavorites).toHaveBeenCalledWith('john@doe.fr', 'bbb');
+      expect(categoryComponent.isFavorite).toBe(true);
     });
   });
 
