@@ -160,10 +160,12 @@ export class CategoryComponent implements OnInit {
   }
 
   private handleAddToMyFavoritesResponse(response) {
+    this.showActions = false;
     this.getFavorites();
   }
 
   private handleRemoveFromMyFavoritesResponse(response) {
+    this.showActions = false;
     this.getFavorites();
   }
 
