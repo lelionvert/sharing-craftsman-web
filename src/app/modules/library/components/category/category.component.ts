@@ -15,8 +15,9 @@ import { Comment } from '../../models/comment.model';
 import { Score } from '../../models/score.model';
 import { CommentService } from '../../services/comment.service';
 import { ScoreService } from '../../services/score.service';
-import { CONTENT_TYPES } from '../../../../config/app.config';
+import { CONTENT_TYPES, HTTP_RESPONSE } from '../../../../config/app.config';
 import { FavoriteService } from '../../services/favorite.service';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
 
 @Component({
   selector: 'sc-category',
@@ -58,12 +59,14 @@ export class CategoryComponent implements OnInit {
   private showDeleteCategoryDialog: boolean;
   private errorMessage: string;
   private contentType: string;
+  private isAuthenticated: boolean;
 
   constructor(
     private commentService: CommentService,
     private scoreService: ScoreService,
     private cookieSerivce: CookieService,
-    private favoriteService: FavoriteService
+    private favoriteService: FavoriteService,
+    private authorizationService: AuthorizationService
   ) {
     this.isFavorite = false;
     this.showComments = false;
@@ -76,12 +79,14 @@ export class CategoryComponent implements OnInit {
     this.scores = [];
     this.contentType = CONTENT_TYPES.category;
     this.favoriteId = '';
+    this.isAuthenticated = false;
   }
 
   ngOnInit() {
     this.getCategoryComments();
     this.getCategoryScores();
     this.getFavorites();
+    this.checkIfAuthenticated();
   }
 
   toggleShowComments() {
@@ -216,5 +221,22 @@ export class CategoryComponent implements OnInit {
 
   private handleError(error) {
     this.errorMessage = `Erreur lors de la récupération des données : ${error.statusText}`;
+  }
+
+  private checkIfAuthenticated() {
+    this.authorizationService
+      .isAuthenticated()
+      .subscribe(
+        response => this.handleAuthenticatedResponse(response),
+        error => this.handleAuthenticatedResponse(error)
+      );
+  }
+
+  private handleAuthenticatedResponse(response) {
+    if (response.status === HTTP_RESPONSE.OK) {
+      this.isAuthenticated = true;
+    } else {
+      this.isAuthenticated = false;
+    }
   }
 }

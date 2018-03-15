@@ -69,4 +69,14 @@ describe('services/authorization/authorization.service', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockRoles);
   });
+
+  it('should check if user is connected', () => {
+    service.isAuthenticated().subscribe(response => {
+      expect(response.status).toEqual(200);
+    });
+
+    const req = httpMock.expectOne(`${HOST}/${BACK_END_ROUTES.authorization.verifyToken}`);
+    expect(req.request.method).toBe('GET');
+    req.flush({});
+  });
 });

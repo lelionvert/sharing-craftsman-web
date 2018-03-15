@@ -10,7 +10,7 @@
         <sc-score *ngFor="let score of scores" [score]="score"></sc-score>
       </ul>
     </div>
-    <div class="actions">
+    <div class="actions" *ngIf="isAuthenticated">
       <button class="actions-menu-button" (click)="toggleShowActions()">
         <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0h24v24H0z" fill="none" />

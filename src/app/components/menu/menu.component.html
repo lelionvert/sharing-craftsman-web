@@ -18,12 +18,12 @@
         </a>
       </li>
       <li>
-          <a routerLink="/favorites" (click)="close()">
+          <a routerLink="/favorites" (click)="close()" *ngIf="isAuthenticated">
             <span>Favoris</span>
           </a>
       </li>
       <li>
-        <a routerLink="/library/add" (click)="close()">
+        <a routerLink="/library/add" (click)="close()" *ngIf="isAuthenticated">
           <span>Ajouter un item</span>
         </a>
       </li>
@@ -31,27 +31,27 @@
         <hr>
       </li>
       <li>
-        <a routerLink="/register" (click)="close()">
+        <a routerLink="/register" (click)="close()" *ngIf="!isAuthenticated">
           <span>Register</span>
         </a>
       </li>
       <li>
-        <a routerLink="/login" (click)="close()">
+        <a routerLink="/login" (click)="close()" *ngIf="!isAuthenticated">
           <span>Connexion</span>
         </a>
       </li>
       <li>
-        <a routerLink="/update-profile" (click)="close()">
+        <a routerLink="/update-profile" (click)="close()" *ngIf="isAuthenticated">
           <span>Profil</span>
         </a>
       </li>
       <li>
-        <a routerLink="/change-password" (click)="close()">
+        <a routerLink="/change-password" (click)="close()" *ngIf="isAuthenticated">
           <span>Changer de mot de passe</span>
         </a>
       </li>
       <li>
-        <button (click)="disconnect()" (click)="close()">
+        <button (click)="disconnect()" (click)="close()" *ngIf="isAuthenticated">
           <span>Disconnect</span>
         </button>
       </li>

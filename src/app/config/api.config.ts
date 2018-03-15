@@ -22,7 +22,8 @@ export const BACK_END_ROUTES: any = {
     refreshToken: 'tokens/refresh-token'
   },
   authorization: {
-    roles: 'roles'
+    roles: 'roles',
+    verifyToken: 'tokens/verify'
   },
   library: {
     categories: 'library/categories',

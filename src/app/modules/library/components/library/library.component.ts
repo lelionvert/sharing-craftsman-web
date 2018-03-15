@@ -28,10 +28,16 @@ export class LibraryComponent implements OnInit {
 
   handleSearch(search: string) {
     this.categories = _.cloneDeep(this.originalCategories);
-    this.categories = this.categories.filter(category => category.name.toLowerCase().indexOf(search.toLowerCase()) > -1);
-    this.categories.forEach(category => {
-      category.knowledges = category.knowledges.filter(knowledge => knowledge.title.toLowerCase().indexOf(search.toLocaleLowerCase()) > -1);
+    const categoriesToKeep = this.categories.filter(category => category.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+    const categoriesToAnalyze = this.categories.filter(category => category.name.toLowerCase().indexOf(search.toLowerCase()) === -1);
+    categoriesToAnalyze.forEach(category => {
+      const knowledgesToKeep = category.knowledges.filter(knowledge => knowledge.title.toLowerCase().indexOf(search.toLocaleLowerCase()) !== -1);
+      if (knowledgesToKeep.length > 0) {
+        category.knowledges = knowledgesToKeep;
+        categoriesToKeep.push(category);
+      }
     });
+    this.categories = categoriesToKeep;
   }
 
   handleDeleteCategory(event) {

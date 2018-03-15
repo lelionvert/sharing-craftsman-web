@@ -17,3 +17,7 @@ export const CONTENT_TYPES: any = {
   category: 'CATEGORY',
   knowledge: 'KNOWLEDGE'
 };
+export const HTTP_RESPONSE: any = {
+  OK: 200,
+  UNAUTHORIZED: 403
+};
