@@ -30,6 +30,8 @@ import { MockFavoriteService } from '../../../../../mocks/MockFavoriteService';
 import { Favorite } from '../../models/favorite.model';
 import { FavoriteService } from '../../services/favorite.service';
 import { EmptyResponse } from '../../../../utils/empty-response.model';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
+import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
 
 describe('modules/library/components/category/category.component', () => {
   const category: Category = {
@@ -89,7 +91,8 @@ describe('modules/library/components/category/category.component', () => {
         { provide: ScoreService, useClass: MockScoreService },
         { provide: CategoryService, useClass: MockCategoryService },
         { provide: KnowledgeService, useClass: MockKnowledgeService },
-        { provide: FavoriteService, useClass: MockFavoriteService }
+        { provide: FavoriteService, useClass: MockFavoriteService },
+        { provide: AuthorizationService, useClass: MockAuthorizationService }
       ]
     });
     TestBed.compileComponents();

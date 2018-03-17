@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockRouter } from '../../../mocks/MockRouter';
 import { LogoutService } from '../../services/user/logout.service';
 import { MockLogoutService } from '../../../mocks/MockLogoutService';
+import { AuthorizationService } from '../../services/authorization/authorization.service';
+import { MockAuthorizationService } from '../../../mocks/MockAuthorizationService';
 
 describe('components/menu/menu.component', () => {
   beforeEach(async(() => {
@@ -18,7 +20,8 @@ describe('components/menu/menu.component', () => {
       ],
       providers: [
         { provide: Router, useClass: MockRouter },
-        { provide: LogoutService, useClass: MockLogoutService }
+        { provide: LogoutService, useClass: MockLogoutService },
+        { provide: AuthorizationService, useClass: MockAuthorizationService }
       ]
     });
     TestBed.compileComponents();
@@ -29,7 +32,7 @@ describe('components/menu/menu.component', () => {
     fixture.detectChanges();
     const menu = fixture.nativeElement;
     const links = menu.querySelectorAll('a');
-    expect(links.length).toEqual(8);
+    expect(links.length).toEqual(6);
   });
 
   describe('disconnexion', () => {

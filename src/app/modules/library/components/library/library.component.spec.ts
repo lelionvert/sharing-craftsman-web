@@ -29,6 +29,8 @@ import { MockKnowledgeService } from '../../../../../mocks/MockKnowledgeService'
 import { FavoritesComponent } from '../favorites/favorites.component';
 import { FavoriteService } from '../../services/favorite.service';
 import { MockFavoriteService } from '../../../../../mocks/MockFavoriteService';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
+import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
 
 describe('modules/library/components/library/library.component', () => {
   beforeEach(async(() => {
@@ -57,7 +59,8 @@ describe('modules/library/components/library/library.component', () => {
         { provide: CommentService, useClass: MockCommentService },
         { provide: ScoreService, useClass: MockScoreService },
         { provide: KnowledgeService, useClass: MockKnowledgeService },
-        { provide: FavoriteService, useClass: MockFavoriteService }
+        { provide: FavoriteService, useClass: MockFavoriteService },
+        { provide: AuthorizationService, useClass: MockAuthorizationService }
       ]
     });
     TestBed.compileComponents();

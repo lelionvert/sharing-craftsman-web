@@ -28,6 +28,8 @@ import { CommentService } from '../../services/comment.service';
 import { MockCommentService } from '../../../../../mocks/MockCommentService';
 import { ScoreService } from '../../services/score.service';
 import { MockScoreService } from '../../../../../mocks/MockScoreService';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
+import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
 
 describe('modules/library/components/favorites/favorites.component', () => {
   const favorites = [
@@ -69,7 +71,8 @@ describe('modules/library/components/favorites/favorites.component', () => {
         { provide: CategoryService, useClass: MockCategoryService },
         { provide: KnowledgeService, useClass: MockKnowledgeService },
         { provide: CommentService, useClass: MockCommentService },
-        { provide: ScoreService, useClass: MockScoreService }
+        { provide: ScoreService, useClass: MockScoreService },
+        { provide: AuthorizationService, useClass: MockAuthorizationService }
       ]
     });
     TestBed.compileComponents();

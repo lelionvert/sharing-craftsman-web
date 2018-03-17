@@ -16,6 +16,7 @@ import { HeaderService } from './services/browser/header.service';
 import { CookieService } from './services/browser/cookie.service';
 import { LibraryModule } from './modules/library/index.module';
 import { AuthorizationService } from './services/authorization/authorization.service';
+import { AdminModule } from './modules/admin/index.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthorizationService } from './services/authorization/authorization.ser
     routing,
     HomeModule,
     UserModule,
-    LibraryModule
+    LibraryModule,
+    AdminModule
   ],
   providers: [ LogoutService, HeaderService, CookieService, AuthorizationService ],
   bootstrap: [ AppComponent ]

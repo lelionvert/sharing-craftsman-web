@@ -26,6 +26,8 @@ import { MockFavoriteService } from '../../../../../mocks/MockFavoriteService';
 import { EmptyResponse } from '../../../../utils/empty-response.model';
 import { FavoriteService } from '../../services/favorite.service';
 import { Favorite } from '../../models/favorite.model';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
+import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
 
 describe('modules/library/components/knowledge/knowledge.component', () => {
   const knowledge: Knowledge = {
@@ -70,7 +72,8 @@ describe('modules/library/components/knowledge/knowledge.component', () => {
         { provide: CommentService, useClass: MockCommentService },
         { provide: ScoreService, useClass: MockScoreService },
         { provide: KnowledgeService, useClass: MockKnowledgeService },
-        { provide: FavoriteService, useClass: MockFavoriteService }
+        { provide: FavoriteService, useClass: MockFavoriteService },
+        { provide: AuthorizationService, useClass: MockAuthorizationService }
       ]
     });
     TestBed.compileComponents();

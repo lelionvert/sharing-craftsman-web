@@ -41,5 +41,12 @@ export const BACK_END_ROUTES: any = {
     deleteScore: 'scores/delete',
     getScoresByContentId: 'scores/contentId',
     getScoresByMark: 'scores/mark'
+  },
+  admin: {
+    groups: 'admin/roles/groups',
+    deleteRole: 'admin/roles/groups/delete',
+    users: 'admin/users',
+    userAuthorizations: 'admin/users/groups',
+    deleteUserAuthorization: 'admin/users/groups/delete'
   }
 };
