@@ -1,0 +1,11 @@
+<div class="admin-user-authorizatons">
+  <h1>Gestion des autorisations utilisateur</h1>
+
+  <div class="users-list">
+    <sc-admin-user-authorization *ngFor="let user of users" [user]="user" (updated)="handleUpdateUser($event)"></sc-admin-user-authorization>
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>

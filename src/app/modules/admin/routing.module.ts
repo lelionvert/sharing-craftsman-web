@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from './components/home/home.component';
 import { AdminAuthorizationComponent } from './components/authorization/authorization.component';
 import { AdminUsersComponent } from './components/users/users.component';
+import { AdminUserAuthorizationsComponent } from './components/user-authorizations/user-authorizations.component';
 
 const adminRoutes: Routes = [
   {
@@ -16,6 +17,10 @@ const adminRoutes: Routes = [
   {
     path: 'admin-users',
     component: AdminUsersComponent
+  },
+  {
+    path: 'admin-user-authorizations',
+    component: AdminUserAuthorizationsComponent
   }
 ];
 
