@@ -13,6 +13,10 @@ import { AuthorizationGroupComponent } from '../authorization-group/authorizatio
 import { AuthorizationRoleComponent } from '../authorization-role/authorization-role.component';
 import { EmptyResponse } from '../../../../utils/empty-response.model';
 import { Authorization } from '../../forms/authorization.form';
+import { MockRouter } from '../../../../../mocks/MockRouter';
+import { Router } from '@angular/router';
+import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
 
 describe('modules/admin/components/authorization/authorization.component', () => {
   beforeEach(async(() => {
@@ -26,6 +30,8 @@ describe('modules/admin/components/authorization/authorization.component', () =>
         AuthorizationRoleComponent
       ],
       providers: [
+        { provide: Router, useClass: MockRouter },
+        { provide: AuthorizationService, useClass: MockAuthorizationService },
         { provide: CookieService, useClass: MockCookieService },
         { provide: AdminAuthorizationService, useClass: MockAdminAuthorizationService }
       ]

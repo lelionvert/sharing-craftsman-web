@@ -27,6 +27,7 @@ import { HTTP_RESPONSE } from '../../config/app.config';
 export class MenuComponent implements OnInit {
   private state: string;
   public isAuthenticated: boolean = false;
+  private isAdmin: boolean = false;
 
   constructor(
     private router: Router,
@@ -65,8 +66,24 @@ export class MenuComponent implements OnInit {
   private handleAuthenticatedResponse(response) {
     if (response.status === HTTP_RESPONSE.OK) {
       this.isAuthenticated = true;
+      this.checkIfAdmin();
     } else {
       this.isAuthenticated = false;
     }
+  }
+
+  private checkIfAdmin() {
+    this.authorizationService
+      .getRoles()
+      .subscribe(response => this.handleGetRolesResponse(response.body))
+  }
+
+  private handleGetRolesResponse(groups) {
+    groups.groups.forEach(group => {
+      const hasAdminRole = group.roles.findIndex(role => role.name === 'ROLE_ADMIN');
+      if (hasAdminRole !== -1) {
+        this.isAdmin = true;
+      }
+    });
   }
 }

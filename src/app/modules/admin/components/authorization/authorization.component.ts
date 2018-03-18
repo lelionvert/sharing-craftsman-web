@@ -5,6 +5,8 @@ import { Authorization } from '../../forms/authorization.form';
 import { AdminAuthorizationService } from '../../services/admin.authorization.service';
 import { COOKIES } from '../../../../config/keys.config';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sc-admin-authorization',
@@ -17,6 +19,8 @@ export class AdminAuthorizationComponent implements OnInit {
   private errorMessage: string;
 
   constructor(
+    private router: Router,
+    private authorizationService: AuthorizationService,
     private cookieService: CookieService,
     private adminAuthorizationService: AdminAuthorizationService
   ) {
@@ -25,6 +29,7 @@ export class AdminAuthorizationComponent implements OnInit {
 
   ngOnInit() {
     this.getAuthorizations();
+    this.checkIfAdmin();
   }
 
   onSelectGroup(group) {
@@ -81,5 +86,25 @@ export class AdminAuthorizationComponent implements OnInit {
 
   private handleErrorResponse(error: HttpErrorResponse) {
     this.errorMessage = `Erreur : ${error.statusText}`;
+  }
+
+  private checkIfAdmin() {
+    this.authorizationService
+      .getRoles()
+      .subscribe(response => this.handleGetRolesResponse(response.body))
+  }
+
+  private handleGetRolesResponse(groups) {
+    let isAdmin = false;
+
+    groups.groups.forEach(group => {
+      const hasAdminRole = group.roles.findIndex(role => role.name === 'ROLE_ADMIN');
+      if (hasAdminRole !== -1) {
+        isAdmin = true;
+      }
+    });
+
+    if (!isAdmin)
+      this.router.navigateByUrl('/');
   }
 }

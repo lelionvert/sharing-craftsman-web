@@ -13,6 +13,10 @@ import { Group } from '../../models/group.model';
 import { MockAdminAuthorizationService } from '../../../../../mocks/MockAdminAuthorizationService';
 import { AdminAuthorizationService } from '../../services/admin.authorization.service';
 import { AdminUserAuthorizationComponent } from '../user-authorization/user-authorization.component';
+import { MockRouter } from '../../../../../mocks/MockRouter';
+import { Router } from '@angular/router';
+import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
 
 describe('modules/admin/components/user-authorizations/user-authorizations.component', () => {
   const users: User[] = [
@@ -83,6 +87,8 @@ describe('modules/admin/components/user-authorizations/user-authorizations.compo
         AdminUserAuthorizationComponent
       ],
       providers: [
+        { provide: Router, useClass: MockRouter },
+        { provide: AuthorizationService, useClass: MockAuthorizationService },
         { provide: CookieService, useClass: MockCookieService },
         { provide: AdminUserService, useClass: MockAdminUserService },
         { provide: AdminAuthorizationService, useClass: MockAdminAuthorizationService }

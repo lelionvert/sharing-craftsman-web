@@ -7,6 +7,8 @@ import { AdminUserService } from '../../services/admin.user.service';
 import { User } from '../../models/user.model';
 import { UserForm } from '../../forms/user.form';
 import { Md5 } from 'ts-md5/dist/md5';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sc-admin-users',
@@ -19,9 +21,12 @@ export class AdminUsersComponent implements OnInit {
   private errorMessage: string;
 
   constructor(
+    private router: Router,
+    private authorizationService: AuthorizationService,
     private cookieService: CookieService,
     private adminUserService: AdminUserService
-  ) { 
+  ) {
+    this.checkIfAdmin();
     this.users = [];
   }
 
@@ -139,5 +144,25 @@ export class AdminUsersComponent implements OnInit {
 
   private handleErrorResponse(error: HttpErrorResponse) {
     this.errorMessage = `Erreur : ${error.statusText}`;
+  }
+
+  private checkIfAdmin() {
+    this.authorizationService
+      .getRoles()
+      .subscribe(response => this.handleGetRolesResponse(response.body))
+  }
+
+  private handleGetRolesResponse(groups) {
+    let isAdmin = false;
+    
+    groups.groups.forEach(group => {
+      const hasAdminRole = group.roles.findIndex(role => role.name === 'ROLE_ADMIN');
+      if (hasAdminRole !== -1) {
+        isAdmin = true;
+      }
+    });
+
+    if (!isAdmin)
+      this.router.navigateByUrl('/');
   }
 }

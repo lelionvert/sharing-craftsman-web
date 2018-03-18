@@ -12,6 +12,10 @@ import { AdminUserComponent } from '../user/user.component';
 import { User } from '../../models/user.model';
 import { UserForm } from '../../forms/user.form';
 import { EmptyResponse } from '../../../../utils/empty-response.model';
+import { Router } from '@angular/router';
+import { MockRouter } from '../../../../../mocks/MockRouter';
+import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
+import { AuthorizationService } from '../../../../services/authorization/authorization.service';
 
 describe('modules/admin/components/users/users.component', () => {
   const users: User[] = [
@@ -82,6 +86,8 @@ describe('modules/admin/components/users/users.component', () => {
         AdminUserComponent
       ],
       providers: [
+        { provide: Router, useClass: MockRouter },
+        { provide: AuthorizationService, useClass: MockAuthorizationService },
         { provide: CookieService, useClass: MockCookieService },
         { provide: AdminUserService, useClass: MockAdminUserService }
       ]
