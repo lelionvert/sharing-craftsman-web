@@ -1,0 +1,68 @@
+.admin-user {
+  border: 1px solid #000000;
+  margin: 5px 0;
+
+  .actions {
+    text-align: right;
+
+    button {
+      background-color: transparent;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+
+        svg {
+          fill: #ec008c;
+        }
+      }
+    }
+  }
+
+  .data-group {
+    .label {
+      display: inline-block;
+      vertical-align: middle;
+      width: 40%;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .value {
+      display: inline-block;
+      vertical-align: middle;
+      width: 59%;
+      text-align: left;
+    }
+  }
+
+  .personal-infos {
+    .identity {
+      display: inline-block;
+      vertical-align: top;
+      width: 49%;
+    }
+
+    .links {
+      display: inline-block;
+      vertical-align: top;
+      width: 49%;
+    }
+  }
+
+  .application {
+    margin-top: 20px;
+
+    .authorizations {
+      display: inline-block;
+      vertical-align: top;
+      width: 49%;
+    }
+
+    .technicals {
+      display: inline-block;
+      vertical-align: top;
+      width: 49%;
+    }
+  }
+}

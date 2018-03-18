@@ -16,6 +16,6 @@ describe('modules/admin/components/home.component', () => {
     fixture.detectChanges();
     const homeElement = fixture.nativeElement;
     const links = homeElement.querySelectorAll('a');
-    expect(links.length).toEqual(2);
+    expect(links.length).toEqual(3);
   });
 });

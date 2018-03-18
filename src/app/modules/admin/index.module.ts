@@ -9,6 +9,8 @@ import { AdminUserService } from './services/admin.user.service';
 import { AdminAuthorizationComponent } from './components/authorization/authorization.component';
 import { AuthorizationGroupComponent } from './components/authorization-group/authorization-group.component';
 import { AuthorizationRoleComponent } from './components/authorization-role/authorization-role.component';
+import { AdminUsersComponent } from './components/users/users.component';
+import { AdminUserComponent } from './components/user/user.component';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import { AuthorizationRoleComponent } from './components/authorization-role/auth
     AdminHomeComponent,
     AdminAuthorizationComponent,
     AuthorizationGroupComponent,
-    AuthorizationRoleComponent
+    AuthorizationRoleComponent,
+    AdminUsersComponent,
+    AdminUserComponent
   ],
   providers: [
     FormBuilder,

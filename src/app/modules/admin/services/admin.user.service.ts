@@ -4,7 +4,6 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Md5 } from 'ts-md5/dist/md5';
 
 import { HeaderService } from '../../../services/browser/header.service';
 import { CLIENT_NAME, CLIENT_SECRET } from '../../../config/keys.config';
@@ -24,7 +23,6 @@ export class AdminUserService {
   }
 
   createUser(username: string, accessToken: string, user: User) {
-    user.password = Md5.hashStr(user.password).toString();
     return this.http.post(
       `${HOST}/${BACK_END_ROUTES.admin.users}`,
       user,
@@ -33,7 +31,6 @@ export class AdminUserService {
   }
 
   updateUser(username: string, accessToken: string, user: User) {
-    user.password = Md5.hashStr(user.password).toString();
     return this.http.put(
       `${HOST}/${BACK_END_ROUTES.admin.users}`,
       user,

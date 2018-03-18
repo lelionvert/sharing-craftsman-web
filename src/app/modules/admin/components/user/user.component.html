@@ -1,0 +1,91 @@
+<div class="admin-user">
+  <div class="actions">
+    <button (click)="onClickEdit()">
+      <div class="svg">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+          />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+      </div>
+      <div class="label">
+        Editer
+      </div>
+    </button>
+    <button (click)="onClickDelete()">
+      <div class="svg">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+      </div>
+      <div class="label">
+        Supprimer
+      </div>
+    </button>
+  </div>
+  <div class="personal-infos">
+    <div class="identity">
+      <div class="data-group">
+        <div class="label">Photo de profil</div>
+        <div class="value">{{ user.picture }}</div>
+      </div>
+      <div class="data-group">
+        <div class="label">Nom d'utilisateur</div>
+        <div class="value">{{ user.username }}</div>
+      </div>
+      <div class="data-group">
+        <div class="label">Nom</div>
+        <div class="value">{{ user.lastname }}</div>
+      </div>
+      <div class="data-group">
+        <div class="label">Prénom</div>
+        <div class="value">{{ user.firstname }}</div>
+      </div>
+    </div>
+    <div class="links">
+      <div class="data-group">
+        <div class="label">Email</div>
+        <div class="value">{{ user.email }}</div>
+      </div>
+      <div class="data-group">
+        <div class="label">Site</div>
+        <div class="value">{{ user.website }}</div>
+      </div>
+      <div class="data-group">
+        <div class="label">Github</div>
+        <div class="value">{{ user.github }}</div>
+      </div>
+      <div class="data-group">
+        <div class="label">Linkedin</div>
+        <div class="value">{{ user.linkedin }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="application">
+    <div class="authorizations">
+      <div class="data-group">
+        <div class="label">Groupes</div>
+        <div class="value">
+          <ul>
+            <li *ngFor="let group of user.authorizations.groups">{{ group.name }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="data-group">
+        <div class="label">Actif</div>
+        <div class="value">{{ user.active }}</div>
+      </div>
+    </div>
+    <div class="technicals">
+      <div class="data-group">
+        <div class="label">Date de création</div>
+        <div class="value">{{ user.creationDate }}</div>
+      </div>
+      <div class="data-group">
+        <div class="label">Date de dernière mise à jour</div>
+        <div class="value">{{ user.lastUpdateDate }}</div>
+      </div>
+    </div>
+  </div>
+</div>

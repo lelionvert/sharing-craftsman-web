@@ -84,6 +84,10 @@ export class FavoritesComponent implements OnInit {
     this.categories.push(category);
   }
 
+  private handleDeleteCategory(event) {
+    this.getAllFavorites();
+  }
+
   private handleError(error) {
     this.errorMessage = `Erreur lors de la récupération des données : ${error.statusText}`;
   }
