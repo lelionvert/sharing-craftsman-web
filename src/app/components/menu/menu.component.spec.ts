@@ -32,7 +32,7 @@ describe('components/menu/menu.component', () => {
     fixture.detectChanges();
     const menu = fixture.nativeElement;
     const links = menu.querySelectorAll('a');
-    expect(links.length).toEqual(6);
+    expect(links.length).toEqual(7);
   });
 
   describe('disconnexion', () => {

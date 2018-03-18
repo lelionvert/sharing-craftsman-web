@@ -1,0 +1,23 @@
+.authorization {
+  margin: 10px 0;
+  
+  .group {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 10px;
+  }
+
+  .roles {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+  
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

@@ -28,6 +28,11 @@
         </a>
       </li>
       <li>
+          <a routerLink="/admin" (click)="close()" *ngIf="isAuthenticated">
+            <span>Administration</span>
+          </a>
+        </li>
+      <li>
         <hr>
       </li>
       <li>

@@ -1,0 +1,60 @@
+<div class="admin-authorizations">
+  <h1>Autorisations</h1>
+
+  <h2>Groupes</h2>
+  <div class="authorizations-list">
+    <sc-authorization-group *ngFor="let group of groups" [group]="group" (success)="handleDeleteAuthorization($event)"></sc-authorization-group>
+  </div>
+
+  <h2>Ajouter une authorization</h2>
+  <form>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="group-choice">Groupe</label>
+      </div>
+      <div class="form-field">
+        <select name="group-choice" (change)="onSelectGroup($event.target.value)">
+          <option value="none" disabled selected>Sélectionne un groupe...</option>
+          <option *ngFor="let group of groups" value="{{ group.name }}">{{ group.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">
+        <label for="group-create">Ou créé un nouveau groupe :</label>
+      </div>
+      <div class="form-field">
+        <input type="text" name="group-create" (input)="onTypeNewGroup($event.target.value)" />
+      </div>
+    </div>
+
+    <div class="form-group disabled">
+      <div class="form-label">
+        <label for="chosen-group">Groupe choisi :</label>
+      </div>
+      <div class="form-field">
+        <input type="text" name="chosen-group" disabled [(ngModel)]="model.group" #group="ngModel" required />
+      </div>
+      <div *ngIf="group.errors && (group.dirty || group.touched)" class="error">Le groupe est obligatoire</div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-label">
+        <label for="role-name">Role</label>
+      </div>
+      <div class="form-field">
+        <input type="text" name="role-name" [(ngModel)]="model.role" #role="ngModel" required />
+      </div>
+      <div *ngIf="role.errors && (role.dirty || role.touched)" class="error">Le role est obligatoire</div>
+    </div>
+
+    <div class="form-actions">
+      <button class="validate" type="submit" (click)="create()">Go</button>
+      <button class="cancel" type="submit" (click)="cancel()">Annuler</button>
+    </div>
+  </form>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>

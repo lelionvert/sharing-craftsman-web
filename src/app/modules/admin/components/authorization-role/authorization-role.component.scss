@@ -1,0 +1,17 @@
+button {
+  background-color: transparent;
+  border: none;
+  
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  &:hover {
+    cursor: pointer;
+  
+    svg {
+      fill: #ec008c;
+    }
+  }
+}

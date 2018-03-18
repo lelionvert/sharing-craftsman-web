@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { AdminRoutingModule } from './routing.module';
+import { AdminHomeComponent } from './components/home/home.component';
+import { AdminAuthorizationService } from './services/admin.authorization.service';
+import { AdminUserService } from './services/admin.user.service';
+import { AdminAuthorizationComponent } from './components/authorization/authorization.component';
+import { AuthorizationGroupComponent } from './components/authorization-group/authorization-group.component';
+import { AuthorizationRoleComponent } from './components/authorization-role/authorization-role.component';
 
 @NgModule({
   imports: [
@@ -12,8 +18,15 @@ import { AdminRoutingModule } from './routing.module';
     AdminRoutingModule
   ],
   declarations: [
+    AdminHomeComponent,
+    AdminAuthorizationComponent,
+    AuthorizationGroupComponent,
+    AuthorizationRoleComponent
   ],
   providers: [
+    FormBuilder,
+    AdminAuthorizationService,
+    AdminUserService
   ]
 })
 export class AdminModule {}

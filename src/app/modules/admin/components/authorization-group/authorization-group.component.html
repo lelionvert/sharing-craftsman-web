@@ -1,0 +1,10 @@
+<div class="authorization">
+  <div class="group">
+    {{ group.name }}
+  </div>
+  <div class="roles">
+    <ul>
+      <sc-authorization-role *ngFor="let role of group.roles" [role]="role" [group]="group" (success)="handleDeleteAuthorization($event)"></sc-authorization-role>
+    </ul>
+  </div>
+</div>
