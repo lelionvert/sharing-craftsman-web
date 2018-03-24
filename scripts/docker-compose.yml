@@ -3,14 +3,14 @@ version: '3'
 services:
   library:
     build: .
-    container_name: sc_library
+    container_name: sc_web
     ports:
-      - 172.17.0.1:8086:80
+      - <APP_PORT>
     volumes:
-     - /home/scweb/logs:/var/logs
-     - /home/scweb/site/:/var/www/html/
+     - <LOGS_PATH>:/var/logs
+     - <APP_PATH>:/var/www/html/
 
 networks:
   default:
     external:
-      name: scnetwork
+      name: <DOCKER_NETWORK>

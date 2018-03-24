@@ -25,6 +25,12 @@
           "key": "<APP_PORT>",
           "value": "172.17.0.1:8086:80"
         },
+        "app": {
+          "path": {
+            "key": "<APP_PATH>",
+            "value": "/home/scweb/dist"
+          }
+        },
         "logs": {
           "path": {
             "key": "<LOGS_PATH>",
