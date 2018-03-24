@@ -5,11 +5,11 @@ services:
     build: .
     container_name: sc_library
     ports:
-      - <APP_PORT>
+      - 172.17.0.1:8086:80
     volumes:
-     - <LOGS_PATH>:/var/logs
+     - /home/scweb/logs:/var/logs
 
 networks:
   default:
     external:
-      name: <DOCKER_NETWORK>
+      name: scnetwork

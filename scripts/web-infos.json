@@ -11,6 +11,10 @@
         "secret": {
           "key": "var CLIENT_SECRET = 'secret';",
           "value": "var CLIENT_SECRET = 'scwebpass';"
+        },
+        "host": {
+          "key": "var HOST = 'http://localhost:3000';",
+          "value": "var HOST = 'http://192.168.1.12:8089';"
         }
       }
     },
