@@ -50,7 +50,7 @@ describe('modules/library/services/category.service', () => {
       }
     ];
 
-    service.getAllCategories('john@doe.fr', 'aaa').subscribe(response => {
+    service.getAllCategories().subscribe(response => {
       expect(response.status).toEqual(200);
       expect(response.body).toEqual(categories);
     });
