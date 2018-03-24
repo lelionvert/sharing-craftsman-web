@@ -177,7 +177,7 @@ export class KnowledgeComponent implements OnInit {
 
   private getKnowledgeComments() {
     this.commentService
-      .getCommentsByContentId(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken), this.knowledge.id)
+      .getCommentsByContentId(this.knowledge.id)
       .subscribe(
         response => this.handleGetComments(response),
         error => this.handleError(error)
@@ -186,7 +186,7 @@ export class KnowledgeComponent implements OnInit {
 
   private getKnowledgeScores() {
     this.scoreService
-      .getScoresByContentId(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken), this.knowledge.id)
+      .getScoresByContentId(this.knowledge.id)
       .subscribe(
         response => this.handleGetScores(response),
         error => this.handleError(error)

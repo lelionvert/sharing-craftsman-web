@@ -126,7 +126,7 @@ describe('modules/library/components/category/category.component', () => {
 
   describe('initialization', () => {
     beforeEach(() => {
-      spyOn(MockCommentService.prototype, 'getCommentsByContentId').and.callFake((username: string, accessToken: string, contentId: string) => {
+      spyOn(MockCommentService.prototype, 'getCommentsByContentId').and.callFake((contentId: string) => {
         const httpResponse: HttpResponse<Comment[]> = new HttpResponse({
           body: [
             {
@@ -143,7 +143,7 @@ describe('modules/library/components/category/category.component', () => {
         return Observable.create(observer => observer.next(httpResponse));
       });
 
-      spyOn(MockScoreService.prototype, 'getScoresByContentId').and.callFake((username: string, accessToken: string, contentId: string) => {
+      spyOn(MockScoreService.prototype, 'getScoresByContentId').and.callFake((contentId: string) => {
         const httpResponse: HttpResponse<Score[]> = new HttpResponse({
           body: [
             {

@@ -14,10 +14,10 @@ import { Score } from '../models/score.model';
 export class ScoreService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  getScoresByContentId(username: string, accessToken: string, contentId: string): Observable<HttpResponse<Score[]>> {
+  getScoresByContentId(contentId: string): Observable<HttpResponse<Score[]>> {
     return this.http.get<Score[]>(
       `${HOST}/${BACK_END_ROUTES.library.getScoresByContentId}/${contentId}`,
-      { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
+      { observe: 'response' }
     );
   }
 

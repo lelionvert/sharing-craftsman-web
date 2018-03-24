@@ -16,10 +16,10 @@ import { Comment } from '../models/comment.model';
 export class CommentService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  getCommentsByContentId(username: string, accessToken: string, contentId: string): Observable<HttpResponse<Comment[]>> {
+  getCommentsByContentId(contentId: string): Observable<HttpResponse<Comment[]>> {
     return this.http.get<Comment[]>(
       `${HOST}/${BACK_END_ROUTES.library.getCommentsByContentId}/${contentId}`,
-      { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
+      { observe: 'response' }
     );
   }
 

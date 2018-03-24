@@ -2,9 +2,6 @@ import { TestBed, async } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { MockCookieService } from '../../../../../mocks/MockCookieService';
-import { COOKIES } from '../../../../config/keys.config';
-import { CookieService } from '../../../../services/browser/cookie.service';
 import { LibraryComponent } from './library.component';
 import { LibrarySearchComponent } from '../library-search/library-search.component';
 import { CategoryComponent } from '../category/category.component';
@@ -31,6 +28,8 @@ import { FavoriteService } from '../../services/favorite.service';
 import { MockFavoriteService } from '../../../../../mocks/MockFavoriteService';
 import { AuthorizationService } from '../../../../services/authorization/authorization.service';
 import { MockAuthorizationService } from '../../../../../mocks/MockAuthorizationService';
+import { CookieService } from '../../../../services/browser/cookie.service';
+import { MockCookieService } from '../../../../../mocks/MockCookieService';
 
 describe('modules/library/components/library/library.component', () => {
   beforeEach(async(() => {
@@ -122,12 +121,6 @@ describe('modules/library/components/library/library.component', () => {
         });
 
         return Observable.create(observer => observer.next(httpResponse));
-      });
-      spyOn(CookieService.prototype, 'getCookie').and.callFake((name: string) => {
-        if (name === COOKIES.username)
-          return 'john@doe.fr';
-        else
-          return 'bbb';
       });
     });
 

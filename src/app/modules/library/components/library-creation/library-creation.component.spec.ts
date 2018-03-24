@@ -86,7 +86,7 @@ describe('modules/library/components/library-creation/library-creation.component
 
       libraryCreationComponent.ngOnInit();
 
-      expect(MockCategoryService.prototype.getAllCategories).toHaveBeenCalledWith('john@doe.fr', 'aaa');
+      expect(MockCategoryService.prototype.getAllCategories).toHaveBeenCalled();
     });
   });
 

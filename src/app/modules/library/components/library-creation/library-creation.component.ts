@@ -32,10 +32,7 @@ export class LibraryCreationComponent implements OnInit {
 
   ngOnInit() {
     this.categoryService
-    .getAllCategories(
-      this.cookieService.getCookie(COOKIES.username), 
-      this.cookieService.getCookie(COOKIES.accessToken)
-    )
+    .getAllCategories()
     .subscribe(
       response => this.handleGetAllCategories(response),
       error => this.handleErrorResponse(error)

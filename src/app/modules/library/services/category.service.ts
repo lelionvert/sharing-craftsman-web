@@ -14,10 +14,10 @@ import { Category } from '../models/category.model';
 export class CategoryService {
   constructor(private http: HttpClient, private headerService: HeaderService) { }
 
-  getAllCategories(username: string, accessToken: string): Observable<HttpResponse<Category[]>> {
+  getAllCategories(): Observable<HttpResponse<Category[]>> {
     return this.http.get<Category[]>(
       `${HOST}/${BACK_END_ROUTES.library.getCategories}`,
-      { observe: 'response', headers: this.getUserHeaders(username, accessToken) }
+      { observe: 'response' }
     );
   }
 

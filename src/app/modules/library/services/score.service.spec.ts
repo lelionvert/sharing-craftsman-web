@@ -51,7 +51,7 @@ describe('modules/library/services/score.service', () => {
       }
     ];
 
-    service.getScoresByContentId('john@doe.fr', 'aaa', 'aaa').subscribe(response => {
+    service.getScoresByContentId('aaa').subscribe(response => {
       expect(response.status).toEqual(200);
       expect(response.body).toEqual(scores);
     });

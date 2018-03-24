@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as _ from "lodash";
 
-import { CookieService } from '../../../../services/browser/cookie.service';
 import { COOKIES } from '../../../../config/keys.config';
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
@@ -18,8 +17,7 @@ export class LibraryComponent implements OnInit {
   private errorMessage: string;
 
   constructor(
-    private categoryService: CategoryService,
-    private cookieService: CookieService
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit() {
@@ -46,7 +44,7 @@ export class LibraryComponent implements OnInit {
 
   private getAllCategories() {
     this.categoryService
-      .getAllCategories(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken))
+      .getAllCategories()
       .subscribe(
         response => this.handleGetAllCategories(response),
         error => this.handleError(error)

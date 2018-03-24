@@ -185,7 +185,7 @@ export class CategoryComponent implements OnInit {
 
   private getCategoryComments() {
     this.commentService
-      .getCommentsByContentId(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken), this.category.id)
+      .getCommentsByContentId(this.category.id)
       .subscribe(
         response => this.handleGetComments(response),
         error => this.handleError(error)
@@ -194,7 +194,7 @@ export class CategoryComponent implements OnInit {
 
   private getCategoryScores() {
     this.scoreService
-      .getScoresByContentId(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken), this.category.id)
+      .getScoresByContentId(this.category.id)
       .subscribe(
         response => this.handleGetScores(response),
         error => this.handleError(error)

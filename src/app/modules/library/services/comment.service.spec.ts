@@ -49,7 +49,7 @@ describe('modules/library/services/comment.service', () => {
       }
     ];
 
-    service.getCommentsByContentId('john@doe.fr', 'aaa', 'aaa').subscribe(response => {
+    service.getCommentsByContentId('aaa').subscribe(response => {
       expect(response.status).toEqual(200);
       expect(response.body).toEqual(comments);
     });
