@@ -51,7 +51,7 @@ export class AdminUsersComponent implements OnInit {
     this.adminUserService
       .createUser(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         {
           username: this.model.username,
           password: Md5.hashStr(this.model.password).toString(),
@@ -78,7 +78,7 @@ export class AdminUsersComponent implements OnInit {
     this.adminUserService
       .updateUser(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         {
           username: this.model.username,
           password: null,
@@ -126,7 +126,7 @@ export class AdminUsersComponent implements OnInit {
     this.adminUserService
       .getUsers(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken)
+        this.cookieService.getCookie(COOKIES.token)
       )
       .subscribe(
         response => this.handleGetUsersResponse(response.body),

@@ -39,7 +39,7 @@ export class CategoryDeleteModalComponent {
     this.categoryService
       .deleteCategory(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         this.categoryId
       )
       .subscribe(

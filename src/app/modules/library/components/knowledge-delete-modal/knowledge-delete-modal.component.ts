@@ -39,7 +39,7 @@ export class KnowledgeDeleteModalComponent {
     this.knowledgeService
       .deleteKnowledge(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         this.categoryId,
         this.knowledgeId
       )

@@ -35,7 +35,7 @@ export class AdminUserAuthorizationsComponent implements OnInit {
     this.adminUserService
       .getUsers(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken)
+        this.cookieService.getCookie(COOKIES.token)
       )
       .subscribe(
         response => this.handleGetUsersResponse(response.body),

@@ -44,7 +44,7 @@ export class CategoryUpdateModalComponent implements OnInit {
     this.categoryService
       .updateCategory(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         this.categoryId,
         this.model.category
       )

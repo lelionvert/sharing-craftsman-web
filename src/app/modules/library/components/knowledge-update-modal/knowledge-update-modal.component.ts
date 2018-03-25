@@ -46,7 +46,7 @@ export class KnowledgeUpdateModalComponent implements OnInit {
     this.knowledgeService
       .updateKnowledge(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         this.categoryId,
         this.knowledgeId,
         this.model.title,

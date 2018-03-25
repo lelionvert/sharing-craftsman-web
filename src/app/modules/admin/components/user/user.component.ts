@@ -30,7 +30,7 @@ export class AdminUserComponent {
     this.adminUserService
     .deleteUser(
       this.cookieService.getCookie(COOKIES.username),
-      this.cookieService.getCookie(COOKIES.accessToken),
+      this.cookieService.getCookie(COOKIES.token),
       this.user.username
     )
     .subscribe(

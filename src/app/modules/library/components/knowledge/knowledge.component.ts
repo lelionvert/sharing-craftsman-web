@@ -80,7 +80,6 @@ export class KnowledgeComponent implements OnInit {
   ngOnInit() {
     this.getKnowledgeComments();
     this.getKnowledgeScores();
-    this.getFavorites();
     this.checkIfAuthenticated();
   }
 
@@ -116,7 +115,7 @@ export class KnowledgeComponent implements OnInit {
     this.favoriteService
       .addToMyFavorites(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         CONTENT_TYPES.knowledge,
         this.knowledge.id
       )
@@ -130,7 +129,7 @@ export class KnowledgeComponent implements OnInit {
     this.favoriteService
       .deleteFavorite(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         this.favoriteId
       )
       .subscribe(
@@ -168,7 +167,7 @@ export class KnowledgeComponent implements OnInit {
 
   private getFavorites() {
     this.favoriteService
-      .getFavorites(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken))
+      .getFavorites(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.token))
       .subscribe(
         response => this.checkIfIsFavorite(response.body),
         error => this.handleError(error)
@@ -227,6 +226,7 @@ export class KnowledgeComponent implements OnInit {
   private handleAuthenticatedResponse(response) {
     if (response.status === HTTP_RESPONSE.OK) {
       this.isAuthenticated = true;
+      this.getFavorites();
     } else {
       this.isAuthenticated = false;
     }

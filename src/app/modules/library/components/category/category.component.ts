@@ -85,7 +85,6 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.getCategoryComments();
     this.getCategoryScores();
-    this.getFavorites();
     this.checkIfAuthenticated();
   }
 
@@ -121,7 +120,7 @@ export class CategoryComponent implements OnInit {
     this.favoriteService
       .addToMyFavorites(
         this.cookieSerivce.getCookie(COOKIES.username),
-        this.cookieSerivce.getCookie(COOKIES.accessToken),
+        this.cookieSerivce.getCookie(COOKIES.token),
         CONTENT_TYPES.category,
         this.category.id
       )
@@ -135,7 +134,7 @@ export class CategoryComponent implements OnInit {
     this.favoriteService
       .deleteFavorite(
         this.cookieSerivce.getCookie(COOKIES.username),
-        this.cookieSerivce.getCookie(COOKIES.accessToken),
+        this.cookieSerivce.getCookie(COOKIES.token),
         this.favoriteId
       )
       .subscribe(
@@ -176,7 +175,7 @@ export class CategoryComponent implements OnInit {
 
   private getFavorites() {
     this.favoriteService
-      .getFavorites(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.accessToken))
+      .getFavorites(this.cookieSerivce.getCookie(COOKIES.username), this.cookieSerivce.getCookie(COOKIES.token))
       .subscribe(
         response => this.checkIfIsFavorite(response.body),
         error => this.handleError(error)
@@ -235,6 +234,7 @@ export class CategoryComponent implements OnInit {
   private handleAuthenticatedResponse(response) {
     if (response.status === HTTP_RESPONSE.OK) {
       this.isAuthenticated = true;
+      this.getFavorites();
     } else {
       this.isAuthenticated = false;
     }

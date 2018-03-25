@@ -24,7 +24,7 @@ export class AuthorizationRoleComponent {
     this.adminAuthorizationService
       .deleteAuthorization(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         {
           name: this.group.name,
           roles: [{ name: this.role.name }]

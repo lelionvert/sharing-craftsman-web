@@ -69,7 +69,7 @@ export class LibraryCreationComponent implements OnInit {
     this.categoryService
       .createCategory(
         this.cookieService.getCookie(COOKIES.username), 
-        this.cookieService.getCookie(COOKIES.accessToken), 
+        this.cookieService.getCookie(COOKIES.token), 
         this.model.categoryName
       )
       .subscribe(
@@ -85,7 +85,7 @@ export class LibraryCreationComponent implements OnInit {
     this.categoryService
       .searchCategories(
         this.cookieService.getCookie(COOKIES.username), 
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         searchCriteria
       )
       .subscribe(
@@ -101,7 +101,7 @@ export class LibraryCreationComponent implements OnInit {
     this.knowledgeService
     .addKnowledgeToCategory(
       this.cookieService.getCookie(COOKIES.username), 
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
       this.model.categoryId,
       this.model.title,
       this.model.content

@@ -44,7 +44,7 @@ export class AdminAuthorizationComponent implements OnInit {
     this.adminAuthorizationService
       .createAuthorization(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         {
           name: this.model.group,
           roles: [{ name: this.model.role }]
@@ -64,7 +64,7 @@ export class AdminAuthorizationComponent implements OnInit {
     this.adminAuthorizationService
       .getAuthorizations(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken)
+        this.cookieService.getCookie(COOKIES.token)
       )
       .subscribe(
         response => this.handleGetAuthorizationsResponse(response.body),

@@ -37,7 +37,7 @@ export class FavoritesComponent implements OnInit {
 
   private getAllFavorites() {
     this.favoriteService
-      .getFavorites(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.accessToken))
+      .getFavorites(this.cookieService.getCookie(COOKIES.username), this.cookieService.getCookie(COOKIES.token))
       .subscribe(
         response => this.handleGetFavoritesResponse(response.body),
         error => this.handleError(error)
@@ -58,7 +58,7 @@ export class FavoritesComponent implements OnInit {
     this.categoryService
       .getCategoryById(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         categoryId
       )
       .subscribe(
@@ -71,7 +71,7 @@ export class FavoritesComponent implements OnInit {
     this.knowledgeService
       .getKnowledgeById(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         knowledgeId
       )
       .subscribe(

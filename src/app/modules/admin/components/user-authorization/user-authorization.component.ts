@@ -37,7 +37,7 @@ export class AdminUserAuthorizationComponent implements OnInit {
     this.adminUserService
       .addGroupToUser(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         {
           username: this.user.username,
           group: this.model.group
@@ -53,7 +53,7 @@ export class AdminUserAuthorizationComponent implements OnInit {
     this.adminUserService
       .removeGroupFromUser(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken),
+        this.cookieService.getCookie(COOKIES.token),
         {
           username: this.user.username,
           group: groupName
@@ -69,7 +69,7 @@ export class AdminUserAuthorizationComponent implements OnInit {
     this.adminAuthorizationService
       .getAuthorizations(
         this.cookieService.getCookie(COOKIES.username),
-        this.cookieService.getCookie(COOKIES.accessToken)
+        this.cookieService.getCookie(COOKIES.token)
       )
       .subscribe(
         response => this.handleGetAuthorizationsResponse(response.body),

@@ -43,7 +43,7 @@ export class CommentModalComponent {
     this.commentService
     .addComment(
       this.cookieService.getCookie(COOKIES.username), 
-      this.cookieService.getCookie(COOKIES.accessToken),
+      this.cookieService.getCookie(COOKIES.token),
       this.contentType,
       this.contentId,
       this.model.comment
